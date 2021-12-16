@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from  './Topbar.module.scss';
-
+import avatar from './img/avatar.jpeg';
 
 const propTypes = {};
 
@@ -32,7 +32,8 @@ const Topbar = () => {
                     </li>
                 </ul>
             </div>
-            <div  className={styles.topbar__colRight}>
+            <div className={styles.topbar__colRight}>
+                <img src={avatar} />
                 <i class="fas fa-search"></i>
             </div>
         </div>
