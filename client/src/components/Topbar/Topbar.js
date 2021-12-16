@@ -14,16 +14,26 @@ const Topbar = () => {
         <div className={styles.topbar}>
             <div  className={styles.topbar__colLeft}>
                 <ul>
-                    <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#"><i className="fab fa-twitter-square"></i></a></li>
+                    <li><a href="#"><i className="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i className="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
             <div  className={styles.topbar__colCenter}>
-                2
+                <ul>
+                    <li>
+                        <a href="#">Головна</a>
+                    </li>
+                    <li>
+                        <a href="#">Додати СТО</a>
+                    </li>
+                    <li>
+                        <a href="#">Вийти</a>
+                    </li>
+                </ul>
             </div>
             <div  className={styles.topbar__colRight}>
-                3
+                <i class="fas fa-search"></i>
             </div>
         </div>
     );

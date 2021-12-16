@@ -26,6 +26,21 @@
 
     &__colCenter {
         flex-grow: 6;
+        display: flex;
+
+        ul {
+            display: flex;
+
+            li {
+                margin: 0 15px;
+                list-style: none;
+
+                a {
+                    color: cadetblue;
+                    font-weight: bold;
+                }
+            }
+        }
     }
 
     &__colRight {
