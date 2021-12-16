@@ -13,7 +13,11 @@ const Topbar = () => {
     return (
         <div className={styles.topbar}>
             <div  className={styles.topbar__colLeft}>
-                1
+                <ul>
+                    <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
             </div>
             <div  className={styles.topbar__colCenter}>
                 2

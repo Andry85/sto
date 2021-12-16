@@ -8,6 +8,20 @@
 
     &__colLeft {
         flex-grow: 3;
+        
+        ul {
+            display: flex;
+
+            li {
+                margin: 0 5px;
+                list-style: none;
+
+                a {
+                    color: cadetblue;
+                }
+            }
+        }
+
     }
 
     &__colCenter {
