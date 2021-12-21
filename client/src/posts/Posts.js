@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
+import Post from '../post/Post';
 import styles from  './Posts.module.scss';
+
 
 
 
@@ -13,7 +15,12 @@ const defaultProps = {};
 const Posts = () => {
     return (
         <div className={styles.posts}>
-           posts
+           <Post/>
+           <Post/>
+           <Post/>
+           <Post/>
+           <Post/>
+           <Post/>
         </div>
     );
 }

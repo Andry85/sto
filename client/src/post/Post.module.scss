@@ -1,0 +1,31 @@
+.post {
+    padding: 15px;
+    flex-basis: 50%;
+    
+    &__inner {
+        position: relative;
+    }
+
+    &__cat {
+        position: absolute;
+        background: #fff;
+        right: 0;
+        bottom: 0;
+        padding: 5px 15px;
+    }
+
+    &__title {
+        padding: 5px 15px;
+        font-family: "Lobster", cursive;
+    }
+
+    &__info {
+        padding: 5px 15px;
+    }
+
+    &__pic {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+}
