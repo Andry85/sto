@@ -1,0 +1,55 @@
+.write {
+    padding: 35px;
+
+    &__formGroup {
+        padding: 15px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    &__add {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid #000;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        cursor: pointer;
+        margin: 0 15px 0 0;
+    }
+
+    &__text {
+        border: 0;
+        font-size: 2rem;
+        color: #333;
+        outline: none;
+    }
+
+    &__textArea {
+        border: 0;
+        font-size: 1.4rem;
+        color: #333;
+        outline: none;
+        margin: 0 0 0 45px;
+        flex-grow: 1;
+    }
+
+    &__submit {
+        background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 7px 16px;
+        text-align: center;
+        display: inline-block;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin: 40px 0 0 0;
+    }
+
+    &__pic {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+}

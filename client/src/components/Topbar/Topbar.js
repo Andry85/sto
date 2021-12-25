@@ -34,7 +34,7 @@ const Topbar = () => {
             </div>
             <div className={styles.topbar__colRight}>
                 <img src={avatar} />
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
             </div>
         </div>
     );

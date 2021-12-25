@@ -1,0 +1,68 @@
+.singlePost {
+    flex: 9;
+
+    &__inner {
+        padding: 15px;
+    }
+
+    &__pic {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    &__title {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__action {
+
+
+        span {
+            margin: 0 10px;
+            i {
+                font-size: 1.4rem;
+                cursor: pointer;
+                
+            }
+        }
+    }
+
+    &__edit {
+        i {
+            color: green;
+        }
+    }
+
+    &__delete {
+        i {
+            color: red;
+        }
+    }
+
+    &__info {
+        padding: 5px;
+
+        span {
+            padding: 0 10px; 
+
+            i {
+                font-style: normal;
+                font-weight: bold;
+            }
+        }
+
+    }
+
+    &__text {
+        padding: 15px;
+
+        p {
+            font-size: 1.6rem;
+            color: #333;
+        }
+    }
+}

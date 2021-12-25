@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import styles from  './Home.module.scss';
 import Header from '../../components/Header/Header';
-import Posts from '../../posts/Posts';
-import Sidebar from '../../sidebar/Sidebar';
+import Posts from '../../components/posts/Posts';
+import Sidebar from '../../components/sidebar/Sidebar';
 
 
 const propTypes = {};
