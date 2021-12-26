@@ -22,13 +22,13 @@ const Topbar = () => {
             <div  className={styles.topbar__colCenter}>
                 <ul>
                     <li>
-                        <a href="#">Головна</a>
+                        <a href="#">Main</a>
                     </li>
                     <li>
-                        <a href="#">Додати СТО</a>
+                        <a href="#">Add auto</a>
                     </li>
                     <li>
-                        <a href="#">Вийти</a>
+                        <a href="#">Sing out</a>
                     </li>
                 </ul>
             </div>

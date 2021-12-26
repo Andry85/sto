@@ -22,12 +22,12 @@ const Write = () => {
                         <i className="far fa-plus"></i>
                     </label>
                     <input type="file" id="fileInput" style={{display: "none"}}/>
-                    <input className={styles.write__text} type="text" placeholder="Назва Сто" autoFocus={true} />
+                    <input className={styles.write__text} type="text" placeholder="Auto name" autoFocus={true} />
                 </div>
                 <div className={styles.write__formGroup}>
-                    <textarea className={styles.write__textArea} rows="5" placeholder="Опиши своє СТО"></textarea>
+                    <textarea className={styles.write__textArea} rows="5" placeholder="Describe your auto"></textarea>
                 </div>
-                <button className={styles.write__submit}>Додати</button>
+                <button className={styles.write__submit}>Add</button>
             </form>
         </div>
     );

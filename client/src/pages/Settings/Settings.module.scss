@@ -1,0 +1,91 @@
+.settings {
+    display: flex;
+    align-items: flex-start;
+
+    &__inner {
+        flex: 9;
+        padding: 25px;
+    }
+
+    &__title {
+        padding: 25px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    &__updateTitle {
+        font-size: 2.3rem;
+        color: salmon;
+    }
+
+    &__deleteTitle {
+        color: red;
+        margin-left: auto;
+        font-size: 1.3rem;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+
+        > label {
+            margin: 30px 0 0 0;
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        > input {
+            margin: 10px 0;
+            height: 30px;
+            border: 0;
+            border-bottom: 1px solid lightgrey;
+            font-size: 1.3rem;
+            background: #fff;
+        }
+    }
+
+    &__btn {
+        width: 150px;
+        align-self: center;
+        background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 7px 16px;
+        text-align: center;
+        display: inline-block;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin: 20px 0 0 0;
+    }
+
+    &__profilePicture {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            margin: 0 25px 0 0;
+        }
+
+        label {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: chocolate;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+
+
+            i {
+                font-size: 1.0rem;
+                color: #fff;
+            }
+        }
+    }
+
+
+}

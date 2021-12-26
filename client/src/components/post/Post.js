@@ -20,7 +20,7 @@ const Post = () => {
                     <span>Київ</span>
                 </div>
             </div>
-            <h2 className={styles.post__title}>Кар сервіс Лтд</h2>
+            <h2 className={styles.post__title}>Bmx x-6</h2>
             <div className={styles.post__info}>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
         </div>
     );

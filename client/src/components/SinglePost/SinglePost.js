@@ -18,7 +18,7 @@ const SinglePost = () => {
             <div className={styles.singlePost__inner}>
                 <img className={styles.singlePost__pic} src={pic} />
                 <div className={styles.singlePost__title}>
-                    <h1>Кар сервіс Лтд</h1>
+                    <h1>BMW x6</h1>
                     <div className={styles.singlePost__action}>
                         <span className={styles.singlePost__edit}>
                             <i className="far fa-edit"></i>
@@ -39,10 +39,10 @@ const SinglePost = () => {
                 </div>
                 <div className={styles.singlePost__info}>
                     <span className={styles.singlePost__authot}>
-                        Автор: <i>Peter Pen</i>
+                        Author: <i>Peter Pen</i>
                     </span>
                     <span className={styles.singlePost__date}>
-                        1 час назад
+                        1 hour ago
                     </span>
                 </div>
                 

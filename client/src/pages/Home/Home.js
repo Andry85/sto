@@ -15,7 +15,6 @@ const defaultProps = {};
 const Home = () => {
     return (
         <div className={styles.home}>
-            <Header/>
             <div className={styles.home__container}>
                 <Posts/>
                 <Sidebar/>

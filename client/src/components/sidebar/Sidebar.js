@@ -11,12 +11,12 @@ const defaultProps = {};
 const Sidebar = () => {
     return (
         <div className={styles.sidebar}>
-           <h2 className={styles.sidebar__title}>Міста</h2>
+           <h2 className={styles.sidebar__title}>Model</h2>
             <ul className={styles.sidebarList}>
-                <li><a href="">Київ</a></li>
-                <li>Харків</li>
-                <li>Одеса</li>
-                <li>Вінниця</li>
+                <li><a href="">BMW</a></li>
+                <li>Mazda</li>
+                <li>Mersedes</li>
+                <li>Audi</li>
             </ul>
         </div>
     );
