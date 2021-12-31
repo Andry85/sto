@@ -69,5 +69,22 @@
             margin: 0 0 0 15px;
             cursor: pointer;
         }
+
+        ul {
+            display: flex;
+
+            li {
+                margin: 0 15px;
+                list-style: none;
+
+                a {
+                    color: cadetblue;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
     }
 }

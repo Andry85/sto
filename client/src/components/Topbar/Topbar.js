@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from  './Topbar.module.scss';
 import avatar from './img/avatar.jpeg';
+import { Link } from 'react-router-dom';
 
 const propTypes = {};
 
@@ -10,6 +11,7 @@ const defaultProps = {};
  * 
  */
 const Topbar = () => {
+    const user = false;
     return (
         <div className={styles.topbar}>
             <div  className={styles.topbar__colLeft}>
@@ -19,21 +21,33 @@ const Topbar = () => {
                     <li><a href="#"><i className="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
-            <div  className={styles.topbar__colCenter}>
+            <div className={styles.topbar__colCenter}>
                 <ul>
                     <li>
-                        <a href="#">Main</a>
+                        <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <a href="#">Add auto</a>
+                        <Link to="/write">Add auto</Link>
                     </li>
                     <li>
-                        <a href="#">Sing out</a>
+                        {user && "Log Out"}
                     </li>
                 </ul>
             </div>
             <div className={styles.topbar__colRight}>
-                <img src={avatar} />
+                {user ? (
+                    <img src={avatar} />
+                ): (
+                    <ul>
+                         <li>
+                            <Link to="/login">Login</Link>
+                         </li>
+                         <li>
+                            <Link to="/register">Register</Link>
+                         </li>
+                    </ul>    
+                )}
+                
                 <i className="fas fa-search"></i>
             </div>
         </div>
