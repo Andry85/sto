@@ -4,8 +4,10 @@ const dotenv = require('dotenv');
 
 // підключення монгуса
 const mongoose = require("mongoose");
+const authRoute = require("./routes/auth");
 
 dotenv.config();
+app.use(express.json());
 
 // підключення монго дб
 mongoose.connect(process.env.MONGO_URL)
@@ -18,17 +20,9 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 
-app.use('/hello', (req, res)=> {
-    console.log('this is main url');
-});
+app.use('/api/auth', authRoute);
 
-app.use('/user/:id', function(req, res, next) {
-    console.log('Request URL:', req.originalUrl);
-    next();
-  }, function (req, res, next) {
-    console.log('Request Type:', req.method);
-    next();
-  });
+
 
 app.listen(5000, () => {
     console.log('Backend is runningggg.');
