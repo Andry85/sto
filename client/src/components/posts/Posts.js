@@ -12,15 +12,12 @@ const defaultProps = {};
 /**
  * 
  */
-const Posts = () => {
+const Posts = ({posts}) => {
     return (
-        <div className={styles.posts}>
-           <Post/>
-           <Post/>
-           <Post/>
-           <Post/>
-           <Post/>
-           <Post/>
+        <div className={styles.postsCom}>
+            {posts.map((p) =>(
+                <Post post={p}/>
+            ))}      
         </div>
     );
 }

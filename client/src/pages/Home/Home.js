@@ -1,6 +1,7 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from  './Home.module.scss';
-import Header from '../../components/Header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
 
@@ -13,10 +14,23 @@ const defaultProps = {};
  * 
  */
 const Home = () => {
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+
+        const fetchPosts = async () => {
+            const res = await axios.get('/posts');
+            setPosts(res.data);
+        };
+        fetchPosts();
+
+    }, [])
+
     return (
         <div className={styles.home}>
             <div className={styles.home__container}>
-                <Posts/>
+                <Posts posts={posts} />
                 <Sidebar/>
             </div>
         </div>

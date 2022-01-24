@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from  './Post.module.scss';
-import pic from './img/post.jpg';
+import {Link} from 'react-router-dom';
 
 
 
@@ -11,17 +11,22 @@ const defaultProps = {};
 /**
  * 
  */
-const Post = () => {
+const Post = ({post}) => {
     return (
         <div className={styles.post}>
             <div className={styles.post__inner}>
-                <img className={styles.post__pic} src={pic} />
+                {post.photo && (
+                    <img className={styles.post__pic} src={post.photo} />
+                )}
                 <div className={styles.post__cat}>
-                    <span>Київ</span>
+                    {post.categories.map((c)=> (
+                        <span>{c.name}</span>
+                    ))} 
                 </div>
             </div>
-            <h2 className={styles.post__title}>Bmx x-6</h2>
-            <div className={styles.post__info}>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+            
+            <h2 className={styles.post__title}><Link to={`/post/${post._id}`}>{post.title}</Link></h2>
+            <div className={styles.post__info}>{post.description}</div>
         </div>
     );
 }
