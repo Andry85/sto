@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styles from  './Home.module.scss';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
+import { useLocation } from 'react-router';
 
 
 const propTypes = {};
@@ -16,16 +17,18 @@ const defaultProps = {};
 const Home = () => {
 
     const [posts, setPosts] = useState([]);
+    const {search} = useLocation();
+
 
     useEffect(() => {
 
         const fetchPosts = async () => {
-            const res = await axios.get('/posts');
+            const res = await axios.get('/posts' + search);
             setPosts(res.data);
         };
         fetchPosts();
 
-    }, [])
+    }, [search])
 
     return (
         <div className={styles.home}>
