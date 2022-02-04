@@ -1,6 +1,9 @@
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Context } from '../../context/Context';
 import styles from  './Login.module.scss';
+import axios from 'axios';
 
 
 
@@ -12,17 +15,51 @@ const defaultProps = {};
  * 
  */
 const Login = () => {
+
+    const userRef = useRef();
+    const passwordRef = useRef();
+    const {user, dispatch, isFetching} = useContext(Context);
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        dispatch({type: "LOGIN_START"});
+
+        try {
+            const res = await axios.post('/auth/login/', {
+                username: userRef.current.value,
+                password: passwordRef.current.value,
+            });
+
+            dispatch({type: "LOGIN_SUCCESS", payload: res.data});
+
+        } catch(error) {
+            dispatch({type: "LOGIN_FAILURE"});
+        }
+
+    }
+
+    console.log(user);
+
     return (
         <div className={styles.login}>
             <h2 className={styles.login__title}>Login</h2>
-            <form className={styles.login__form}>
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email..." />
+            <form className={styles.login__form} onSubmit={handleSubmit}>
+                <label>Username</label>
+                <input 
+                    type="text" 
+                    placeholder="Enter your username..." 
+                    ref={userRef}
+                />
                 <label>PAssword</label>
-                <input type="password" placeholder="Enter your password..." />
+                <input 
+                    type="password" 
+                    placeholder="Enter your password..." 
+                    ref={passwordRef}
+                />
                 <button className={styles.login__loginBtn}>Login</button>
             </form>
-            <button className={styles.login__registrBtn}>
+            <button className={styles.login__registrBtn} type="submit">
                 <Link to="/register">Register</Link>
             </button>
         </div>
