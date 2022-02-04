@@ -1,7 +1,8 @@
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from  './Topbar.module.scss';
-import avatar from './img/avatar.jpeg';
 import { Link } from 'react-router-dom';
+import { Context } from '../../context/Context';
 
 const propTypes = {};
 
@@ -11,7 +12,12 @@ const defaultProps = {};
  * 
  */
 const Topbar = () => {
-    const user = false;
+    const {user, dispatch} = useContext(Context);
+
+    const handleLogout = () => {
+        dispatch({type: "LOGOUT"});
+    }
+
     return (
         <div className={styles.topbar}>
             <div  className={styles.topbar__colLeft}>
@@ -29,14 +35,14 @@ const Topbar = () => {
                     <li>
                         <Link to="/write">Add auto</Link>
                     </li>
-                    <li>
+                    <li onClick={handleLogout}>
                         {user && "Log Out"}
                     </li>
                 </ul>
             </div>
             <div className={styles.topbar__colRight}>
                 {user ? (
-                    <img src={avatar} />
+                    <img src={user.profilePic} />
                 ): (
                     <ul>
                          <li>

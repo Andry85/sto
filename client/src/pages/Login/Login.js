@@ -39,8 +39,6 @@ const Login = () => {
 
     }
 
-    console.log(user);
-
     return (
         <div className={styles.login}>
             <h2 className={styles.login__title}>Login</h2>
@@ -57,9 +55,9 @@ const Login = () => {
                     placeholder="Enter your password..." 
                     ref={passwordRef}
                 />
-                <button className={styles.login__loginBtn}>Login</button>
+                <button className={styles.login__loginBtn} type="submit" disabled={isFetching}>Login</button>
             </form>
-            <button className={styles.login__registrBtn} type="submit">
+            <button className={styles.login__registrBtn}>
                 <Link to="/register">Register</Link>
             </button>
         </div>
