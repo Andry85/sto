@@ -13,6 +13,8 @@ const defaultProps = {};
  * 
  */
 const Posts = ({posts}) => {
+
+
     return (
         <div className={styles.postsCom}>
             {posts.map((p) =>(

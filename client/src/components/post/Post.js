@@ -12,11 +12,15 @@ const defaultProps = {};
  * 
  */
 const Post = ({post}) => {
+
+    const PF = "http://localhost:5000/images/";
+    
+
     return (
         <div className={styles.post}>
             <div className={styles.post__inner}>
                 {post.photo && (
-                    <img className={styles.post__pic} src={post.photo} />
+                    <img className={styles.post__pic} src={PF + post.photo} />
                 )}
                 <div className={styles.post__cat}>
                     {post.categories.map((c)=> (

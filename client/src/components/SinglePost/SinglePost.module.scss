@@ -18,6 +18,43 @@
         align-items: center;
     }
 
+    &__titleInput {
+        width: 100%;
+        text-align: center;
+        border: 0;
+        border-bottom: 1px solid lightgray;
+        font-weight: bold;
+        font-size: 24px;
+        color: gray;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__textArea {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid lightgray;
+        font-size: 15px;
+        color: gray;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__btn {
+        border: 0;
+        padding: 7px;
+        background: teal;
+        width: 100px;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 20px 0 0 0;
+    }
+
     &__action {
 
 
