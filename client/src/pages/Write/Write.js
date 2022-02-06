@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from  './Write.module.scss';
-import pic from './img/post.jpg';
 import axios from 'axios';
 import { Context } from '../../context/Context';
 
@@ -50,9 +49,7 @@ const Write = () => {
             window.location.replace('/post/' + res.data._id);
         } catch(err) {
 
-        }
-
-        
+        } 
 
     }
 

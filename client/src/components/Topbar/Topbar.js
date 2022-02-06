@@ -18,6 +18,8 @@ const Topbar = () => {
         dispatch({type: "LOGOUT"});
     }
 
+    const PF = "http://localhost:5000/images/";
+
     return (
         <div className={styles.topbar}>
             <div  className={styles.topbar__colLeft}>
@@ -42,7 +44,10 @@ const Topbar = () => {
             </div>
             <div className={styles.topbar__colRight}>
                 {user ? (
-                    <img src={user.profilePic} />
+                    <Link to="/settings">
+                        <img src={PF + user.profilePic} />
+                    </Link>
+                    
                 ): (
                     <ul>
                          <li>
