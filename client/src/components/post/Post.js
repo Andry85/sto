@@ -31,6 +31,7 @@ const Post = ({post}) => {
             
             <h2 className={styles.post__title}><Link to={`/post/${post._id}`}>{post.title}</Link></h2>
             <div className={styles.post__info}>{post.description}</div>
+            <div className={styles.post__price}>{post.price}</div>
         </div>
     );
 }

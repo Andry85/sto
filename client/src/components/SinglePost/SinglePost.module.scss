@@ -1,5 +1,9 @@
 .singlePost {
     flex: 9;
+    border: 1px solid rgb(229, 232, 236);
+    border-radius: 10px;
+    background: #fff;
+    margin: 15px 20px 0 20px;
 
     &__inner {
         padding: 15px;

@@ -20,6 +20,7 @@ const Write = () => {
     const [desc, setDesc] = useState('');
     const [file, setFile] = useState(null);
     const {user} = useContext(Context);
+    const [price, setPrice] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,7 +28,8 @@ const Write = () => {
         const newPost = {
             username: user.username,
             title,
-            description: desc
+            description: desc,
+            price
         }
 
         if (file) {
@@ -85,6 +87,15 @@ const Write = () => {
                         onChange={e => setDesc(e.target.value)}
                     ></textarea>
                 </div>
+                <div className={styles.write__formGroupRow}>
+                    <input 
+                        className={styles.write__text} 
+                        type="text" 
+                        placeholder="Auto price" 
+                        onChange={e => setPrice(e.target.value)}
+                    />
+                </div>
+                
                 <button className={styles.write__submit} type="submit">Add</button>
             </form>
         </div>

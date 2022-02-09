@@ -1,5 +1,5 @@
 .topbar {
-    background: #fcdfcf;
+    background: linear-gradient(to right, #007FFF, #0059B2);
     min-height: 60px;
     position: sticky;
     top: 0;
@@ -19,7 +19,7 @@
                 list-style: none;
 
                 a {
-                    color: cadetblue;
+                    color: #fff;
                 }
             }
         }
@@ -37,9 +37,10 @@
             li {
                 margin: 0 15px;
                 list-style: none;
+                color: #fff;
 
                 a {
-                    color: cadetblue;
+                    color: inherit;
                     font-weight: bold;
 
                     &:hover {
@@ -79,7 +80,7 @@
                 list-style: none;
 
                 a {
-                    color: cadetblue;
+                    color: #fff;
 
                     &:hover {
                         text-decoration: none;
@@ -87,5 +88,11 @@
                 }
             }
         }
+    }
+
+    &__logout {
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;
     }
 }

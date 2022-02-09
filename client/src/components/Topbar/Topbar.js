@@ -37,7 +37,7 @@ const Topbar = () => {
                     <li>
                         <Link to="/write">Add auto</Link>
                     </li>
-                    <li onClick={handleLogout}>
+                    <li className={styles.topbar__logout} onClick={handleLogout}>
                         {user && "Log Out"}
                     </li>
                 </ul>
