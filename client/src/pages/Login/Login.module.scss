@@ -1,11 +1,10 @@
 .login {
-    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)), url(./img/bg.jpg) center center no-repeat;
-    background-size: cover;
+    flex-grow: 1;
+
 
     &__title {
         font-size: 3rem;
@@ -21,9 +20,12 @@
         }
 
         input {
-            padding: 10px;
             background: #fff;
-            border: 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            color: #333;
         }
     }
 

@@ -6,6 +6,7 @@ import Register from './pages/Register/Register';
 import Settings from './pages/Settings/Settings';
 import Single from './pages/Single/Single';
 import Write from './pages/Write/Write';
+import Footer from './components/Footer/Footer';
 import {
   BrowserRouter,
   Routes,
@@ -36,6 +37,7 @@ function App() {
           }></Route>
           <Route path="/post/:postId" element={<Single />}></Route>
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
   );

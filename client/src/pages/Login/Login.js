@@ -43,13 +43,13 @@ const Login = () => {
         <div className={styles.login}>
             <h2 className={styles.login__title}>Login</h2>
             <form className={styles.login__form} onSubmit={handleSubmit}>
-                <label>Username</label>
+                <label>Username:</label>
                 <input 
                     type="text" 
                     placeholder="Enter your username..." 
                     ref={userRef}
                 />
-                <label>PAssword</label>
+                <label>Password:</label>
                 <input 
                     type="password" 
                     placeholder="Enter your password..." 

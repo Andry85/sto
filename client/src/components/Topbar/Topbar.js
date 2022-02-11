@@ -58,8 +58,6 @@ const Topbar = () => {
                          </li>
                     </ul>    
                 )}
-                
-                <i className="fas fa-search"></i>
             </div>
         </div>
     );

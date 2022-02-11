@@ -19,13 +19,25 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        categories: {
-            type: Array,
+        marka: {
+            type: String,
+            required: false,
+        },
+        model: {
+            type: String,
             required: false,
         },
         price: {
             type: String,
-            required: true,
+            required: false,
+        },
+        location: {
+            type: String,
+            required: false,
+        },
+        race: {
+            type: String,
+            required: false,
         },
     },
     {timestamps: true}

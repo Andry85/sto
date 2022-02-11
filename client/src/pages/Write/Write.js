@@ -1,10 +1,21 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext, Component } from 'react';
+import Select from 'react-select'
 import PropTypes from 'prop-types';
 import styles from  './Write.module.scss';
 import axios from 'axios';
 import { Context } from '../../context/Context';
 
+const options1 = [
+    {value: 'one', label: 'One'},
+    {value: 'two', label: 'Two'}
+  ];
 
+const options2 = [
+{value: 'one-a', label: 'One A', link: 'one'},
+{value: 'one-b', label: 'One B', link: 'one'},
+{value: 'two-a', label: 'Two A', link: 'two'},
+{value: 'two-b', label: 'Two B', link: 'two'}
+];
 
 
 const propTypes = {};
@@ -21,6 +32,13 @@ const Write = () => {
     const [file, setFile] = useState(null);
     const {user} = useContext(Context);
     const [price, setPrice] = useState('');
+    const [location, setLocation] = useState('');
+    const [race, setRace] = useState('');
+    // const [marka, setMarka] = useState('');
+    // const [model, setModel] = useState('');
+    const [marka, setMarka] = useState({});
+    const [model, setModel] = useState({});
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +47,11 @@ const Write = () => {
             username: user.username,
             title,
             description: desc,
-            price
+            price,
+            location,
+            race,
+            marka,
+            model
         }
 
         if (file) {
@@ -55,6 +77,26 @@ const Write = () => {
 
     }
 
+    const handleChange1 = (selectedOption) => {
+        console.log(selectedOption)
+        setMarka(selectedOption);
+        console.log('marka', marka)
+    };
+    
+    const handleChange2 = (selectedOption) => {
+        setModel({model: selectedOption})
+    }
+
+    const filteredOptions = options2.filter((o) => {
+
+        // console.log(o);
+        // console.log(selectedOption.value);
+
+        return  o.link === marka.value
+    });
+       
+    
+
     return (
         <div className={styles.write}>
             {file &&
@@ -79,13 +121,22 @@ const Write = () => {
                         onChange={e => setTitle(e.target.value)}
                     />
                 </div>
-                <div className={styles.write__formGroup}>
-                    <textarea 
-                        className={styles.write__textArea} 
-                        rows="5" 
-                        placeholder="Describe your auto"
-                        onChange={e => setDesc(e.target.value)}
-                    ></textarea>
+                <div className={styles.write__formGroupRow}>
+                    <label>Auto marka</label>
+                    {marka.value}
+                    <Select
+                        value={marka.value}
+                        onChange={handleChange1}
+                        options={options1}
+                    />
+                </div>
+                <div className={styles.write__formGroupRow}>
+                    <label>Auto model</label>
+                    <Select
+                        value={model.value}
+                        onChange={handleChange2}
+                        options={filteredOptions}
+                    />
                 </div>
                 <div className={styles.write__formGroupRow}>
                     <input 
@@ -95,7 +146,30 @@ const Write = () => {
                         onChange={e => setPrice(e.target.value)}
                     />
                 </div>
-                
+                <div className={styles.write__formGroupRow}>
+                    <input 
+                        className={styles.write__text} 
+                        type="text" 
+                        placeholder="Auto race" 
+                        onChange={e => setRace(e.target.value)}
+                    />
+                </div>
+                <div className={styles.write__formGroupRow}>
+                    <input 
+                        className={styles.write__text} 
+                        type="text" 
+                        placeholder="Auto location" 
+                        onChange={e => setLocation(e.target.value)}
+                    />
+                </div>
+                <div className={styles.write__formGroup}>
+                    <textarea 
+                        className={styles.write__textArea} 
+                        rows="5" 
+                        placeholder="Describe your auto"
+                        onChange={e => setDesc(e.target.value)}
+                    ></textarea>
+                </div>
                 <button className={styles.write__submit} type="submit">Add</button>
             </form>
         </div>

@@ -12,26 +12,26 @@ const defaultProps = {};
  * 
  */
 const Sidebar = () => {
-    const [cats, setCats] = useState([]);
+    const [marks, setMarks] = useState([]);
 
     useEffect(() => {
 
-        const getCats = async () => {
-            const respond = await axios.get('/categories');
-            setCats(respond.data);
+        const setMarks = async () => {
+            const respond = await axios.get('/marks');
+            setMarks(respond.data);
         }
-        getCats();
+        setMarks();
        
     }, [])
 
     return (
         <div className={styles.sidebar}>
-           <h2 className={styles.sidebar__title}>Model</h2>
+           <h2 className={styles.sidebar__title}>Marka</h2>
             <ul className={styles.sidebarList}>
-                {cats.map(cat => (
+                {marks.map(marka => (
                   
                     <li>
-                         <Link to={`/?cat=${cat.name}`}>{cat.name}</Link>
+                         <Link to={`/?marka=${marka.name}`}>{marka.name}</Link>
                     </li>
                 ))}
             </ul>

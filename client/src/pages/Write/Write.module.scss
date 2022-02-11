@@ -1,5 +1,8 @@
 .write {
-    padding: 35px;
+    padding: 15px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 25px;
 
     &__formGroup {
         padding: 15px 0;
@@ -20,15 +23,20 @@
     }
 
     &__text {
-        border: 0;
-        font-size: 2rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 1.4rem;
         color: #333;
         outline: none;
+        border-radius: 4px;
+        padding: 10px 15px;
+        width: 100%;
     }
 
     &__textArea {
-        border: 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
         font-size: 1.4rem;
+        padding: 10px 15px;
         color: #333;
         outline: none;
         margin: 0 0 0 45px;
@@ -36,15 +44,15 @@
     }
 
     &__submit {
-        background-color: #008CBA;
+        background-color: rgb(25, 118, 210);
         border: none;
         color: white;
-        padding: 7px 16px;
+        padding: 7px 26px;
         text-align: center;
         display: inline-block;
         font-size: 1.2rem;
         cursor: pointer;
-        margin: 40px 0 0 0;
+        margin: 35px 0 0 45px;
     }
 
     &__pic {
@@ -54,6 +62,6 @@
     }
 
     &__formGroupRow {
-        margin: 0 0 0 45px;
+        margin: 0 0 15px 45px;
     }
 }

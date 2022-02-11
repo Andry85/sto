@@ -1,0 +1,14 @@
+.footer {
+    background: linear-gradient(to right, #007FFF, #0059B2);
+    color: #fff;
+    margin-top: auto;
+
+    &__container {
+        position: relative;
+    }
+
+    &__text {
+        text-align: center;
+        padding: 15px 0;
+    }
+}

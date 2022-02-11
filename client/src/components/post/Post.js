@@ -19,19 +19,27 @@ const Post = ({post}) => {
     return (
         <div className={styles.post}>
             <div className={styles.post__inner}>
+                <h2 className={styles.post__title}><Link to={`/post/${post._id}`}>{post.title}</Link></h2>
                 {post.photo && (
                     <img className={styles.post__pic} src={PF + post.photo} />
                 )}
                 <div className={styles.post__cat}>
-                    {post.categories.map((c)=> (
-                        <span>{c.name}</span>
+                    {post.marka.map((m)=> (
+                        <span>{m.name}</span>
                     ))} 
+                </div>
+                <div className={styles.post__entry}>
+                    {post.price && (
+                        <div className={styles.post__price}>{post.price}</div>
+                    )}
+                    {post.race && (
+                        <div className={styles.post__race}>Race: {post.race}</div>
+                    )}
                 </div>
             </div>
             
-            <h2 className={styles.post__title}><Link to={`/post/${post._id}`}>{post.title}</Link></h2>
-            <div className={styles.post__info}>{post.description}</div>
-            <div className={styles.post__price}>{post.price}</div>
+            
+            
         </div>
     );
 }
