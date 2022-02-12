@@ -6,16 +6,20 @@ import axios from 'axios';
 import { Context } from '../../context/Context';
 
 const options1 = [
-    {value: 'one', label: 'One'},
-    {value: 'two', label: 'Two'}
+    {value: 'seat', label: 'Seat'},
+    {value: 'renault', label: 'Renault'}
   ];
 
 const options2 = [
-{value: 'one-a', label: 'One A', link: 'one'},
-{value: 'one-b', label: 'One B', link: 'one'},
-{value: 'two-a', label: 'Two A', link: 'two'},
-{value: 'two-b', label: 'Two B', link: 'two'}
+    {value: 'alhambra', label: 'Alhambra', link: 'seat'},
+    {value: 'alhambra', label: 'Altea', link: 'seat'},
+    {value: 'altea_xl', label: 'Altea XL', link: 'seat'},
+    {value: 'captur', label: 'Captur', link: 'renault'},
+    {value: 'clio', label: 'Clio', link: 'renault'},
+    {value: 'clio_grandtour', label: 'Clio Grandtour', link: 'renault'},
 ];
+
+
 
 
 const propTypes = {};
@@ -34,10 +38,8 @@ const Write = () => {
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState('');
     const [race, setRace] = useState('');
-    // const [marka, setMarka] = useState('');
-    // const [model, setModel] = useState('');
-    const [marka, setMarka] = useState({});
-    const [model, setModel] = useState({});
+    const [optionMarka, setOptionMarka] = useState({});
+    const [optionModel, setOptionModel] = useState({});
 
 
     const handleSubmit = async (e) => {
@@ -50,8 +52,8 @@ const Write = () => {
             price,
             location,
             race,
-            marka,
-            model
+            marka: optionMarka.value,
+            model: optionModel.value,
         }
 
         if (file) {
@@ -78,25 +80,15 @@ const Write = () => {
     }
 
     const handleChange1 = (selectedOption) => {
-        console.log(selectedOption)
-        setMarka(selectedOption);
-        console.log('marka', marka)
+        setOptionMarka({selectedOption});
     };
     
     const handleChange2 = (selectedOption) => {
-        setModel({model: selectedOption})
+        setOptionModel({optionModel: selectedOption})
     }
 
-    const filteredOptions = options2.filter((o) => {
-
-        // console.log(o);
-        // console.log(selectedOption.value);
-
-        return  o.link === marka.value
-    });
+    const filteredOptions = options2.filter((o) => o.link === optionMarka.selectedOption?.value);
        
-    
-
     return (
         <div className={styles.write}>
             {file &&
@@ -123,9 +115,8 @@ const Write = () => {
                 </div>
                 <div className={styles.write__formGroupRow}>
                     <label>Auto marka</label>
-                    {marka.value}
                     <Select
-                        value={marka.value}
+                        value={optionMarka.value}
                         onChange={handleChange1}
                         options={options1}
                     />
@@ -133,7 +124,7 @@ const Write = () => {
                 <div className={styles.write__formGroupRow}>
                     <label>Auto model</label>
                     <Select
-                        value={model.value}
+                        value={optionModel.value}
                         onChange={handleChange2}
                         options={filteredOptions}
                     />
