@@ -1,0 +1,31 @@
+{
+  "name": "sto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm run install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "cd api && npm start",
+    "dev": "concurrently \"cd client && npm run start\" \"cd api && npm run start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andry85/sto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andry85/sto/issues"
+  },
+  "homepage": "https://github.com/Andry85/sto#readme",
+  "engines": {
+    "node": "16.x"
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}

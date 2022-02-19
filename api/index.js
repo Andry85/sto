@@ -10,6 +10,7 @@ const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require('path/posix');
+const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 app.use(express.json());
@@ -46,7 +47,10 @@ app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api//marks', categoryRoute);
 
+if (process.env.NODE_ENV == 'production') {
+    app.use(express.static('./client/build'));
+}
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log('Backend is runningggg.');
 });
