@@ -46,7 +46,6 @@ app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api//marks', categoryRoute);
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 app.listen(5000, () => {
     console.log('Backend is runningggg.');
