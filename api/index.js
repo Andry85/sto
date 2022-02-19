@@ -48,7 +48,7 @@ app.use('/api/posts', postRoute);
 app.use('/api//marks', categoryRoute);
 
 if (process.env.NODE_ENV == 'production') {
-    app.use(express.static('./client/build'));
+    app.use(express.static('../client/build'));
 }
 
 app.listen(PORT, () => {
