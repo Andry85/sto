@@ -18,7 +18,7 @@ const Posts = ({posts}) => {
     return (
         <div className={styles.postsCom}>
             {posts.map((p) =>(
-                <Post post={p}/>
+                <Post key={p._id} post={p}/>
             ))}      
         </div>
     );
