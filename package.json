@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Andry85/sto#readme",
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
   "dependencies": {
     "concurrently": "^7.0.0"
