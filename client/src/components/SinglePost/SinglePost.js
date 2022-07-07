@@ -23,6 +23,10 @@ const SinglePost = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [updateMod, setUpdateMod] = useState(false);
+    const [locationAuto, setLocationAuto] = useState('');
+    const [price, setPtice] = useState('');
+    const [race, setRace] = useState('');
+
 
     useEffect(() => {
        const getPost = async () => {
@@ -30,6 +34,9 @@ const SinglePost = () => {
            setPost(res.data);
            setTitle(res.data.title);
            setDescription(res.data.description);
+           setLocationAuto(res.data.location);
+           setPtice(res.data.price);
+           setRace(res.data.race);
        };
        getPost();
     }, [path])
@@ -102,20 +109,75 @@ const SinglePost = () => {
                     </div>
                 )}
 
+                <div className={styles.singlePost__row}>
+                    <label>Локація:</label>
+                    {updateMod ? <input type="text" 
+                        value={locationAuto} 
+                        className={styles.singlePost__input}
+                        autoFocus
+                        onChange={(e) => setLocationAuto(e.target.value)} 
+                         /> : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {locationAuto}
+                            </div>
+                        </>
+
+                     )}  
+                </div>
+
+                <div className={styles.singlePost__row}>
+                    <label>Ціна:</label>
+                    {updateMod ? <input type="text" 
+                        value={price} 
+                        className={styles.singlePost__input}
+                        autoFocus
+                        onChange={(e) => setPtice(e.target.value)} 
+                         /> : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {price}
+                            </div>
+                        </>
+
+                     )}  
+                </div>
+
+                <div className={styles.singlePost__row}>
+                    <label>Пробіг:</label>
+                    {updateMod ? <input type="text" 
+                        value={race} 
+                        className={styles.singlePost__input}
+                        autoFocus
+                        onChange={(e) => setRace(e.target.value)} 
+                         /> : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {race}
+                            </div>
+                        </>
+
+                     )}  
+                </div>
+
                 {updateMod && (
-                    <button className={styles.singlePost__btn} onClick={handleUpdate}>Update</button>
+                    <button className={styles.singlePost__btn} onClick={handleUpdate}>Оновити</button>
                 )}
 
                 <div className={styles.singlePost__info}>
                     <span className={styles.singlePost__authot}>
-                        Author: 
+                        <i>Автор: </i>
                         <Link to={`/?user=${post.username}`}>
                             <i>{post.username}</i>
                         </Link>
                         
                     </span>
                     <span className={styles.singlePost__date}>
-                        {new Date(post.createdAt).toDateString()}
+                    {new Date(post.createdAt).getDate()}
+                    .
+                    {new Date(post.createdAt).getMonth()}
+                    .
+                    {new Date(post.createdAt).getFullYear()}
                     </span>
                 </div>
                 

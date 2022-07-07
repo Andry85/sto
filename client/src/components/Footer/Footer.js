@@ -13,7 +13,7 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
              <div className={styles.footer__container}>
-                <div className={styles.footer__text}>Find your best car</div>
+                <div className={styles.footer__text}>Автобазар онлайн</div>
             </div>           
         </footer>
     );

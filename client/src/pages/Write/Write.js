@@ -52,9 +52,11 @@ const Write = () => {
             price,
             location,
             race,
-            marka: optionMarka.value,
-            model: optionModel.value,
+            marka: optionMarka.selectedOption.label,
+            model: optionModel.optionModel.label,
         }
+
+        console.log(newPost);
 
         if (file) {
             const data = new FormData();
@@ -105,16 +107,20 @@ const Write = () => {
                         style={{display: "none"}} 
                         onChange={e => setFile(e.target.files[0])}
                     />
+                    <span>Додати фото</span>
+                </div>
+                <div className={styles.write__formGroupRow}>
+                    <label>Навзва авто</label>
                     <input 
                         className={styles.write__text} 
                         type="text" 
-                        placeholder="Auto name" 
+                        placeholder="Назва авто" 
                         autoFocus={true}
                         onChange={e => setTitle(e.target.value)}
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Auto marka</label>
+                    <label>Марка авто</label>
                     <Select
                         value={optionMarka.value}
                         onChange={handleChange1}
@@ -122,7 +128,7 @@ const Write = () => {
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Auto model</label>
+                    <label>Модель авто</label>
                     <Select
                         value={optionModel.value}
                         onChange={handleChange2}
@@ -133,7 +139,7 @@ const Write = () => {
                     <input 
                         className={styles.write__text} 
                         type="text" 
-                        placeholder="Auto price" 
+                        placeholder="Ціна авто" 
                         onChange={e => setPrice(e.target.value)}
                     />
                 </div>
@@ -141,7 +147,7 @@ const Write = () => {
                     <input 
                         className={styles.write__text} 
                         type="text" 
-                        placeholder="Auto race" 
+                        placeholder="Пробіг авто тисяч км." 
                         onChange={e => setRace(e.target.value)}
                     />
                 </div>
@@ -149,7 +155,7 @@ const Write = () => {
                     <input 
                         className={styles.write__text} 
                         type="text" 
-                        placeholder="Auto location" 
+                        placeholder="Ваш населений пункт" 
                         onChange={e => setLocation(e.target.value)}
                     />
                 </div>
@@ -157,11 +163,11 @@ const Write = () => {
                     <textarea 
                         className={styles.write__textArea} 
                         rows="5" 
-                        placeholder="Describe your auto"
+                        placeholder="Опишіть ваше авто"
                         onChange={e => setDesc(e.target.value)}
                     ></textarea>
                 </div>
-                <button className={styles.write__submit} type="submit">Add</button>
+                <button className={styles.write__submit} type="submit">Додати</button>
             </form>
         </div>
     );

@@ -47,29 +47,29 @@ const Register = () => {
 
     return (
         <div className={styles.register}>
-            <h2 className={styles.register__title}>Register</h2>
+            <h2 className={styles.register__title}>Реєстрація</h2>
             <form className={styles.register__form} onSubmit={handleSubmit}>
-                <label>User name</label>
+                <label>Ім'я користувача:</label>
                 <input type="text" 
-                    placeholder="Enter your user name..." 
+                    placeholder="Введіть ваше ім'я..." 
                     onChange={e => setUsername(e.target.value)}
                 />
-                <label>Email</label>
+                <label>Email:</label>
                 <input type="email" 
-                    placeholder="Enter your email..." 
+                    placeholder="Введіть ваш email..." 
                     onChange={e => setEmail(e.target.value)}
                 />
-                <label>Password</label>
+                <label>Пароль:</label>
                 <input type="password" 
-                    placeholder="Enter your password..." 
+                    placeholder="Введіть ваш пароль..." 
                     onChange={e => setPassword(e.target.value)}
                 />
-                <button className={styles.register__registrBtn} type="submit">Register</button>
+                <button className={styles.register__registrBtn} type="submit">реєстрація</button>
             </form>
             <button className={styles.register__loginBtn}>
-                <Link to="/login">Login</Link>
+                <Link to="/login">Логін</Link>
             </button>
-            {error && <span style={{color: 'red'}}>Someting went wrong</span>}
+            {error && <span style={{color: 'red'}}>Щось пішло не так</span>}
         </div>
     );
 }

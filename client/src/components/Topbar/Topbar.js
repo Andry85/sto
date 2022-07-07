@@ -22,23 +22,16 @@ const Topbar = () => {
 
     return (
         <div className={styles.topbar}>
-            <div  className={styles.topbar__colLeft}>
-                <ul>
-                    <li><a href="#"><i className="fab fa-twitter-square"></i></a></li>
-                    <li><a href="#"><i className="fab fa-facebook-square"></i></a></li>
-                    <li><a href="#"><i className="fab fa-linkedin"></i></a></li>
-                </ul>
-            </div>
             <div className={styles.topbar__colCenter}>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">Головна</Link>
                     </li>
                     <li>
-                        <Link to="/write">Add auto</Link>
+                        <Link to="/write">Додати авто</Link>
                     </li>
                     <li className={styles.topbar__logout} onClick={handleLogout}>
-                        {user && "Log Out"}
+                        {user && "Вийти"}
                     </li>
                 </ul>
             </div>
@@ -51,10 +44,10 @@ const Topbar = () => {
                 ): (
                     <ul>
                          <li>
-                            <Link to="/login">Login</Link>
+                            <Link to="/login">Логін</Link>
                          </li>
                          <li>
-                            <Link to="/register">Register</Link>
+                            <Link to="/register">Реєстрація</Link>
                          </li>
                     </ul>    
                 )}

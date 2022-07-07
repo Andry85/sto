@@ -102,8 +102,22 @@
         padding: 15px;
 
         p {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #333;
         }
+    }
+
+    &__row {
+        display: flex;
+        border-bottom: 1px dotted #333;
+        padding: 15px;
+
+        label {
+            width: 150px;
+        }
+    }
+
+    &__col {
+
     }
 }

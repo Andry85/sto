@@ -26,7 +26,7 @@ const Sidebar = () => {
 
     return (
         <div className={styles.sidebar}>
-           <h2 className={styles.sidebar__title}>Marka</h2>
+           <h2 className={styles.sidebar__title}>Марка авто</h2>
             <ul className={styles.sidebarList}>
                 {marks.map(marka => (
                   

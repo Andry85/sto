@@ -23,13 +23,6 @@ const Post = ({post}) => {
                 {post.photo && (
                     <img className={styles.post__pic} src={PF + post.photo} />
                 )}
-                 {post.marka && (
-                    <div className={styles.post__cat}>
-                        {post.marka.map((m)=> (
-                            <span>{m.name}</span>
-                        ))} 
-                    </div>
-                )}
                 <div className={styles.post__entry}>
                     {post.price && (
                         <div className={styles.post__price}>{post.price}</div>

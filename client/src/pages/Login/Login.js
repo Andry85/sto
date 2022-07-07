@@ -41,24 +41,24 @@ const Login = () => {
 
     return (
         <div className={styles.login}>
-            <h2 className={styles.login__title}>Login</h2>
+            <h2 className={styles.login__title}>Логін</h2>
             <form className={styles.login__form} onSubmit={handleSubmit}>
-                <label>Username:</label>
+                <label>Ім'я користувача:</label>
                 <input 
                     type="text" 
-                    placeholder="Enter your username..." 
+                    placeholder="Введіть ваше ім'я..." 
                     ref={userRef}
                 />
-                <label>Password:</label>
+                <label>Пароль:</label>
                 <input 
                     type="password" 
-                    placeholder="Enter your password..." 
+                    placeholder="Введіть ваш пароль..." 
                     ref={passwordRef}
                 />
-                <button className={styles.login__loginBtn} type="submit" disabled={isFetching}>Login</button>
+                <button className={styles.login__loginBtn} type="submit" disabled={isFetching}>Логін</button>
             </form>
             <button className={styles.login__registrBtn}>
-                <Link to="/register">Register</Link>
+                <Link to="/register">Реєстрація</Link>
             </button>
         </div>
     );
