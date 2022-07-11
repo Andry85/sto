@@ -4,27 +4,9 @@ import PropTypes from 'prop-types';
 import styles from  './Write.module.scss';
 import axios from 'axios';
 import { Context } from '../../context/Context';
+import {yearsCar} from '../../statics/years';
+import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
 
-const options1 = [
-    {value: 'seat', label: 'Seat'},
-    {value: 'renault', label: 'Renault'}
-  ];
-
-const options2 = [
-    {value: 'alhambra', label: 'Alhambra', link: 'seat'},
-    {value: 'alhambra', label: 'Altea', link: 'seat'},
-    {value: 'altea_xl', label: 'Altea XL', link: 'seat'},
-    {value: 'captur', label: 'Captur', link: 'renault'},
-    {value: 'clio', label: 'Clio', link: 'renault'},
-    {value: 'clio_grandtour', label: 'Clio Grandtour', link: 'renault'},
-];
-
-
-
-
-const propTypes = {};
-
-const defaultProps = {};
 
 /**
  * 
@@ -40,6 +22,7 @@ const Write = () => {
     const [race, setRace] = useState('');
     const [optionMarka, setOptionMarka] = useState({});
     const [optionModel, setOptionModel] = useState({});
+    const [yearProduction, setYearProduction] = useState({});
 
 
     const handleSubmit = async (e) => {
@@ -54,6 +37,7 @@ const Write = () => {
             race,
             marka: optionMarka.selectedOption.label,
             model: optionModel.optionModel.label,
+            year: yearProduction.label,
         }
 
         console.log(newPost);
@@ -89,7 +73,11 @@ const Write = () => {
         setOptionModel({optionModel: selectedOption})
     }
 
-    const filteredOptions = options2.filter((o) => o.link === optionMarka.selectedOption?.value);
+    const handleYearProduction = (selectedOption) => {
+        setYearProduction({yearProduction})
+    }
+
+    const filteredOptions = modelsOfCars.filter((o) => o.link === optionMarka.selectedOption?.value);
        
     return (
         <div className={styles.write}>
@@ -124,7 +112,7 @@ const Write = () => {
                     <Select
                         value={optionMarka.value}
                         onChange={handleChange1}
-                        options={options1}
+                        options={marksOfCars}
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
@@ -133,6 +121,14 @@ const Write = () => {
                         value={optionModel.value}
                         onChange={handleChange2}
                         options={filteredOptions}
+                    />
+                </div>
+                <div className={styles.write__formGroupRow}>
+                    <label>Рік випуску</label>
+                    <Select
+                        value={yearProduction.label}
+                        onChange={handleYearProduction}
+                        options={yearsCar}
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
@@ -173,8 +169,7 @@ const Write = () => {
     );
 }
 
-Write.propTypes = propTypes;
-Write.defaultProps = defaultProps;
+
 // #endregion
 
 export default Write;
