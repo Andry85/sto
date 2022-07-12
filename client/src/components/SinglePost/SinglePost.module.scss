@@ -1,5 +1,7 @@
+
+
 .singlePost {
-    flex: 9;
+    width: 70%;
     border: 1px solid rgb(229, 232, 236);
     border-radius: 10px;
     background: #fff;
@@ -117,7 +119,16 @@
         }
     }
 
-    &__col {
+    &__slider {
+        position: relative;
+        width: 100%;
+        padding: 0 30px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
 
     }
+
 }

@@ -1,9 +1,10 @@
 import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState, useContext  } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import styles from  './SinglePost.module.scss';
 import { Context } from '../../context/Context';
+import Slider from "react-slick";
+
 
 
 
@@ -73,15 +74,27 @@ const SinglePost = () => {
 
     }
 
-    console.log(files);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true
+    };
 
     return (
         <div className={styles.singlePost}>
             <div className={styles.singlePost__inner}>
-               
-                {files.map((item, index) =>(
-                    <img src={`${PF}/${item}`} alt="" key={index}/>
-                ))} 
+                <div className={styles.singlePost__slider}>
+                    <Slider {...settings}>
+                        {files.map((item, index) =>(
+                            <div key={index}>
+                                <img src={`${PF}/${item}`} alt="" />
+                            </div>
+                        ))} 
+                    </Slider>
+                </div>
                 
                 <div className={styles.singlePost__title}>
                     {updateMod ? <input type="text" 

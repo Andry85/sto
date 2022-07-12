@@ -20,8 +20,8 @@ const Post = ({post}) => {
         <div className={styles.post}>
             <div className={styles.post__inner}>
                 <h2 className={styles.post__title}><Link to={`/post/${post._id}`}>{post.title}</Link></h2>
-                {post.photo && (
-                    <img className={styles.post__pic} src={PF + post.photo} />
+                {post.files && (
+                    <img className={styles.post__pic} src={PF + post.files[0]} />
                 )}
                 <div className={styles.post__entry}>
                     {post.price && (
