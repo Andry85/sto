@@ -15,7 +15,6 @@ const Write = () => {
 
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
-    const [file, setFile] = useState(null);
     const {user} = useContext(Context);
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState('');
@@ -23,10 +22,20 @@ const Write = () => {
     const [optionMarka, setOptionMarka] = useState({});
     const [optionModel, setOptionModel] = useState({});
     const [yearProduction, setYearProduction] = useState({});
+    const [files, setFiles] = useState([]);
+    const filesNames = [];
+
+    const onChange = e => {
+        setFiles(e.target.files)
+    };
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        for (const element of files) {
+            filesNames.push(element.name);
+        }
 
         const newPost = {
             username: user.username,
@@ -38,22 +47,30 @@ const Write = () => {
             marka: optionMarka.selectedOption.label,
             model: optionModel.optionModel.label,
             year: yearProduction.label,
+            files: filesNames,
         }
 
-        console.log(newPost);
-
-        if (file) {
-            const data = new FormData();
-            const filename = Date.now() + file.name;
-            data.append('name', filename);
-            data.append('file', file);
-            newPost.photo = filename;
+        if (files) {
+            const formData = new FormData();
+            Object.values(files).forEach(file=>{
+                formData.append("uploadImages", file);
+            });
 
             try {
-                await axios.post('/upload', data);
-            } catch(err) {
-
+                const res = await axios.post('/upload', formData, {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
+                    },
+                });
+                console.log(res);
+            } catch (err) {
+                if (err.response.status === 500) {
+                    console.log(err);
+                } else {
+                    console.log(err.response.data.msg);
+                }
             }
+
         }
 
         try {
@@ -81,21 +98,15 @@ const Write = () => {
        
     return (
         <div className={styles.write}>
-            {file &&
-                <img className={styles.write__pic} src={URL.createObjectURL(file)} />
-            }
             <form className={styles.write__form} onSubmit={handleSubmit}>
                 <div className={styles.write__formGroup}>
-                    <label className={styles.write__add} htmlFor="fileInput">
-                        <i className="far fa-plus"></i>
-                    </label>
                     <input 
-                        type="file" 
-                        id="fileInput" 
-                        style={{display: "none"}} 
-                        onChange={e => setFile(e.target.files[0])}
+                        type='file'
+                        id='file'
+                        name="uploadImages"
+                        multiple
+                        onChange={onChange}
                     />
-                    <span>Додати фото</span>
                 </div>
                 <div className={styles.write__formGroupRow}>
                     <label>Навзва авто</label>

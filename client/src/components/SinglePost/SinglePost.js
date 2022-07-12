@@ -26,6 +26,7 @@ const SinglePost = () => {
     const [locationAuto, setLocationAuto] = useState('');
     const [price, setPtice] = useState('');
     const [race, setRace] = useState('');
+    const [files, setFiles] = useState([]);
 
 
     useEffect(() => {
@@ -37,6 +38,7 @@ const SinglePost = () => {
            setLocationAuto(res.data.location);
            setPtice(res.data.price);
            setRace(res.data.race);
+           setFiles(res.data.files);
        };
        getPost();
     }, [path])
@@ -71,12 +73,15 @@ const SinglePost = () => {
 
     }
 
+    console.log(files);
+
     return (
         <div className={styles.singlePost}>
             <div className={styles.singlePost__inner}>
-                {post.photo && (
-                    <img className={styles.singlePost__pic} src={PF + post.photo} />
-                )}
+               
+                {files.map((item, index) =>(
+                    <img src={`${PF}/${item}`} alt="" key={index}/>
+                ))} 
                 
                 <div className={styles.singlePost__title}>
                     {updateMod ? <input type="text" 

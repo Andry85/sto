@@ -43,6 +43,10 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: false,
         },
+        files: {
+            type: Array,
+            required: false,
+        },
     },
     {timestamps: true}
 );
