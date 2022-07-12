@@ -29,6 +29,14 @@ const Write = () => {
         setFiles(e.target.files)
     };
 
+    const handleCloseIcon = e => {
+        const filesFiltered = Object.values(files).filter((item, index) => {
+            return index != e.target.dataset.index;
+        });
+        setFiles(filesFiltered);
+
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -100,13 +108,28 @@ const Write = () => {
         <div className={styles.write}>
             <form className={styles.write__form} onSubmit={handleSubmit}>
                 <div className={styles.write__formGroup}>
-                    <input 
-                        type='file'
-                        id='file'
-                        name="uploadImages"
-                        multiple
-                        onChange={onChange}
-                    />
+                    <div className={styles.write__formGroupFile}>
+                        <label htmlFor="file" className={styles.write__formGroupFileLabel}>
+                            <i className="fa fa-cloud-upload"></i>Upload photos
+                        </label>
+                        <input
+                            type='file'
+                            id='file'
+                            name="uploadImages"
+                            multiple
+                            onChange={onChange}
+                        />
+                        <ul>
+                            {Object.values(files) && Object.values(files).map((item, index) =>(
+                                <li key={index}>
+                                    <span>{item.name}</span>
+                                    <span data-index={index} className={styles.write__formGroupFileDelete} onClick={handleCloseIcon}>
+                                    </span>
+                                </li>
+                            ))} 
+                        </ul>
+                        
+                    </div>
                 </div>
                 <div className={styles.write__formGroupRow}>
                     <label>Навзва авто</label>

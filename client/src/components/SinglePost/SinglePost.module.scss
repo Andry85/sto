@@ -122,12 +122,23 @@
     &__slider {
         position: relative;
         width: 100%;
-        padding: 0 30px;
+        padding: 0 25px;
 
         img {
             width: 100%;
             height: auto;
         }
+
+        button {
+            background: #000;
+            border-radius: 50%;    
+
+            &:hover {
+                background: #ccc;
+            }
+        }
+
+       
 
     }
 

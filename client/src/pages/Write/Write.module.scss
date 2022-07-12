@@ -64,4 +64,58 @@
     &__formGroupRow {
         margin: 0 0 15px 45px;
     }
+
+    &__formGroupFile {
+        width: 100%;
+
+        input[type="file"] {
+            display: none;
+        }
+
+        ul {
+            margin: 0;
+            padding: 20px 0;
+            width: 100%;
+
+            li {
+                font-weight: bold;
+                border: 1px dotted #ccc;
+                padding: 5px;
+                list-style: none;
+                position: relative;
+            }
+        }
+    }
+
+    &__formGroupFileLabel {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+
+    &__formGroupFileDelete {
+        position: absolute;
+        right: 16px;
+        top: 10px;
+        width: 16px;
+        height: 16px;
+        opacity: 0.3;
+        cursor: pointer;
+
+        &:before, &:after {
+            position: absolute;
+            left: 15px;
+            content: ' ';
+            height: 17px;
+            width: 2px;
+            background-color: #333;
+          }
+          &:before {
+            transform: rotate(45deg);
+          }
+          &:after {
+            transform: rotate(-45deg);
+          }
+    }
 }
