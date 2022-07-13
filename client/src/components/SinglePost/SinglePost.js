@@ -28,6 +28,8 @@ const SinglePost = () => {
     const [price, setPtice] = useState('');
     const [race, setRace] = useState('');
     const [files, setFiles] = useState([]);
+    const [marka, setMarka] = useState('');
+    const [model, setModel] = useState('');
 
 
     useEffect(() => {
@@ -40,11 +42,21 @@ const SinglePost = () => {
            setPtice(res.data.price);
            setRace(res.data.race);
            setFiles(res.data.files);
+           setMarka(res.data.marka);
+           setModel(res.data.model);
+           console.log(res.data);
        };
        getPost();
     }, [path])
 
-    const PF = "http://localhost:5000/images/";
+
+    let PF;
+    if (process.env.NODE_ENV === 'production') {
+        PF = "http://mysite.com/images/";
+    } else {
+        PF = "http://localhost:5000/images/";
+    }
+
     const {user} = useContext(Context);
 
     const handleDelete = async () => {
@@ -126,6 +138,20 @@ const SinglePost = () => {
                         {description}
                     </div>
                 )}
+
+                <div className={styles.singlePost__row}>
+                    <label>Марка:</label>
+                    <div className={styles.singlePost__col}>
+                        {marka}
+                    </div>
+                </div>
+
+                <div className={styles.singlePost__row}>
+                    <label>Модель:</label>
+                    <div className={styles.singlePost__col}>
+                        {model}
+                    </div>
+                </div>
 
                 <div className={styles.singlePost__row}>
                     <label>Локація:</label>

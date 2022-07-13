@@ -17,24 +17,63 @@ const defaultProps = {};
 const Home = () => {
 
     const [posts, setPosts] = useState([]);
-    const {search} = useLocation();
+    const [marka, setMarka] = useState(null);
+    const [model, setModel] = useState(null);
+
+
+    const filterAuto = (marka, model) => {
+        setMarka(marka);
+        setModel(model);
+    };
 
 
     useEffect(() => {
 
         const fetchPosts = async () => {
-            const res = await axios.get('/posts' + search);
-            setPosts(res.data);
+            const res = await axios.get('/posts');
+
+            console.log(res.data);
+
+            console.log(marka, 'marka');
+            console.log(model, 'model');
+
+            if (marka != null && model == null) {
+                const filterAutoByMarka = res.data.filter((item, index) => {
+                    return item.marka == marka;
+                });
+                setPosts(filterAutoByMarka);
+                console.log('filtered by marka');
+            } else if (model != null && marka == null) {
+                const filterAutoByModel = res.data.filter((item, index) => {
+                    return item.model == model;
+                });
+                setPosts(filterAutoByModel);
+                console.log('filtered by model');
+            } else if (model != null && marka != null) {
+                const filterAutoByMarkaAndModel = res.data.filter((item, index) => {
+                    return item.model == model && item.marka == marka;
+                });
+                setPosts(filterAutoByMarkaAndModel);
+                console.log('filtered by borh');
+            } else {
+                setPosts(res.data);
+                console.log('filtered by all');
+            }
+
+            
+
+            
+            
         };
         fetchPosts();
 
-    }, [search])
+    }, [marka, model])
 
     return (
         <div className={styles.home}>
             <div className={styles.home__container}>
                 <Posts posts={posts} />
-                <Sidebar/>
+                <Sidebar filterAuto={filterAuto}/>
             </div>
         </div>
     );

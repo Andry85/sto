@@ -3,29 +3,14 @@
     margin: 15px 15px 0 0;
     background: linear-gradient(to right, #007FFF, #0059B2);
     border-radius: 4px;
-
-    &__title {
-        padding: 20px 0 0 20px;
-        color: #fff; 
-    }
-}
-
-.sidebarList {
-    margin: 0;
     padding: 20px;
 
-    li {
-        list-style: none;
-        margin: 0 0 10px 0;
-        padding: 5px;
-        border-bottom: 1px dotted #ccc;
+    &__Row {
+        margin: 0 0 15px 0;
 
-        a {
-            color: #fff; 
-
-            &:hover {
-                text-decoration: none;
-            }
+        label {
+            color: #fff;
         }
     }
 }
+

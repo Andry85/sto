@@ -18,7 +18,12 @@ const Topbar = () => {
         dispatch({type: "LOGOUT"});
     }
 
-    const PF = "http://localhost:5000/images/";
+    let PF;
+    if (process.env.NODE_ENV === 'production') {
+        PF = "http://mysite.com/images/";
+    } else {
+        PF = "http://localhost:5000/images/";
+    }
 
     return (
         <div className={styles.topbar}>

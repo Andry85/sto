@@ -3,6 +3,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from  './Sidebar.module.scss';
 import { Link } from 'react-router-dom';
+import Select from 'react-select'
+import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
 
 const propTypes = {};
 
@@ -11,30 +13,56 @@ const defaultProps = {};
 /**
  * 
  */
-const Sidebar = () => {
-    const [marks, setMarks] = useState([]);
+const Sidebar = ({filterAuto}) => {
+
+
+    const [optionMarka, setOptionMarka] = useState({});
+    const [optionModel, setOptionModel] = useState({});
 
     useEffect(() => {
 
-        const setMarks = async () => {
-            const respond = await axios.get('/marks');
-            setMarks(respond.data);
-        }
-        setMarks();
+       
        
     }, [])
 
+    const handleChange1 = (selectedOption) => {
+        setOptionMarka({selectedOption});
+    };
+    
+    const handleChange2 = (selectedOption) => {
+        setOptionModel({optionModel: selectedOption})
+    }
+
+    const filteredOptions = modelsOfCars.filter((o) => o.link === optionMarka.selectedOption?.value);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        filterAuto(optionMarka.selectedOption?.label, optionModel.optionModel?.label);
+
+    }
+
     return (
         <div className={styles.sidebar}>
-           <h2 className={styles.sidebar__title}>Марка авто</h2>
-            <ul className={styles.sidebarList}>
-                {marks.map(marka => (
-                  
-                    <li>
-                         <Link to={`/?marka=${marka.name}`}>{marka.name}</Link>
-                    </li>
-                ))}
-            </ul>
+            <form className={styles.write__form} onSubmit={handleSubmit}>
+                <div className={styles.sidebar__Row}>
+                    <label>Марка авто</label>
+                    <Select
+                        value={optionMarka.value}
+                        onChange={handleChange1}
+                        options={marksOfCars}
+                    />
+                </div>
+                <div className={styles.sidebar__Row}>
+                    <label>Модель авто</label>
+                    <Select
+                        value={optionModel.value}
+                        onChange={handleChange2}
+                        options={filteredOptions}
+                    />
+                </div>
+                <button className={styles.sidebar__submit} type="submit">Пошук</button>
+            </form>
         </div>
     );
 }
