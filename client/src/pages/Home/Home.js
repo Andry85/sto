@@ -32,11 +32,6 @@ const Home = () => {
         const fetchPosts = async () => {
             const res = await axios.get('/posts');
 
-            console.log(res.data);
-
-            console.log(marka, 'marka');
-            console.log(model, 'model');
-
             if (marka != null && model == null) {
                 const filterAutoByMarka = res.data.filter((item, index) => {
                     return item.marka == marka;
@@ -60,10 +55,6 @@ const Home = () => {
                 console.log('filtered by all');
             }
 
-            
-
-            
-            
         };
         fetchPosts();
 
