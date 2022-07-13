@@ -12,5 +12,14 @@
             color: #fff;
         }
     }
+
+    &__clear {
+        cursor: pointer;
+    }
+
+    &__RowBottom {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 

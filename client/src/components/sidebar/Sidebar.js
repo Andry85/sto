@@ -1,8 +1,5 @@
 import React, {useEffect, useState } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
 import styles from  './Sidebar.module.scss';
-import { Link } from 'react-router-dom';
 import Select from 'react-select'
 import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
 
@@ -13,7 +10,7 @@ const defaultProps = {};
 /**
  * 
  */
-const Sidebar = ({filterAuto}) => {
+const Sidebar = ({filterAuto, cleaerFilters}) => {
 
 
     const [optionMarka, setOptionMarka] = useState({});
@@ -42,6 +39,8 @@ const Sidebar = ({filterAuto}) => {
 
     }
 
+
+
     return (
         <div className={styles.sidebar}>
             <form className={styles.write__form} onSubmit={handleSubmit}>
@@ -61,7 +60,12 @@ const Sidebar = ({filterAuto}) => {
                         options={filteredOptions}
                     />
                 </div>
-                <button className={styles.sidebar__submit} type="submit">Пошук</button>
+                <div className={styles.sidebar__RowBottom}>
+                    <button className={styles.sidebar__submit} type="submit">Пошук</button>
+                    <button className={styles.sidebar__clear} type="button" onClick={cleaerFilters}>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
             </form>
         </div>
     );

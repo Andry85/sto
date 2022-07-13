@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import PropTypes from 'prop-types';
 import styles from  './Settings.module.scss';
-import Sidebar from '../../components/sidebar/Sidebar';
 import { Context } from '../../context/Context';
 import axios from 'axios';
 
@@ -112,7 +110,6 @@ const Settings = () => {
                     )}
                 </form>
             </div>
-           <Sidebar/>
         </div>
     );
 }

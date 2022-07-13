@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import styles from  './Single.module.scss';
-import Sidebar from '../../components/sidebar/Sidebar';
 import SinglePost from '../../components/SinglePost/SinglePost';
 
 
@@ -16,7 +15,6 @@ const Single = () => {
     return (
         <div className={styles.single}>
             <SinglePost/>
-            <Sidebar/>
         </div>
     );
 }
