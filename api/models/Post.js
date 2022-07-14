@@ -47,6 +47,18 @@ const PostSchema = new mongoose.Schema(
             type: Array,
             required: false,
         },
+        phone: {
+            type: String,
+            required: true,
+        },
+        regionsName: {
+            type: String,
+            required: false,
+        },
+        locationName: {
+            type: String,
+            required: false,
+        },
     },
     {timestamps: true}
 );

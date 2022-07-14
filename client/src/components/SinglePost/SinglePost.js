@@ -30,6 +30,9 @@ const SinglePost = () => {
     const [files, setFiles] = useState([]);
     const [marka, setMarka] = useState('');
     const [model, setModel] = useState('');
+    const [phone, setPhone] = useState('');
+    const [regionsName, setRegionsName] = useState('');
+    const [locationName, setLocationName] = useState('');
 
 
     useEffect(() => {
@@ -44,7 +47,9 @@ const SinglePost = () => {
            setFiles(res.data.files);
            setMarka(res.data.marka);
            setModel(res.data.model);
-           console.log(res.data);
+           setPhone(res.data.phone);
+           setRegionsName(res.data.regionsName);
+           setLocationName(res.data.locationName);
        };
        getPost();
     }, [path])
@@ -153,22 +158,6 @@ const SinglePost = () => {
                     </div>
                 </div>
 
-                <div className={styles.singlePost__row}>
-                    <label>Локація:</label>
-                    {updateMod ? <input type="text" 
-                        value={locationAuto} 
-                        className={styles.singlePost__input}
-                        autoFocus
-                        onChange={(e) => setLocationAuto(e.target.value)} 
-                         /> : (
-                        <>
-                            <div className={styles.singlePost__col}>
-                                {locationAuto}
-                            </div>
-                        </>
-
-                     )}  
-                </div>
 
                 <div className={styles.singlePost__row}>
                     <label>Ціна:</label>
@@ -198,6 +187,57 @@ const SinglePost = () => {
                         <>
                             <div className={styles.singlePost__col}>
                                 {race}
+                            </div>
+                        </>
+
+                     )}  
+                </div>
+
+                <div className={styles.singlePost__row}>
+                    <label>Регіон:</label>
+                    {updateMod ? <input type="text" 
+                        value={regionsName} 
+                        className={styles.singlePost__input}
+                        autoFocus
+                        onChange={(e) => setRegionsName(e.target.value)} 
+                         /> : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {regionsName}
+                            </div>
+                        </>
+
+                     )}  
+                </div>
+
+                <div className={styles.singlePost__row}>
+                    <label>Населений пункт:</label>
+                    {updateMod ? <input type="text" 
+                        value={locationName} 
+                        className={styles.singlePost__input}
+                        autoFocus
+                        onChange={(e) => setLocationName(e.target.value)} 
+                         /> : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {locationName}
+                            </div>
+                        </>
+
+                     )}  
+                </div>
+
+                <div className={styles.singlePost__row}>
+                    <label>Телефон:</label>
+                    {updateMod ? <input type="text" 
+                        value={phone} 
+                        className={styles.singlePost__input}
+                        autoFocus
+                        onChange={(e) => setPhone(e.target.value)} 
+                         /> : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {phone}
                             </div>
                         </>
 

@@ -6,6 +6,8 @@ import axios from 'axios';
 import { Context } from '../../context/Context';
 import {yearsCar} from '../../statics/years';
 import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
+import jsonData from '../../statics/cities.json';
+
 
 
 /**
@@ -17,13 +19,26 @@ const Write = () => {
     const [desc, setDesc] = useState('');
     const {user} = useContext(Context);
     const [price, setPrice] = useState('');
-    const [location, setLocation] = useState('');
     const [race, setRace] = useState('');
     const [optionMarka, setOptionMarka] = useState({});
     const [optionModel, setOptionModel] = useState({});
     const [yearProduction, setYearProduction] = useState({});
     const [files, setFiles] = useState([]);
     const filesNames = [];
+    const [phone, setPhone] = useState('');
+    const [regions, setRegions] = useState([]);
+    const [location, setLocation] = useState([]);
+    const [regionsName, setRegionsName] = useState('');
+    const [locationName, setLocationName] = useState('');
+
+
+    
+
+    useEffect(() => {
+        setRegions(jsonData[0].regions);
+    });
+
+    
 
     const onChange = e => {
         setFiles(e.target.files)
@@ -50,12 +65,14 @@ const Write = () => {
             title,
             description: desc,
             price,
-            location,
+            regionsName,
+            locationName,
             race,
             marka: optionMarka.selectedOption.label,
             model: optionModel.optionModel.label,
             year: yearProduction.label,
             files: filesNames,
+            phone
         }
 
         if (files) {
@@ -103,6 +120,16 @@ const Write = () => {
     }
 
     const filteredOptions = modelsOfCars.filter((o) => o.link === optionMarka.selectedOption?.value);
+
+    const handleChangeRegions = (e) => {
+        setLocation(regions[e.target.value].cities);
+        setRegionsName(regions[e.target.value].name);
+    }
+
+    const handleChangeLocation = (e) => {
+        setLocationName(e.target.value);
+    }
+
        
     return (
         <div className={styles.write}>
@@ -110,7 +137,7 @@ const Write = () => {
                 <div className={styles.write__formGroup}>
                     <div className={styles.write__formGroupFile}>
                         <label htmlFor="file" className={styles.write__formGroupFileLabel}>
-                            <i className="fa fa-cloud-upload"></i>Upload photos
+                            <i className="fa fa-cloud-upload"></i>Загрузіть фото
                         </label>
                         <input
                             type='file'
@@ -132,7 +159,7 @@ const Write = () => {
                     </div>
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Навзва авто</label>
+                    <label>Навзва авто:</label>
                     <input 
                         className={styles.write__text} 
                         type="text" 
@@ -142,7 +169,7 @@ const Write = () => {
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Марка авто</label>
+                    <label>Марка авто:</label>
                     <Select
                         value={optionMarka.value}
                         onChange={handleChange1}
@@ -150,7 +177,7 @@ const Write = () => {
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Модель авто</label>
+                    <label>Модель авто:</label>
                     <Select
                         value={optionModel.value}
                         onChange={handleChange2}
@@ -158,7 +185,7 @@ const Write = () => {
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Рік випуску</label>
+                    <label>Рік випуску:</label>
                     <Select
                         value={yearProduction.label}
                         onChange={handleYearProduction}
@@ -174,6 +201,7 @@ const Write = () => {
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
+                    <label>Пробіг авто:</label>
                     <input 
                         className={styles.write__text} 
                         type="text" 
@@ -182,11 +210,33 @@ const Write = () => {
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
+                    <label>Регіон:</label>
+                    <div className={styles.write__formGroupRowSelect}>
+                        <select onChange={handleChangeRegions}>
+                            {regions && regions.map((item, index) =>(
+                                <option value={index} key={index}>{item.name}</option>
+                            ))} 
+                        </select>
+                    </div>
+                </div>
+                <div className={styles.write__formGroupRow}>
+                    <label>Населений пункт:</label>
+                    <div className={styles.write__formGroupRowSelect}>            
+                        <select value={locationName} onChange={handleChangeLocation}>
+                            {location && location.map((item, index) =>(
+                                <option value={item.name} key={index}>{item.name}</option>
+                            ))} 
+                        </select>
+                    </div>
+                </div>
+                <div className={styles.write__formGroupRow}>
+                    <label>Телефон:</label>
                     <input 
                         className={styles.write__text} 
                         type="text" 
-                        placeholder="Ваш населений пункт" 
-                        onChange={e => setLocation(e.target.value)}
+                        placeholder="Ваш телефон" 
+                        autoFocus={true}
+                        onChange={e => setPhone(e.target.value)}
                     />
                 </div>
                 <div className={styles.write__formGroup}>

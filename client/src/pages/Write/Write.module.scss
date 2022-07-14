@@ -63,6 +63,41 @@
 
     &__formGroupRow {
         margin: 0 0 15px 45px;
+
+        label {
+            display: block;
+        }
+
+        
+    }
+
+    &__formGroupRowSelect {
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 22px;
+            border: solid rgba(0, 0, 0, 0.4);
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        select {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.4rem;
+            color: #333;
+            outline: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            width: 100%;
+            background: #fff;
+            appearance: none;
+        }
     }
 
     &__formGroupFile {
