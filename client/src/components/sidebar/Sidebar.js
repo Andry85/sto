@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import styles from  './Sidebar.module.scss';
 import Select from 'react-select'
 import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
+import jsonData from '../../statics/cities.json';
 
 const propTypes = {};
 
@@ -15,11 +16,13 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
 
     const [optionMarka, setOptionMarka] = useState({});
     const [optionModel, setOptionModel] = useState({});
+    const [regions, setRegions] = useState([]);
+    const [location, setLocation] = useState([]);
+    const [regionsName, setRegionsName] = useState('');
+    const [locationName, setLocationName] = useState('');
 
     useEffect(() => {
-
-       
-       
+        setRegions(jsonData[0].regions);
     }, [])
 
     const handleChange1 = (selectedOption) => {
@@ -35,8 +38,17 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        filterAuto(optionMarka.selectedOption?.label, optionModel.optionModel?.label);
+        filterAuto(optionMarka.selectedOption?.label, optionModel.optionModel?.label, regionsName, locationName);
 
+    }
+
+    const handleChangeRegions = (e) => {
+        setLocation(regions[e.target.value].cities);
+        setRegionsName(regions[e.target.value].name);
+    }
+
+    const handleChangeLocation = (e) => {
+        setLocationName(e.target.value);
     }
 
 
@@ -60,6 +72,28 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
                         options={filteredOptions}
                     />
                 </div>
+
+                <div className={styles.sidebar__Row}>
+                    <label>Регіон:</label>
+                    <div className={styles.sidebar__RowSelect}>
+                        <select onChange={handleChangeRegions}>
+                            {regions && regions.map((item, index) =>(
+                                <option value={index} key={index}>{item.name}</option>
+                            ))} 
+                        </select>
+                    </div>
+                </div>
+                <div className={styles.sidebar__Row}>
+                    <label>Населений пункт:</label>
+                    <div className={styles.sidebar__RowSelect}>            
+                        <select value={locationName} onChange={handleChangeLocation}>
+                            {location && location.map((item, index) =>(
+                                <option value={item.name} key={index}>{item.name}</option>
+                            ))} 
+                        </select>
+                    </div>
+                </div>
+
                 <div className={styles.sidebar__RowBottom}>
                     <button className={styles.sidebar__submit} type="submit">Пошук</button>
                     <button className={styles.sidebar__clear} type="button" onClick={cleaerFilters}>
