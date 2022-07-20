@@ -11,10 +11,28 @@ const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require('path/posix');
 const PORT = process.env.PORT || 5000;
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const cors = require('cors');
 
 dotenv.config();
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use(cookieSession(
+    {
+        name: "session",
+        keys: ["lama"],
+        maxAge: 24*60*60*100
+    }
+
+));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cors({
+    origin: "http://localhost:5000",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+}));
 
 // підключення монго дб
 mongoose.connect(process.env.MONGO_URL)

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
+import GoogleButton from 'react-google-button'
 import styles from  './Login.module.scss';
 import axios from 'axios';
 
@@ -57,6 +58,14 @@ const Login = () => {
                 />
                 <button className={styles.login__loginBtn} type="submit" disabled={isFetching}>Логін</button>
             </form>
+
+            <div className={styles.login__alternative}>
+                <span className={styles.login__alternativeTitle}>або</span>
+                <GoogleButton
+                onClick={() => { console.log('Google button clicked') }}
+                />
+            </div>
+
             <button className={styles.login__registrBtn}>
                 <Link to="/register">Реєстрація</Link>
             </button>
