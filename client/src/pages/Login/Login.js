@@ -21,6 +21,10 @@ const Login = () => {
     const passwordRef = useRef();
     const {user, dispatch, isFetching} = useContext(Context);
 
+    const google = () => {
+        window.open("http://localhost:5000/api/auth/google", '_self');
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,7 +66,7 @@ const Login = () => {
             <div className={styles.login__alternative}>
                 <span className={styles.login__alternativeTitle}>або</span>
                 <GoogleButton
-                onClick={() => { console.log('Google button clicked') }}
+                onClick={google}
                 />
             </div>
 
