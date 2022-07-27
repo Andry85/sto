@@ -22,7 +22,7 @@ const Login = () => {
     const {user, dispatch, isFetching} = useContext(Context);
 
     const google = () => {
-        window.open("http://localhost:5000/authgoogle/google", '_self');
+        window.open("http://localhost:5000/auth/google", '_self');
     }
 
 

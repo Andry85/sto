@@ -8,22 +8,18 @@ const GOOGLE_CLIENT_SECRET = "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";
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "/authgoogle/google/callback"
+    callbackURL: "/auth/google/callback",
+    scope: ["profile", "email"]
   },
-  function(accessToken, refreshToken, profile, done) {
-    done(null, profile);
-
-    // const user = {
-    //     username: profile.displayName,
-    //     avatar: profile.photos[0]
-    // }
+  function(accessToken, refreshToken, profile, callback) {
+    callback(null, profile);
   }
 ));
 
-passport.serializeUser((user, done)=> {
-    done(null, user);
+passport.serializeUser((user, callback)=> {
+  callback(null, user);
 });
 
-passport.deserializeUser((user, done)=> {
-    done(null, user);
+passport.deserializeUser((user, callback)=> {
+  callback(null, user);
 });

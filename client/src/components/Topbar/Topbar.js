@@ -12,10 +12,40 @@ const defaultProps = {};
  * 
  */
 const Topbar = () => {
-    const {user, dispatch} = useContext(Context);
+    //const {user, dispatch} = useContext(Context);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const getUser = async()=> {
+            fetch("http://localhost:5000/auth/login/success", {
+                method: "GET",
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true
+                  },
+            }).then(response => {
+                console.log(response, 'response');
+                if(response.status == 200) {
+                    return response.json();
+                } else {
+                    throw new Error("auth has been failed")
+                }
+            }).then(resObj=> {
+                setUser(resObj.user);
+            }).catch(error=> {
+                console.log(error);
+            });
+        }
+        getUser();
+        
+    }, []);
+
+    console.log(user);
 
     const handleLogout = () => {
-        dispatch({type: "LOGOUT"});
+        window.open("http://localhost:5000/auth/logout", '_self');
     }
 
     let PF;
@@ -43,7 +73,7 @@ const Topbar = () => {
             <div className={styles.topbar__colRight}>
                 {user ? (
                     <Link to="/settings">
-                        <img src={PF + user.profilePic} />
+                        <img src={user.photos[0].value} />
                     </Link>
                     
                 ): (

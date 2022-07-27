@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
-const authGoogleRoute = require("./routes/authgoogle");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require('path/posix');
@@ -100,11 +99,10 @@ app.post('/api/upload', (req, res) => {
 
 
 
-app.use('/api/auth', authRoute);
+app.use('/auth', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/marks', categoryRoute);
-app.use('/authgoogle', authGoogleRoute);
 
 
 
