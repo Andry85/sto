@@ -3,10 +3,83 @@ import Select from 'react-select'
 import styles from  './Write.module.scss';
 import axios from 'axios';
 import {GoogleContext} from '../../context/Context';
-import {yearsCar} from '../../statics/years';
-import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
-import jsonData from '../../statics/cities.json';
+import jsonDataRegions from '../../statics/cities.json';
+import jsonDataCars from '../../statics/cars.json';
 
+import jsonDataMap from '../../statics/map.json';
+
+console.log(jsonDataMap, 'jsonDataMap');
+console.log(jsonDataRegions, 'jsonDataRegions');
+
+const mapOfUkraine=[];
+
+for (const property in jsonDataMap) {
+    mapOfUkraine.push({
+        name: `${jsonDataMap[property].oblCity}`,
+        fields: [`${jsonDataMap[property].cities}`],
+        cities: []
+    });
+}
+
+console.log(mapOfUkraine, 'mapOfUkraine');
+
+for (let i = 0; i < mapOfUkraine.length; i++) {
+    for (let j = 0; j < mapOfUkraine[i].fields.length; j++) {
+
+        console.log(mapOfUkraine[i].fields[j], 'mapOfUkraine');
+
+        mapOfUkraine[i].cities.push({
+            name: mapOfUkraine[i].fields[j]
+        });
+
+     
+    }
+}
+
+console.log(mapOfUkraine, 'mapOfUkraine');
+
+
+
+
+const today = new Date();
+const year = today.getFullYear();
+
+
+const yearsArr = [];
+for (let i = 1900; i <= year; i++) {
+    yearsArr.push(i);
+}
+
+//set yearsCar
+const yearsCar = [];
+for (let i = 0; i < yearsArr.length; i++) {
+    yearsCar.push({
+        value: `${yearsArr[i]}`,
+        label: `${yearsArr[i]}`,
+    });
+}
+
+
+//set models and marks
+const marksOfCars = [];
+const modelsOfCars = [];
+for (let i = 0; i < jsonDataCars.length; i++) {
+    marksOfCars.push({
+        value: jsonDataCars[i].brand.toLowerCase(),
+        label: jsonDataCars[i].brand,
+    });
+
+    for (let j = 0; j < jsonDataCars[i].models.length; j++) {
+        
+
+        modelsOfCars.push({
+            value: jsonDataCars[i].models[j],
+            label: jsonDataCars[i].models[j],
+            link: jsonDataCars[i].brand.toLowerCase()
+        });
+    
+    }
+}
 
 
 /**
@@ -34,7 +107,8 @@ const Write = () => {
     
 
     useEffect(() => {
-        setRegions(jsonData[0].regions);
+        setRegions(jsonDataRegions[0].regions);
+        console.log(regions, 'regions');
     });
 
     

@@ -1,12 +1,32 @@
 import React, {useEffect, useState } from 'react';
 import styles from  './Sidebar.module.scss';
 import Select from 'react-select'
-import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
 import jsonData from '../../statics/cities.json';
+import jsonDataCars from '../../statics/cars.json';
 
-const propTypes = {};
 
-const defaultProps = {};
+const marksOfCars = [];
+const modelsOfCars = [];
+
+
+for (let i = 0; i < jsonDataCars.length; i++) {
+    marksOfCars.push({
+        value: jsonDataCars[i].brand.toLowerCase(),
+        label: jsonDataCars[i].brand,
+    });
+
+    for (let j = 0; j < jsonDataCars[i].models.length; j++) {
+        
+
+        modelsOfCars.push({
+            value: jsonDataCars[i].models[j],
+            label: jsonDataCars[i].models[j],
+            link: jsonDataCars[i].brand.toLowerCase()
+        });
+    
+    }
+
+}
 
 /**
  * 
@@ -105,8 +125,5 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
     );
 }
 
-Sidebar.propTypes = propTypes;
-Sidebar.defaultProps = defaultProps;
-// #endregion
 
 export default Sidebar;
