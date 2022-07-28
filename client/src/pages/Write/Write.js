@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, useContext, Component } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import Select from 'react-select'
-import PropTypes from 'prop-types';
 import styles from  './Write.module.scss';
 import axios from 'axios';
-import { Context } from '../../context/Context';
+import {GoogleContext} from '../../context/Context';
 import {yearsCar} from '../../statics/years';
 import {marksOfCars, modelsOfCars} from '../../statics/marks_models';
 import jsonData from '../../statics/cities.json';
@@ -17,7 +16,7 @@ const Write = () => {
 
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
-    const {user} = useContext(Context);
+    const user = useContext(GoogleContext);
     const [price, setPrice] = useState('');
     const [race, setRace] = useState('');
     const [optionMarka, setOptionMarka] = useState({});
@@ -55,13 +54,14 @@ const Write = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(user, 'user');
 
         for (const element of files) {
             filesNames.push(element.name);
         }
 
         const newPost = {
-            username: user.username,
+            username: user.id,
             title,
             description: desc,
             price,
@@ -253,7 +253,5 @@ const Write = () => {
     );
 }
 
-
-// #endregion
 
 export default Write;

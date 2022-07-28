@@ -2,7 +2,7 @@ import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState, useContext  } from 'react';
 import axios from 'axios';
 import styles from  './SinglePost.module.scss';
-import { Context } from '../../context/Context';
+import {GoogleContext} from '../../context/Context';
 import Slider from "react-slick";
 
 
@@ -33,6 +33,8 @@ const SinglePost = () => {
     const [phone, setPhone] = useState('');
     const [regionsName, setRegionsName] = useState('');
     const [locationName, setLocationName] = useState('');
+    const user = useContext(GoogleContext);
+
 
 
     useEffect(() => {
@@ -52,23 +54,19 @@ const SinglePost = () => {
            setLocationName(res.data.locationName);
        };
        getPost();
+       
     }, [path])
 
+    
+    const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
+   
 
-    let PF;
-    if (process.env.NODE_ENV === 'production') {
-        PF = "http://mysite.com/images/";
-    } else {
-        PF = "http://localhost:5000/images/";
-    }
-
-    const {user} = useContext(Context);
 
     const handleDelete = async () => {
 
         try {
             await axios.delete(`/posts/${post._id}` , {
-                data: {username: user.username}
+                data: {username: user.id}
             });
             window.location.replace('/');
         } catch (err) {
@@ -80,7 +78,7 @@ const SinglePost = () => {
 
         try {
             await axios.put(`/posts/${post._id}` , { 
-                username: user.username,
+                username: user.id,
                 title,
                 description
             });
@@ -123,7 +121,7 @@ const SinglePost = () => {
                          /> : (
                         <>
                             <h1>{title}</h1>
-                            {post.username === user?.username && (
+                            {post.username === user?.id && (
                                 <div className={styles.singlePost__action}>
                                     <span className={styles.singlePost__edit} onClick={() => setUpdateMod(true)}>
                                         <i className="far fa-edit"></i>

@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 // підключення монгуса
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
-const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
@@ -30,7 +29,7 @@ app.use(cookieSession(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }));
@@ -100,7 +99,6 @@ app.post('/api/upload', (req, res) => {
 
 
 app.use('/auth', authRoute);
-app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/marks', categoryRoute);
 

@@ -13,12 +13,7 @@ const defaultProps = {};
  */
 const Post = ({post}) => {
 
-    let PF;
-    if (process.env.NODE_ENV === 'production') {
-        PF = "http://mysite.com/images/";
-    } else {
-        PF = "http://localhost:5000/images/";
-    }
+    const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
     
 
     return (
