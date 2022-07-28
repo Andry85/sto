@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from  './Topbar.module.scss';
 import { Link } from 'react-router-dom';
-import { Context } from '../../context/Context';
+import { Context, GoogleContext } from '../../context/Context';
 
 const propTypes = {};
 
@@ -12,36 +12,8 @@ const defaultProps = {};
  * 
  */
 const Topbar = () => {
-    //const {user, dispatch} = useContext(Context);
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const getUser = async()=> {
-            fetch("http://localhost:5000/auth/login/success", {
-                method: "GET",
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true
-                  },
-            }).then(response => {
-                console.log(response, 'response');
-                if(response.status == 200) {
-                    return response.json();
-                } else {
-                    throw new Error("auth has been failed")
-                }
-            }).then(resObj=> {
-                setUser(resObj.user);
-            }).catch(error=> {
-                console.log(error);
-            });
-        }
-        getUser();
-        
-    }, []);
-
+    const user = useContext(GoogleContext);
+    
     console.log(user);
 
     const handleLogout = () => {
