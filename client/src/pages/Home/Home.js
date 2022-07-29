@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import {axiosInstance} from '../../config';
 import styles from  './Home.module.scss';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
@@ -39,7 +39,7 @@ const Home = () => {
     useEffect(() => {
 
         const fetchPosts = async () => {
-            const res = await axios.get('/posts');
+            const res = await axiosInstance.get('/posts');
 
             if (marka != null && model ==null && regionsName =='' && locationName =='') {
                 const filterAutoByMarka = res.data.filter((item) => {
