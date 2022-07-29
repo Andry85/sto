@@ -3,40 +3,8 @@ import Select from 'react-select'
 import styles from  './Write.module.scss';
 import axios from 'axios';
 import {GoogleContext} from '../../context/Context';
-import jsonDataRegions from '../../statics/cities.json';
-import jsonDataCars from '../../statics/cars.json';
-
-import jsonDataMap from '../../statics/map.json';
-
-console.log(jsonDataMap, 'jsonDataMap');
-console.log(jsonDataRegions, 'jsonDataRegions');
-
-const mapOfUkraine=[];
-
-for (const property in jsonDataMap) {
-    mapOfUkraine.push({
-        name: `${jsonDataMap[property].oblCity}`,
-        fields: [`${jsonDataMap[property].cities}`],
-        cities: []
-    });
-}
-
-console.log(mapOfUkraine, 'mapOfUkraine');
-
-for (let i = 0; i < mapOfUkraine.length; i++) {
-    for (let j = 0; j < mapOfUkraine[i].fields.length; j++) {
-
-        console.log(mapOfUkraine[i].fields[j], 'mapOfUkraine');
-
-        mapOfUkraine[i].cities.push({
-            name: mapOfUkraine[i].fields[j]
-        });
-
-     
-    }
-}
-
-console.log(mapOfUkraine, 'mapOfUkraine');
+import {mapOfUkraine} from '../../util/regions';
+import {marksOfCars, modelsOfCars} from '../../util/carsUtil';
 
 
 
@@ -46,7 +14,7 @@ const year = today.getFullYear();
 
 
 const yearsArr = [];
-for (let i = 1900; i <= year; i++) {
+for (let i = year; i >= 1900; i--) {
     yearsArr.push(i);
 }
 
@@ -59,27 +27,6 @@ for (let i = 0; i < yearsArr.length; i++) {
     });
 }
 
-
-//set models and marks
-const marksOfCars = [];
-const modelsOfCars = [];
-for (let i = 0; i < jsonDataCars.length; i++) {
-    marksOfCars.push({
-        value: jsonDataCars[i].brand.toLowerCase(),
-        label: jsonDataCars[i].brand,
-    });
-
-    for (let j = 0; j < jsonDataCars[i].models.length; j++) {
-        
-
-        modelsOfCars.push({
-            value: jsonDataCars[i].models[j],
-            label: jsonDataCars[i].models[j],
-            link: jsonDataCars[i].brand.toLowerCase()
-        });
-    
-    }
-}
 
 
 /**
@@ -104,11 +51,9 @@ const Write = () => {
     const [locationName, setLocationName] = useState('');
 
 
-    
 
     useEffect(() => {
-        setRegions(jsonDataRegions[0].regions);
-        console.log(regions, 'regions');
+        setRegions(mapOfUkraine);
     });
 
     
@@ -196,7 +141,7 @@ const Write = () => {
     const filteredOptions = modelsOfCars.filter((o) => o.link === optionMarka.selectedOption?.value);
 
     const handleChangeRegions = (e) => {
-        setLocation(regions[e.target.value].cities);
+        setLocation(regions[e.target.value].data);
         setRegionsName(regions[e.target.value].name);
     }
 
@@ -267,19 +212,22 @@ const Write = () => {
                     />
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <input 
-                        className={styles.write__text} 
-                        type="text" 
-                        placeholder="Ціна авто" 
-                        onChange={e => setPrice(e.target.value)}
-                    />
+                    <div className={styles.write__formGroupRowPrice}>
+                        <input 
+                            className={styles.write__text} 
+                            type="text" 
+                            placeholder="Ціна авто" 
+                            onChange={e => setPrice(e.target.value)}
+                        />
+                        <span>&#36;</span>
+                    </div>
                 </div>
                 <div className={styles.write__formGroupRow}>
                     <label>Пробіг авто:</label>
                     <input 
                         className={styles.write__text} 
                         type="text" 
-                        placeholder="Пробіг авто тисяч км." 
+                        placeholder="Тис. км" 
                         onChange={e => setRace(e.target.value)}
                     />
                 </div>

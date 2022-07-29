@@ -1,32 +1,10 @@
 import React, {useEffect, useState } from 'react';
 import styles from  './Sidebar.module.scss';
-import Select from 'react-select'
-import jsonData from '../../statics/cities.json';
-import jsonDataCars from '../../statics/cars.json';
+import Select from 'react-select';
+import {marksOfCars, modelsOfCars} from '../../util/carsUtil';
+import {mapOfUkraine} from '../../util/regions';
 
 
-const marksOfCars = [];
-const modelsOfCars = [];
-
-
-for (let i = 0; i < jsonDataCars.length; i++) {
-    marksOfCars.push({
-        value: jsonDataCars[i].brand.toLowerCase(),
-        label: jsonDataCars[i].brand,
-    });
-
-    for (let j = 0; j < jsonDataCars[i].models.length; j++) {
-        
-
-        modelsOfCars.push({
-            value: jsonDataCars[i].models[j],
-            label: jsonDataCars[i].models[j],
-            link: jsonDataCars[i].brand.toLowerCase()
-        });
-    
-    }
-
-}
 
 /**
  * 
@@ -42,7 +20,7 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
     const [locationName, setLocationName] = useState('');
 
     useEffect(() => {
-        setRegions(jsonData[0].regions);
+        setRegions(mapOfUkraine);
     }, [])
 
     const handleChange1 = (selectedOption) => {
@@ -63,7 +41,7 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
     }
 
     const handleChangeRegions = (e) => {
-        setLocation(regions[e.target.value].cities);
+        setLocation(regions[e.target.value].data);
         setRegionsName(regions[e.target.value].name);
     }
 
