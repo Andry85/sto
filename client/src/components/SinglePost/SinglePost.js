@@ -58,7 +58,7 @@ const SinglePost = () => {
     }, [path])
 
     
-    const PF = `${process.env.HOST}/images/`;
+    const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
    
 
 
