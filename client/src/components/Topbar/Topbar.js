@@ -11,7 +11,7 @@ const Topbar = () => {
     const user = useContext(GoogleContext);
 
     const handleLogout = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
+        window.open(`${process.env.HOST}/auth/logout`, '_self');
     }
 
 

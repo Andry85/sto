@@ -13,7 +13,7 @@ const defaultProps = {};
  */
 const Post = ({post}) => {
 
-    const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
+    const PF = `${process.env.HOST}/images/`;
     
 
     return (
