@@ -9,7 +9,7 @@ export const GoogleContextProvider = ({children}) => {
 
     useEffect(() => {
         const getUser = async()=> {
-            fetch(`auth/login/success`, {
+            fetch(`/auth/login/success`, {
                 method: "GET",
                 credentials: 'include',
                 headers: {
