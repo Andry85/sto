@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext} from 'react';
 import Select from 'react-select'
 import styles from  './Write.module.scss';
-import axios from 'axios';
+import {axiosInstance} from '../../config';
 import {GoogleContext} from '../../context/Context';
 import {mapOfUkraine} from '../../util/regions';
 import {marksOfCars, modelsOfCars} from '../../util/carsUtil';
@@ -101,7 +101,7 @@ const Write = () => {
             });
 
             try {
-                const res = await axios.post('/upload', formData, {
+                const res = await axiosInstance.post('/upload', formData, {
                     headers: {
                     'Content-Type': 'multipart/form-data'
                     },
@@ -118,7 +118,7 @@ const Write = () => {
         }
 
         try {
-            const res = await axios.post('/posts', newPost);
+            const res = await axiosInstance.post('/posts', newPost);
             window.location.replace('/post/' + res.data._id);
         } catch(err) {
 

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styles from  './Post.module.scss';
 import {Link} from 'react-router-dom';
 

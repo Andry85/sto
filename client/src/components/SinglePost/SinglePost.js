@@ -1,6 +1,6 @@
 import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState, useContext  } from 'react';
-import axios from 'axios';
+import {axiosInstance} from '../../config';
 import styles from  './SinglePost.module.scss';
 import {GoogleContext} from '../../context/Context';
 import Slider from "react-slick";
@@ -39,7 +39,7 @@ const SinglePost = () => {
 
     useEffect(() => {
        const getPost = async () => {
-           const res = await axios.get("/posts/" + path);
+           const res = await axiosInstance.get("/posts/" + path);
            setPost(res.data);
            setTitle(res.data.title);
            setDescription(res.data.description);
@@ -65,7 +65,7 @@ const SinglePost = () => {
     const handleDelete = async () => {
 
         try {
-            await axios.delete(`/posts/${post._id}` , {
+            await axiosInstance.delete(`/posts/${post._id}` , {
                 data: {username: user.id}
             });
             window.location.replace('/');
@@ -77,7 +77,7 @@ const SinglePost = () => {
     const handleUpdate = async () => {
 
         try {
-            await axios.put(`/posts/${post._id}` , { 
+            await axiosInstance.put(`/posts/${post._id}` , { 
                 username: user.id,
                 title,
                 description

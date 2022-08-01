@@ -1,31 +1,28 @@
 {
-  "name": "sto",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.5",
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.3",
+    "passport-google-oauth20": "^2.0.0",
+    "path": "^0.12.7"
+  },
+  "name": "api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm i",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "concurrently \"cd client && npm run start\" \"cd api && npm run start\"",
-    "dev": "concurrently \"cd client && npm run start\" \"cd api && npm run start\""
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Andry85/sto.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Andry85/sto/issues"
-  },
-  "homepage": "https://github.com/Andry85/sto#readme",
+  "description": "",
   "engines": {
-    "node": "14.x"
-  },
-  "dependencies": {
-    "concurrently": "^7.0.0"
+    "node": "16.x"
   }
 }

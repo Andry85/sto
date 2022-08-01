@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 
 
@@ -9,25 +10,10 @@ export const GoogleContextProvider = ({children}) => {
 
     useEffect(() => {
         const getUser = async()=> {
-            fetch(`${process.env.REACT_APP_DOMAIN}/auth/login/success`, {
-                method: "GET",
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true
-                  },
-            }).then(response => {
-                if(response.status == 200) {
-                    return response.json();
-                } else {
-                    throw new Error("auth has been failed")
-                }
-            }).then(resObj=> {
-                setUser(resObj.user);
-            }).catch(error=> {
-                console.log(error);
+            const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/auth/login/success`, { 
+                withCredentials: true 
             });
+            setUser(res.data.user);       
         }
         getUser();
         
