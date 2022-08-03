@@ -139,8 +139,11 @@ const SinglePost = () => {
                 </div>
 
                 {updateMod ? <textarea value={description} className={styles.singlePost__textArea} onChange={(e) => setDescription(e.target.value)} /> : (
-                    <div className={styles.singlePost__text}>
-                        {description}
+                    <div className={styles.singlePost__rowFirst}>
+                    <label>Опис:</label>
+                        <div className={styles.singlePost__text}>
+                            {description}
+                        </div>
                     </div>
                 )}
 

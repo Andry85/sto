@@ -22,10 +22,14 @@
     }
 
     &__title {
-        padding: 15px;
+        padding: 15px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        h1 {
+            padding: 0 20px;
+        }
     }
 
     &__titleInput {
@@ -105,7 +109,7 @@
     }
 
     &__text {
-        padding: 15px;
+        padding: 15px 0;
 
         p {
             font-size: 1.8rem;
@@ -115,11 +119,21 @@
 
     &__row {
         display: flex;
-        border-bottom: 1px dotted #333;
+        border-bottom: 1px dotted #ccc;
         padding: 15px;
 
         label {
             width: 150px;
+            font-weight: bold;
+        }
+    }
+
+    &__rowFirst {
+        border-bottom: 1px dotted #ccc;
+        padding: 15px;
+
+        label {
+            font-weight: bold;
         }
     }
 
