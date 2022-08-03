@@ -1,3 +1,4 @@
+@import '../../sass/variables';
 .post {
     padding: 15px;
     flex-basis: calc(50% - 10px);
@@ -6,10 +7,11 @@
     background: #fff;
     margin: 0 5px 10px 5px;
     position: relative;
-    
-    &__inner {
-       
+
+    @include breakpoint(sm) {
+        flex-basis: 100%;
     }
+    
 
     &__cat {
         position: absolute;

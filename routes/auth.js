@@ -1,6 +1,14 @@
 const router = require("express").Router();
 const passport = require('passport');
-require('dotenv').config()
+require('dotenv').config();
+let CLIENT_URL;
+
+
+if (process.env.NODE_ENV === "production") {
+    CLIENT_URL = 'https://carsmarketvn.herokuapp.com';
+} else {
+    CLIENT_URL = 'http://localhost:3000'; 
+}
 
 
 router.get("/login/success", (req, res)=>{
@@ -33,11 +41,11 @@ router.get("/login/faild", (req, res)=>{
 
 router.get("/logout", (req, res)=>{
     req.logout();
-    res.redirect(process.env.CLIENT_URL);
+    res.redirect(CLIENT_URL);
 });
 
 router.get("/google/callback", passport.authenticate("google", {
-    successRedirect: process.env.CLIENT_URL,
+    successRedirect: CLIENT_URL,
     failureRedirect: "login/faild"
 }));
 

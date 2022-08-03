@@ -14,6 +14,14 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const cors = require('cors');
 const passportSetup = require('./passport');
+let CLIENT_URL;
+
+
+if (process.env.NODE_ENV === "production") {
+    CLIENT_URL = 'https://carsmarketvn.herokuapp.com';
+} else {
+    CLIENT_URL = 'http://localhost:3000'; 
+}
 
 dotenv.config();
 app.use(express.json());
@@ -29,7 +37,7 @@ app.use(cookieSession(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
-    origin: process.env.CLIENT_URL,
+    origin: CLIENT_URL,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }));

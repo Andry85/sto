@@ -1,3 +1,5 @@
+@import '../../sass/variables';
+
 .topbar {
     background: linear-gradient(to right, #007FFF, #0059B2);
     min-height: 60px;
@@ -6,6 +8,7 @@
     display: flex;
     align-items: center;
     z-index: 100;
+
 
     &__colLeft {
         min-width: 0;
@@ -30,6 +33,10 @@
         min-width: 0;
         flex: 6 1 0;
         display: flex;
+
+        @include breakpoint(sm) {
+            flex: 8 1 0;
+        }
 
         ul {
             display: flex;
@@ -57,6 +64,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include breakpoint(sm) {
+            flex: 1 1 0;
+        }
 
         img {
             max-width: 100%;
