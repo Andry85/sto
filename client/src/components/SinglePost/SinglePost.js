@@ -34,6 +34,8 @@ const SinglePost = () => {
     const [regionsName, setRegionsName] = useState('');
     const [locationName, setLocationName] = useState('');
     const user = useContext(GoogleContext);
+    const filesNames = [];
+    const [filesNew, setFilesnew] = useState([]);
 
 
 
@@ -60,8 +62,6 @@ const SinglePost = () => {
     
     const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
 
-   
-
 
     const handleDelete = async () => {
 
@@ -77,18 +77,74 @@ const SinglePost = () => {
 
     const handleUpdate = async () => {
 
+        for (const element of files) {
+            filesNames.push(element);
+        }
+
+        for (const element of filesNew) {
+            filesNames.push(element.name);
+        }
+
+        
+        if (files) {
+            const formData = new FormData();
+            Object.values(filesNew).forEach(file=>{
+                formData.append("uploadImages", file);
+            });
+
+            try {
+                const res = await axiosInstance.post('/upload', formData, {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
+                    },
+                });
+                console.log(res);
+            } catch (err) {
+                if (err.response.status === 500) {
+                    console.log(err);
+                } else {
+                    console.log(err.response.data.msg);
+                }
+            }
+
+        }
+
         try {
             await axiosInstance.put(`/posts/${post._id}` , { 
                 username: user.id,
                 title,
-                description
+                description,
+                files: filesNames,
             });
             setUpdateMod(false);
+            window.location.replace('/post/' + post._id);
         } catch (err) {
 
         } 
 
     }
+
+    const handleDeleteModel = e => {
+        const filesFiltered = Object.values(files).filter((item, index) => {
+            return index != e.target.dataset.index;
+        });
+        setFiles(filesFiltered);
+    };
+
+    const handleDeleteModelNewFiles = e => {
+        const filesFiltered = Object.values(filesNew).filter((item, index) => {
+            return index != e.target.dataset.index;
+        });
+        setFilesnew(filesFiltered);
+    };
+
+
+
+    const onChangeFiles = e => {
+        setFilesnew(e.target.files)
+    };
+
+    
 
     const settings = {
         dots: true,
@@ -100,18 +156,56 @@ const SinglePost = () => {
         adaptiveHeight: true
     };
 
+
+
     return (
         <div className={styles.singlePost}>
             <div className={styles.singlePost__inner}>
-                <div className={styles.singlePost__slider}>
-                    <Slider {...settings}>
-                        {files.map((item, index) =>(
-                            <div key={index}>
+
+               
+
+                {updateMod ? (
+                    <>  
+                        {Object.values(files) && Object.values(files).map((item, index) =>(
+                            <div className={styles.singlePost__model} key={index}>
                                 <img src={`${PF}/${item}`} alt="" />
+                                <span data-index={index} className={styles.singlePost__deleteModel} onClick={handleDeleteModel}></span>
                             </div>
-                        ))} 
-                    </Slider>
-                </div>
+                        ))}
+
+                        {Object.values(filesNew) && Object.values(filesNew).map((item, index) =>(
+                            <div className={styles.singlePost__model} key={index}>
+                                <span>{item && item.name}</span>
+                                <span data-index={index} className={styles.singlePost__deleteModel} onClick={handleDeleteModelNewFiles}></span>
+                            </div>
+                        ))}
+
+                        <div className={styles.singlePost__formGroupFile}>
+                            <label htmlFor="file" className={styles.singlePost__formGroupFileLabel}>
+                                <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото одразу
+                            </label>
+                            <input
+                                type='file'
+                                id='file'
+                                name="uploadImages"
+                                multiple
+                                onChange={onChangeFiles}
+                            />              
+                        </div>
+                    </>
+                ) : (
+                    <div className={styles.singlePost__slider}>
+                        <Slider {...settings}>
+                            {Object.values(files).map((item, index) =>(
+                                <div key={index}>
+                                    <img src={`${PF}/${item}`} alt="" />
+                                </div>
+                            ))} 
+                        </Slider>
+                    </div>
+                )}
+                
+                
                 
                 <div className={styles.singlePost__title}>
                     {updateMod ? <input type="text" 

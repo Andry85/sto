@@ -168,4 +168,73 @@
         border-left: 1px dotted #ccc;
     }
 
+    &__deleteModel {
+        position: absolute;
+        right: 16px;
+        top: 10px;
+        width: 16px;
+        height: 16px;
+        opacity: 0.3;
+        cursor: pointer;
+
+        &:before, &:after {
+            position: absolute;
+            left: 15px;
+            content: ' ';
+            height: 17px;
+            width: 2px;
+            background-color: #333;
+          }
+          &:before {
+            transform: rotate(45deg);
+          }
+          &:after {
+            transform: rotate(-45deg);
+          }
+    }
+
+    &__model {
+        display: flex;
+        position: relative;
+        padding: 15px;
+        border-bottom: 1px dotted #ccc;
+
+        img {
+            flex-basis: 100px;
+            height: 100px;
+            object-fit: cover;
+            min-width: 0;
+        }
+    }
+
+    &__formGroupFile {
+        margin: 25px 0 0 0;
+        width: 100%;
+
+        input[type="file"] {
+            display: none;
+        }
+
+        ul {
+            margin: 0;
+            padding: 20px 0;
+            width: 100%;
+
+            li {
+                font-weight: bold;
+                border: 1px dotted #ccc;
+                padding: 5px;
+                list-style: none;
+                position: relative;
+            }
+        }
+    }
+
+    &__formGroupFileLabel {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+
 }

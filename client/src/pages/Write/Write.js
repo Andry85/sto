@@ -73,7 +73,6 @@ const Write = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user, 'user');
 
         for (const element of files) {
             filesNames.push(element.name);
