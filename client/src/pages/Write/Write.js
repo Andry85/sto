@@ -156,7 +156,7 @@ const Write = () => {
                 <div className={styles.write__formGroup}>
                     <div className={styles.write__formGroupFile}>
                         <label htmlFor="file" className={styles.write__formGroupFileLabel}>
-                            <i className="fa fa-cloud-upload"></i>Загрузіть фото
+                            <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото одразу
                         </label>
                         <input
                             type='file'

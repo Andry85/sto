@@ -59,6 +59,7 @@ const SinglePost = () => {
 
     
     const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
+
    
 
 
@@ -251,7 +252,9 @@ const SinglePost = () => {
                     <span className={styles.singlePost__authot}>
                         <i>Автор: </i>
                         <Link to={`/?user=${post.username}`}>
-                            <i>{post.username}</i>
+                            {user && (
+                                <i>{user.displayName}</i>
+                            )}
                         </Link>
                         
                     </span>
