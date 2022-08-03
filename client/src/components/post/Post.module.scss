@@ -27,10 +27,7 @@
 
         a {
             color: rgb(0, 114, 229);
-
-            &:hover {
-                text-decoration: none;
-            }
+            text-decoration: none;
 
             &:before {
                 content: '';
@@ -60,9 +57,13 @@
     }
 
     &__price {
-        font-weight: bold;
-        color: #3c9806;
         font-size: 1.4rem;
+        color:  #414042;
+
+        span {
+            font-weight: bold;
+            color: #3c9806;
+        }
     }
 
     &__race {
