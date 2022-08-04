@@ -70,4 +70,14 @@
         color:  #414042;
         font-size: 1.4rem;
     }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__location {
+        padding: 15px 0 15px 0;
+        font-size: 12px;
+    }
 }
