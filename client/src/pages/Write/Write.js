@@ -105,7 +105,6 @@ const Write = () => {
                     'Content-Type': 'multipart/form-data'
                     },
                 });
-                console.log(res);
             } catch (err) {
                 if (err.response.status === 500) {
                     console.log(err);

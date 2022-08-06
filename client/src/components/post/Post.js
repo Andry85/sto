@@ -14,9 +14,6 @@ const Post = ({post}) => {
 
     const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
 
-    console.log(post);
-    
-
     return (
         <div className={styles.post}>
             <div className={styles.post__inner}>
