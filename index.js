@@ -18,7 +18,7 @@ let CLIENT_URL;
 
 
 if (process.env.NODE_ENV === "production") {
-    CLIENT_URL = 'https://carsmarketvn.herokuapp.com';
+    CLIENT_URL = 'http://www.parkovka.in.ua';
 } else {
     CLIENT_URL = 'http://localhost:3000'; 
 }
