@@ -123,11 +123,19 @@ const SinglePost = () => {
 
     }
 
-    const handleDeleteModel = e => {
+    const handleDeleteModel = async (e) => {
         const filesFiltered = Object.values(files).filter((item, index) => {
             return index != e.target.dataset.index;
         });
         setFiles(filesFiltered);
+        console.log(e.target.dataset.name);
+
+        try {
+            await axiosInstance.delete(`/deleteImg/${e.target.dataset.name}`);
+        } catch (err) {
+
+        } 
+
     };
 
     const handleDeleteModelNewFiles = e => {
@@ -168,7 +176,7 @@ const SinglePost = () => {
                         {Object.values(files) && Object.values(files).map((item, index) =>(
                             <div className={styles.singlePost__model} key={index}>
                                 <img src={`${PF}/${item}`} alt="" />
-                                <span data-index={index} className={styles.singlePost__deleteModel} onClick={handleDeleteModel}></span>
+                                <span data-index={index} data-name={item} className={styles.singlePost__deleteModel} onClick={handleDeleteModel}></span>
                             </div>
                         ))}
 

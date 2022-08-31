@@ -1,6 +1,7 @@
 const express =  require('express');
 const app = express();
 const dotenv = require('dotenv');
+const fs = require('fs');
 
 // підключення монгуса
 const mongoose = require("mongoose");
@@ -109,6 +110,26 @@ app.post('/api/upload', (req, res) => {
 app.use('/auth', authRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/marks', categoryRoute);
+
+
+app.use('/api/deleteImg', categoryRoute);
+
+app.use('/api/deleteImg/:id', (req, res, next) => {
+    console.log('Request Type:', req.method)
+
+    console.log('req.params.id:', req.params.id)
+
+    const path = `./images/${req.params.id}`;
+
+    fs.unlink(path, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+    });
+
+    
+})
 
 
 
