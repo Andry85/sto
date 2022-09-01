@@ -36,6 +36,7 @@ const SinglePost = () => {
     const user = useContext(GoogleContext);
     const filesNames = [];
     const [filesNew, setFilesnew] = useState([]);
+    const [yearProduction, setYearProduction] = useState('');
 
 
     useEffect(() => {
@@ -53,12 +54,15 @@ const SinglePost = () => {
            setPhone(res.data.phone);
            setRegionsName(res.data.regionsName);
            setLocationName(res.data.locationName);
+           setYearProduction(res.data.year);
+
+           
        };
        getPost();
        
     }, [path])
 
-    
+
     const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
 
 
@@ -258,6 +262,13 @@ const SinglePost = () => {
                     <label>Модель:</label>
                     <div className={styles.singlePost__col}>
                         {model}
+                    </div>
+                </div>
+
+                <div className={styles.singlePost__row}>
+                    <label>Рік випуску:</label>
+                    <div className={styles.singlePost__col}>
+                        {yearProduction}
                     </div>
                 </div>
 

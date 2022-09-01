@@ -4,28 +4,12 @@ import styles from  './Write.module.scss';
 import {axiosInstance} from '../../config';
 import {GoogleContext} from '../../context/Context';
 import {mapOfUkraine} from '../../util/regions';
-import {marksOfCars, modelsOfCars} from '../../util/carsUtil';
+import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
 
 
 
 
-const today = new Date();
-const year = today.getFullYear();
 
-
-const yearsArr = [];
-for (let i = year; i >= 1900; i--) {
-    yearsArr.push(i);
-}
-
-//set yearsCar
-const yearsCar = [];
-for (let i = 0; i < yearsArr.length; i++) {
-    yearsCar.push({
-        value: `${yearsArr[i]}`,
-        label: `${yearsArr[i]}`,
-    });
-}
 
 
 
@@ -88,7 +72,7 @@ const Write = () => {
             race,
             marka: optionMarka.selectedOption.label,
             model: optionModel.optionModel.label,
-            year: yearProduction.label,
+            year: yearProduction,
             files: filesNames,
             phone
         }
@@ -133,7 +117,7 @@ const Write = () => {
     }
 
     const handleYearProduction = (selectedOption) => {
-        setYearProduction({yearProduction})
+        setYearProduction(selectedOption.label)
     }
 
     const filteredOptions = modelsOfCars.filter((o) => o.link === optionMarka.selectedOption?.value);

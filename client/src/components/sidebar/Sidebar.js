@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import styles from  './Sidebar.module.scss';
 import Select from 'react-select';
-import {marksOfCars, modelsOfCars} from '../../util/carsUtil';
+import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
 import {mapOfUkraine} from '../../util/regions';
 
 
@@ -18,6 +18,10 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
     const [location, setLocation] = useState([]);
     const [regionsName, setRegionsName] = useState('');
     const [locationName, setLocationName] = useState('');
+    const [yearProductionFrom, setYearProductionFrom] = useState('');
+    const [yearProductionTo, setYearProductionTo] = useState('');
+
+    
 
     useEffect(() => {
         setRegions(mapOfUkraine);
@@ -36,7 +40,7 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        filterAuto(optionMarka.selectedOption?.label, optionModel.optionModel?.label, regionsName, locationName);
+        filterAuto(optionMarka.selectedOption?.label, optionModel.optionModel?.label, regionsName, locationName, yearProductionFrom, yearProductionTo);
 
     }
 
@@ -47,6 +51,14 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
 
     const handleChangeLocation = (e) => {
         setLocationName(e.target.value);
+    }
+
+    const handleYearProductionFrom = (selectedOption) => {
+        setYearProductionFrom(selectedOption.label);
+    }
+
+    const handleYearProductionTo = (selectedOption) => {
+        setYearProductionTo(selectedOption.label);
     }
 
 
@@ -69,6 +81,31 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
                         onChange={handleChange2}
                         options={filteredOptions}
                     />
+                </div>
+
+                <div className={styles.sidebar__Row}>
+                    <label>Рік виготовлення</label>
+                    <div className={styles.sidebar__RowBox}>
+                        <div className={styles.sidebar__RowBoxContainer}>
+                            <div className={styles.sidebar__RowBoxTitle}>Від</div>
+                            <Select
+                                value={yearProductionFrom.label}
+                                onChange={handleYearProductionFrom}
+                                options={yearsCar}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.sidebar__RowBox}>
+                        <div className={styles.sidebar__RowBoxContainer}>
+                            <div className={styles.sidebar__RowBoxTitle}>До</div>
+                            <Select
+                                value={yearProductionTo.label}
+                                onChange={handleYearProductionTo}
+                                options={yearsCar}
+                            />
+                        </div>
+                    </div>
+                    
                 </div>
 
                 <div className={styles.sidebar__Row}>
