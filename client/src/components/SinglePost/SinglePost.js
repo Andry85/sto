@@ -38,7 +38,6 @@ const SinglePost = () => {
     const [filesNew, setFilesnew] = useState([]);
 
 
-
     useEffect(() => {
        const getPost = async () => {
            const res = await axiosInstance.get("/posts/" + path);
@@ -357,7 +356,7 @@ const SinglePost = () => {
                         <i>Автор: </i>
                         <Link to={`/?user=${post.username}`}>
                             {user && (
-                                <i>{user.displayName}</i>
+                                <i>{user.name.givenName}</i>
                             )}
                         </Link>
                         

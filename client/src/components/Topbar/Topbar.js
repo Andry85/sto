@@ -1,4 +1,4 @@
-import React, {useContext } from 'react';
+import React, {useContext} from 'react';
 import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
 import {GoogleContext} from '../../context/Context';
@@ -9,6 +9,8 @@ import {GoogleContext} from '../../context/Context';
  */
 const Topbar = () => {
     const user = useContext(GoogleContext);
+
+    
 
     const handleLogout = () => {
         window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
@@ -25,6 +27,11 @@ const Topbar = () => {
                     <li>
                         {user && (
                             <Link to="/write">Додати авто</Link>
+                        )}
+                    </li>
+                    <li>
+                        {user && (
+                            <Link to={`/?user=${user.id}`}>Мої оголошення</Link>
                         )}
                     </li>
                     <li className={styles.topbar__logout} onClick={handleLogout}>

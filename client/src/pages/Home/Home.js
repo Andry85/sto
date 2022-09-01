@@ -33,6 +33,7 @@ const Home = () => {
         setModel(null);
         setRegionsName('');
         setLocationName('');
+        window.location.reload(false);
     };
 
 

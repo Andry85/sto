@@ -54,6 +54,10 @@
         display: flex;
         justify-content: space-between;
         padding: 10px;
+
+        @include breakpoint(sm) {
+            flex-direction: column;
+        }
     }
 
     &__price {
