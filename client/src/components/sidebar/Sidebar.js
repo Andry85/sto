@@ -95,6 +95,7 @@ const Sidebar = ({filterAuto, cleaerFilters}) => {
                 <div className={styles.sidebar__RowBottom}>
                     <button className={styles.sidebar__submit} type="submit">Пошук</button>
                     <button className={styles.sidebar__clear} type="button" onClick={cleaerFilters}>
+                        <span>Очистити фільтр</span>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </div>
