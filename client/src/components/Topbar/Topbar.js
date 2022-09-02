@@ -29,13 +29,17 @@ const Topbar = () => {
     let numberOfPosts = 0;
     const maximumLimit = 11;
 
-    for (const post of posts) {
-        if (user.id === post.username) {
-            numberOfPosts++
+    if (user) {
+        for (const post of posts) {
+            if (user.id === post.username) {
+                numberOfPosts++
+            }
         }
     }
 
     
+
+
 
     const handleLogout = () => {
         window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
