@@ -283,7 +283,7 @@ const SinglePost = () => {
                          /> : (
                         <>
                             <div className={styles.singlePost__col}>
-                                {price}
+                                {price} <i>$</i>
                             </div>
                         </>
 
@@ -300,7 +300,7 @@ const SinglePost = () => {
                          /> : (
                         <>
                             <div className={styles.singlePost__col}>
-                                {race}
+                                {race} <i>тисяч км.</i>
                             </div>
                         </>
 

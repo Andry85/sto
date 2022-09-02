@@ -1,0 +1,16 @@
+.rules {
+    display: flex;
+    width: 100%;
+    padding: 25px;
+    height: 100%;
+
+
+    &__box {
+        padding: 15px;
+        border: 1px solid #e5e8ec;
+        border-radius: 10px;
+        background: #fff;
+        position: relative;
+        width: 100%;
+    }
+}
