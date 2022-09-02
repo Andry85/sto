@@ -17,6 +17,8 @@
 
         label {
             color: #fff;
+            padding: 0 0 5px 0;
+            display: block;
         }
     }
 
@@ -56,6 +58,22 @@
             background: #fff;
             appearance: none;
         }
+    }
+
+    &__RowBox {
+        
+    }
+
+    &__RowBoxContainer {
+        display: grid;
+        grid-template-columns: 35px 1fr;
+        gap: 15px;
+        margin: 0 0 5px 0;
+        align-items: center;
+    }
+
+    &__RowBoxTitle {
+        color: #fff;
     }
 }
 

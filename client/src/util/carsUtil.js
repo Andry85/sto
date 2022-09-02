@@ -20,3 +20,22 @@ for (let i = 0; i < jsonDataCars.length; i++) {
     
     }
 }
+
+
+const today = new Date();
+const year = today.getFullYear();
+
+
+const yearsArr = [];
+for (let i = year; i >= 1900; i--) {
+    yearsArr.push(i);
+}
+
+//set yearsCar
+export const yearsCar = [];
+for (let i = 0; i < yearsArr.length; i++) {
+    yearsCar.push({
+        value: `${yearsArr[i]}`,
+        label: `${yearsArr[i]}`,
+    });
+}
