@@ -152,7 +152,9 @@ const Home = () => {
         };
         fetchPosts();
 
-    }, [marka, model, regionsName, locationName])
+    }, [marka, model, regionsName, locationName, yearFrom, yearTo])
+
+
 
     return (
         <div className={styles.home}>

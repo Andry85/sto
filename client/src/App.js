@@ -3,6 +3,7 @@ import Topbar from './components/Topbar/Topbar';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Single from './pages/Single/Single';
+import Rules from './pages/Rules/Rules';
 import Write from './pages/Write/Write';
 import Footer from './components/Footer/Footer';
 import {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/write" element={
             user ? <Write /> : <Login />
           }></Route>
+          <Route path="/rules" element={<Rules />}></Route>
           <Route path="/post/:postId" element={<Single />}></Route>
         </Routes>
         <Footer/>

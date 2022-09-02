@@ -1,7 +1,8 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
 import {GoogleContext} from '../../context/Context';
+import {axiosInstance} from '../../config';
 
 
 /**
@@ -9,6 +10,30 @@ import {GoogleContext} from '../../context/Context';
  */
 const Topbar = () => {
     const user = useContext(GoogleContext);
+    const [posts, setPosts] = useState([]);
+
+    
+
+    useEffect(() => {
+
+        const fetchPosts = async () => {
+            const res = await axiosInstance.get('/posts');
+            setPosts(res.data);
+            
+        };
+        fetchPosts();
+
+    }, [])
+
+
+    let numberOfPosts = 0;
+    const maximumLimit = 11;
+
+    for (const post of posts) {
+        if (user.id === post.username) {
+            numberOfPosts++
+        }
+    }
 
     
 
@@ -25,9 +50,11 @@ const Topbar = () => {
                         <Link to="/">Головна</Link>
                     </li>
                     <li>
-                        {user && (
-                            <Link to="/write">Додати авто</Link>
+
+                        {user && numberOfPosts < maximumLimit ? (<Link to="/write">Додати авто</Link>) : (
+                            <Link to="/rules">Правила</Link>
                         )}
+
                     </li>
                     <li>
                         {user && (
