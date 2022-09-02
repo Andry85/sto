@@ -40,16 +40,11 @@ const Home = () => {
         window.location.reload(false);
     };
 
-    console.log(yearFrom);
-    console.log(yearTo);
-
 
     useEffect(() => {
 
         const fetchPosts = async () => {
             const res = await axiosInstance.get('/posts');
-
-            console.log(res.data);
 
 
             if (marka != null && model ==null && regionsName =='' && locationName =='' && yearFrom =='' && yearTo =='') {

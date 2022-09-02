@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
+const fs = require('fs');
 
 
 
@@ -60,6 +61,20 @@ router.delete("/:id", async (req, res) => {
 
     try {
         const post = await Post.findById(req.params.id);
+
+
+        const postImagesArr = post.files;
+
+        for (const item of postImagesArr) {
+            let path = `./images/${item}`;
+    
+            fs.unlink(path, (err) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+            });
+        }
   
        
   

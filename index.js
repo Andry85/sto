@@ -112,21 +112,22 @@ app.use('/api/posts', postRoute);
 app.use('/api/marks', categoryRoute);
 
 
-app.use('/api/deleteImg', categoryRoute);
 
-app.use('/api/deleteImg/:id', (req, res, next) => {
-    console.log('Request Type:', req.method)
+app.use('/api/deleteImg/:arrayImages', (req, res, next) => {
 
-    console.log('req.params.id:', req.params.id)
+    const imagesArr = req.params.arrayImages.split(",");
 
-    const path = `./images/${req.params.id}`;
+    for (const element of imagesArr) {
+        let path = `./images/${element}`;
 
-    fs.unlink(path, (err) => {
-        if (err) {
-            console.error(err)
-            return
-        }
-    });
+        fs.unlink(path, (err) => {
+            if (err) {
+                console.error(err)
+                return
+            }
+        });
+    }
+
 
     
 })
