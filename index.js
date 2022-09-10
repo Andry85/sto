@@ -15,7 +15,13 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const cors = require('cors');
 const passportSetup = require('./passport');
+const URL = require('url'); 
+
+
 let CLIENT_URL;
+
+console.log(URL.host, 'URL.host');
+
 
 
 if (process.env.NODE_ENV === "production") {

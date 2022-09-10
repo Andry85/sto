@@ -4,6 +4,7 @@ import {axiosInstance} from '../../config';
 import styles from  './SinglePost.module.scss';
 import {GoogleContext} from '../../context/Context';
 import Slider from "react-slick";
+import {REACT_APP_DOMAIN_VAR} from '../../host';
 
 
 
@@ -63,7 +64,7 @@ const SinglePost = () => {
     }, [path])
 
 
-    const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
+    const PF = `${REACT_APP_DOMAIN_VAR}/images/`;
 
 
     const handleDelete = async () => {

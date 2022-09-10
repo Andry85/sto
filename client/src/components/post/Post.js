@@ -1,5 +1,6 @@
 import styles from  './Post.module.scss';
 import {Link} from 'react-router-dom';
+import {REACT_APP_DOMAIN_VAR} from '../../host';
 
 
 
@@ -12,7 +13,7 @@ const defaultProps = {};
  */
 const Post = ({post}) => {
 
-    const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
+    const PF = `${REACT_APP_DOMAIN_VAR}/images/`;
 
     return (
         <div className={styles.post}>

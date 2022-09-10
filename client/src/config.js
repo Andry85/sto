@@ -1,6 +1,9 @@
 import axios from "axios";
+import {REACT_APP_DOMAIN_VAR} from './host';
+
+
 
 export const axiosInstance = axios.create({
-    baseURL: `${process.env.REACT_APP_DOMAIN}/api/`
+    baseURL: `${REACT_APP_DOMAIN_VAR}/api/`
     
 })

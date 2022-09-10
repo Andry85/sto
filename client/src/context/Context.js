@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import {REACT_APP_DOMAIN_VAR} from '../host';
 
 
 
@@ -10,7 +11,7 @@ export const GoogleContextProvider = ({children}) => {
 
     useEffect(() => {
         const getUser = async()=> {
-            const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/auth/login/success`, { 
+            const res = await axios.get(`${REACT_APP_DOMAIN_VAR}/auth/login/success`, { 
                 withCredentials: true 
             });
             setUser(res.data.user);       

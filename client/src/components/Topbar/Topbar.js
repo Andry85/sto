@@ -3,6 +3,7 @@ import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
 import {GoogleContext} from '../../context/Context';
 import {axiosInstance} from '../../config';
+import {REACT_APP_DOMAIN_VAR} from '../../host';
 
 
 /**
@@ -42,7 +43,7 @@ const Topbar = () => {
 
 
     const handleLogout = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
+        window.open(`${REACT_APP_DOMAIN_VAR}/auth/logout`, '_self');
     }
 
 

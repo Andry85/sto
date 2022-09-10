@@ -1,6 +1,7 @@
 import React from 'react';
 import GoogleButton from 'react-google-button'
 import styles from  './Login.module.scss';
+import {REACT_APP_DOMAIN_VAR} from '../../host';
 
 
 
@@ -11,7 +12,7 @@ const Login = () => {
 
 
     const google = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, '_self');
+        window.open(`${REACT_APP_DOMAIN_VAR}/auth/google`, '_self');
     }
 
     return (
