@@ -24,6 +24,7 @@ if (process.env.NODE_ENV === "production") {
     CLIENT_URL = 'http://localhost:3000'; 
 }
 
+
 dotenv.config();
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
