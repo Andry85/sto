@@ -59,6 +59,10 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: false,
         },
+        pseudonime: {
+            type: String,
+            required: false,
+        },
     },
     {timestamps: true}
 );

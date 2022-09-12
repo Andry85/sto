@@ -74,7 +74,8 @@ const Write = () => {
             model: optionModel.optionModel.label,
             year: yearProduction,
             files: filesNames,
-            phone
+            phone,
+            pseudonime: user.name.givenName,
         }
 
         if (files) {
