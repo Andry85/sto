@@ -37,6 +37,7 @@ const SinglePost = () => {
     const filesNames = [];
     const [filesNew, setFilesnew] = useState([]);
     const [yearProduction, setYearProduction] = useState('');
+    const [pseudonime, setPseudonime] = useState('');
 
 
     useEffect(() => {
@@ -55,7 +56,9 @@ const SinglePost = () => {
            setRegionsName(res.data.regionsName);
            setLocationName(res.data.locationName);
            setYearProduction(res.data.year);
+           setPseudonime(res.data.pseudonime);
 
+           console.log(res.data);
            
        };
        getPost();
@@ -366,11 +369,8 @@ const SinglePost = () => {
                     <span className={styles.singlePost__authot}>
                         <i>Автор: </i>
                         <Link to={`/?user=${post.username}`}>
-                            {user && (
-                                <i>{user.name.givenName}</i>
-                            )}
+                            <i>{pseudonime}</i>                    
                         </Link>
-                        
                     </span>
                     <span className={styles.singlePost__date}>
                     {new Date(post.createdAt).getDate()}
