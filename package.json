@@ -19,7 +19,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=dev node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "build": "cd client && npm run build"
   },
   "author": "",
   "license": "ISC",
