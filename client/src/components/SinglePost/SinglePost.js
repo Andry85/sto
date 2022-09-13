@@ -57,8 +57,6 @@ const SinglePost = () => {
            setLocationName(res.data.locationName);
            setYearProduction(res.data.year);
            setPseudonime(res.data.pseudonime);
-
-           console.log(res.data);
            
        };
        getPost();
@@ -134,7 +132,6 @@ const SinglePost = () => {
             return index != e.target.dataset.index;
         });
         setFiles(filesFiltered);
-        console.log(e.target.dataset.name);
 
         try {
             await axiosInstance.delete(`/deleteImg/${e.target.dataset.name}`);
