@@ -16,6 +16,7 @@ const passport = require('passport');
 const cors = require('cors');
 const passportSetup = require('./passport');
 let CLIENT_URL;
+var express_enforces_ssl = require('express-enforces-ssl');
 
 
 if (process.env.NODE_ENV === "production") {
@@ -27,7 +28,6 @@ if (process.env.NODE_ENV === "production") {
 
 
 dotenv.config();
-app.enable("trust proxy");
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(cookieSession(
@@ -45,6 +45,10 @@ app.use(cors({
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }));
+
+app.enable('trust proxy');
+
+app.use(express_enforces_ssl());
 
 // підключення монго дб
 mongoose.connect(process.env.MONGO_URL)
