@@ -9,7 +9,8 @@ passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: "/auth/google/callback",
-    scope: ["profile", "email"]
+    scope: ["profile", "email"],
+    proxy: true
   },
   function(accessToken, refreshToken, profile, callback) {
     callback(null, profile);
