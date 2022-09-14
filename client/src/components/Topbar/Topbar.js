@@ -42,7 +42,7 @@ const Topbar = () => {
 
 
     const handleLogout = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN_HTTP}/auth/logout`, '_self');
+        window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
     }
 
 
