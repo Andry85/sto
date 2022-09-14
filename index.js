@@ -16,7 +16,7 @@ const passport = require('passport');
 const cors = require('cors');
 const passportSetup = require('./passport');
 let CLIENT_URL;
-var express_enforces_ssl = require('express-enforces-ssl');
+
 
 
 if (process.env.NODE_ENV === "production") {
@@ -46,9 +46,6 @@ app.use(cors({
     credentials: true,
 }));
 
-app.enable('trust proxy');
-
-app.use(express_enforces_ssl());
 
 // підключення монго дб
 mongoose.connect(process.env.MONGO_URL)
