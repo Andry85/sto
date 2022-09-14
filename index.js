@@ -27,6 +27,7 @@ if (process.env.NODE_ENV === "production") {
 
 
 dotenv.config();
+app.enable("trust proxy");
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(cookieSession(
