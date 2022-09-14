@@ -46,7 +46,7 @@ app.use(cors({
     credentials: true,
 }));
 
-app.set('trust proxy', '127.0.0.1');
+app.enable('trust proxy');
 
 
 // підключення монго дб
