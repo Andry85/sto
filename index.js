@@ -46,6 +46,8 @@ app.use(cors({
     credentials: true,
 }));
 
+app.set('trust proxy', '91.200.43.224, 91.200.43.224:443')
+
 
 // підключення монго дб
 mongoose.connect(process.env.MONGO_URL)
