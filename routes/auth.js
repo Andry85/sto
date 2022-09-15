@@ -13,6 +13,8 @@ if (process.env.NODE_ENV === "production") {
 
 router.get("/login/success", (req, res)=>{
     
+    console.log(req.user, 'req.user');
+  
 
     if(req.user) {
         res.status(200).json({
@@ -20,7 +22,7 @@ router.get("/login/success", (req, res)=>{
             success: true,
             message: "success",
             user: req.user, 
-            // cookies: req.cookies
+            cookies: req.cookies
         });
     } else {
         res.status(403).json({
