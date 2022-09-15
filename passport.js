@@ -8,7 +8,7 @@ const GOOGLE_CLIENT_SECRET = "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";
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "/auth/google/callback",
+    callbackURL: "https://parkovka.in.ua/auth/google/callback",
     scope: ["profile", "email"],
     proxy: true
   },
