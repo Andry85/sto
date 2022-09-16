@@ -10,16 +10,16 @@ import styles from  './Login.module.scss';
 const Login = () => {
 
 
-    const google = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, '_self');
-    }
+    // const google = () => {
+    //     window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, '_self');
+    // }
 
     return (
         <div className={styles.login}>
             <div className={styles.login__alternative}>
-                <GoogleButton
-                onClick={google}
-                />
+                <a href={`${process.env.REACT_APP_DOMAIN}/auth/google`}>
+                    <GoogleButton/>
+                </a>
             </div>
         </div>
     );
