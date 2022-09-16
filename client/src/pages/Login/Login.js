@@ -11,7 +11,7 @@ const Login = () => {
 
 
     const google = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, '_self');
+        window.open(`http://parkovka.in.ua/auth/google`, '_self');
     }
 
     return (
