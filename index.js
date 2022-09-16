@@ -41,7 +41,7 @@ app.use(cookieSession(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
-    origin: "*",
+    origin: CLIENT_URL,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }));
