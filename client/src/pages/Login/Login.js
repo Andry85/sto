@@ -1,6 +1,7 @@
 import React from 'react';
-import GoogleButton from 'react-google-button'
 import styles from  './Login.module.scss';
+import { GoogleLogin } from '@react-oauth/google';
+
 
 
 
@@ -9,17 +10,18 @@ import styles from  './Login.module.scss';
  */
 const Login = () => {
 
-
-    const google = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, '_self');
-    }
-
     return (
         <div className={styles.login}>
             <div className={styles.login__alternative}>
-                <GoogleButton
-                onClick={google}
-                />
+            <GoogleLogin
+                onSuccess={credentialResponse => {
+                    console.log(credentialResponse);
+                    window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, '_self');
+                }}
+                onError={() => {
+                    console.log('Login Failed');
+                }}
+            />
             </div>
         </div>
     );
