@@ -20,7 +20,7 @@ let CLIENT_URL;
 
 
 if (process.env.NODE_ENV === "production") {
-    CLIENT_URL = 'https://parkovka.in.ua';
+    CLIENT_URL = 'https://parkovka.in.ua:443';
 } else {
     CLIENT_URL = 'http://localhost:3000'; 
 }
