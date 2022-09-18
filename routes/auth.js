@@ -1,7 +1,12 @@
 const router = require("express").Router();
-const passport = require('passport');
 require('dotenv').config();
 let CLIENT_URL;
+const {OAuth2Client} = require('google-auth-library');
+
+const clientId="58800646258-eq8uhldgmpvhvenfd73cuu12o95b9brc.apps.googleusercontent.com";
+
+const authClient = new OAuth2Client(clientId);
+let googleUser = null;
 
 
 if (process.env.NODE_ENV === "production") {
@@ -11,47 +16,50 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
+
+
+router.post("/login/success", (req, res)=>{
+    const {idToken} = req.body;
+
+    if (idToken) {
+        authClient.verifyIdToken({idToken, audience: clientId})
+        .then(response => {
+            googleUser = response;
+        })
+        .catch(error => {
+            console.log(error);
+        }) 
+    }
+});
+
 router.get("/login/success", (req, res)=>{
     
-    console.log(req.user, 'req.user');
-  
-
-    if(req.user) {
-        res.status(200).json({
-            error: false,
-            success: true,
-            message: "success",
-            user: req.user, 
-            cookies: req.cookies
-        });
-    } else {
-        res.status(403).json({
-            error: true,
-            message: "Not autorized",
-        });
+    if (googleUser) {
+        if(googleUser.payload) {
+            res.status(200).json({
+                error: false,
+                success: true,
+                message: "success",
+                user: googleUser.payload, 
+            });
+        } else {
+            res.status(403).json({
+                error: true,
+                message: "Not autorized",
+            });
+        }
     }
 
-    
 });
 
-router.get("/login/faild", (req, res)=>{
-    res.status(401).json({
-        success: false,
-        message: "failure"
-    });
-});
+
 
 router.get("/logout", (req, res)=>{
-    req.logout();
-    res.redirect(CLIENT_URL);
+    if (req) {
+        googleUser = null;
+        res.redirect(CLIENT_URL);
+    }
 });
-
-router.get("/google/callback", passport.authenticate("google", {
-    successRedirect: CLIENT_URL,
-    failureRedirect: "login/faild"
-}));
-
-router.get("/google", passport.authenticate("google", ["profile", "email"]));
 
 
 module.exports = router;

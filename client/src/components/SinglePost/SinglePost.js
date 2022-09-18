@@ -56,8 +56,7 @@ const SinglePost = () => {
            setRegionsName(res.data.regionsName);
            setLocationName(res.data.locationName);
            setYearProduction(res.data.year);
-           setPseudonime(res.data.pseudonime);
-           
+           setPseudonime(res.data.pseudonime);         
        };
        getPost();
        
@@ -71,7 +70,7 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.delete(`/posts/${post._id}` , {
-                data: {username: user.id}
+                data: {username: user.sub}
             });
             window.location.replace('/');
         } catch (err) {

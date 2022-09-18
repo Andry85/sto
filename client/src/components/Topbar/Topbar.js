@@ -3,6 +3,7 @@ import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
 import {GoogleContext} from '../../context/Context';
 import {axiosInstance} from '../../config';
+import axios from "axios";
 
 
 /**
@@ -12,7 +13,6 @@ const Topbar = () => {
     const user = useContext(GoogleContext);
     const [posts, setPosts] = useState([]);
 
-    
 
     useEffect(() => {
 
@@ -31,7 +31,7 @@ const Topbar = () => {
 
     if (user) {
         for (const post of posts) {
-            if (user.id === post.username) {
+            if (user.sub === post.username) {
                 numberOfPosts++
             }
         }
@@ -42,9 +42,20 @@ const Topbar = () => {
 
 
     const handleLogout = () => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
+        axios.get(`${process.env.REACT_APP_DOMAIN}/auth/logout`, {
+            withCredentials: true 
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        window.location.replace('/');
     }
 
+
+    
 
     return (
         <div className={styles.topbar}>
@@ -62,7 +73,7 @@ const Topbar = () => {
                     </li>
                     <li>
                         {user && (
-                            <Link to={`/?user=${user.id}`}>Мої оголошення</Link>
+                            <Link to={`/?user=${user.sub}`}>Мої оголошення</Link>
                         )}
                     </li>
                     <li className={styles.topbar__logout} onClick={handleLogout}>
@@ -72,7 +83,7 @@ const Topbar = () => {
             </div>
             <div className={styles.topbar__colRight}>
                 {user ? (
-                    <img src={user.photos[0].value} />
+                    <img src={user.picture} />
                     
                 ): (
                     <ul>

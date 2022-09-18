@@ -12,9 +12,7 @@ const multer = require("multer");
 const path = require('path/posix');
 const PORT = process.env.PORT || 5000;
 const cookieSession = require('cookie-session');
-const passport = require('passport');
 const cors = require('cors');
-const passportSetup = require('./passport');
 let CLIENT_URL;
 
 
@@ -38,8 +36,6 @@ app.use(cookieSession(
     }
 
 ));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(cors({
     origin: CLIENT_URL,
     methods: "GET,POST,PUT,DELETE",
