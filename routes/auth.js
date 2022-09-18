@@ -54,7 +54,8 @@ router.get("/login/success", (req, res)=>{
 
 
 
-router.get("/logout", (req, res)=>{
+router.post("/logout", (req, res)=>{
+    console.log(googleUser, 'googleUser');
     if (googleUser) {
         googleUser = null;
     }

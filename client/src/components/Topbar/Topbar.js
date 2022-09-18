@@ -3,7 +3,7 @@ import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
 import {GoogleContext} from '../../context/Context';
 import {axiosInstance} from '../../config';
-import { GoogleLogout } from 'react-google-login';
+import axios from "axios";
 
 
 /**
@@ -44,10 +44,20 @@ const Topbar = () => {
 
 
 
-    const logout = (response) => {
-        window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
+    const handleLogout = () => {
+        axios.post(`${process.env.REACT_APP_DOMAIN}/auth/logout`, {
+            user: user,
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
     }
 
+
+    
 
     return (
         <div className={styles.topbar}>
@@ -68,15 +78,8 @@ const Topbar = () => {
                             <Link to={`/?user=${user.sub}`}>Мої оголошення</Link>
                         )}
                     </li>
-                    <li className={styles.topbar__logout}>
-                        {user && 
-                            <GoogleLogout
-                                clientId={clientId}
-                                buttonText="Logout"
-                                onLogoutSuccess={logout}
-                            >
-                            </GoogleLogout>
-                        }
+                    <li className={styles.topbar__logout} onClick={handleLogout}>
+                        {user && "Вийти"}
                     </li>
                 </ul>
             </div>
