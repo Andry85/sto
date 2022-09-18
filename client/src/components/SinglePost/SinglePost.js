@@ -56,8 +56,7 @@ const SinglePost = () => {
            setRegionsName(res.data.regionsName);
            setLocationName(res.data.locationName);
            setYearProduction(res.data.year);
-           setPseudonime(res.data.pseudonime);
-           
+           setPseudonime(res.data.pseudonime);         
        };
        getPost();
        

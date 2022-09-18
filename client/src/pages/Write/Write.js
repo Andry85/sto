@@ -35,7 +35,6 @@ const Write = () => {
     const [locationName, setLocationName] = useState('');
 
 
-
     useEffect(() => {
         setRegions(mapOfUkraine);
     });
@@ -75,7 +74,7 @@ const Write = () => {
             year: yearProduction,
             files: filesNames,
             phone,
-            pseudonime: user.name.givenName,
+            pseudonime: user.given_name,
         }
 
         if (files) {
