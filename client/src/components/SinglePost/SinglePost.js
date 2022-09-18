@@ -62,6 +62,7 @@ const SinglePost = () => {
        
     }, [path])
 
+    
 
     const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
 
@@ -165,8 +166,6 @@ const SinglePost = () => {
         adaptiveHeight: true
     };
 
-
-
     return (
         <div className={styles.singlePost}>
             <div className={styles.singlePost__inner}>
@@ -225,7 +224,7 @@ const SinglePost = () => {
                          /> : (
                         <>
                             <h1>{title}</h1>
-                            {post.username === user?.id && (
+                            {post.username === user?.sub && (
                                 <div className={styles.singlePost__action}>
                                     <span className={styles.singlePost__edit} onClick={() => setUpdateMod(true)}>
                                         <i className="far fa-edit"></i>
