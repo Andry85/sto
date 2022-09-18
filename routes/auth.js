@@ -55,10 +55,13 @@ router.get("/login/success", (req, res)=>{
 
 
 router.post("/logout", (req, res)=>{
-    console.log(googleUser, 'googleUser');
-    if (googleUser) {
-        googleUser = null;
-    }
+    res.status(200).json({
+        error: false,
+        success: true,
+        message: "success",
+        user: null, 
+    });
+    
     res.redirect(CLIENT_URL);
 });
 
