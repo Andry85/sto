@@ -45,7 +45,7 @@ const Login = () => {
             <div className={styles.login__alternative}>
             <GoogleLogin
                 clientId={clientId}
-                buttonText="Login"
+                buttonText="Увійти через Google"
                 onSuccess={responseSuccessGoogle}
                 onFailure={responseErrorGoogle}
                 cookiePolicy={'single_host_origin'}

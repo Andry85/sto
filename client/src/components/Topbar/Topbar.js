@@ -13,9 +13,6 @@ const Topbar = () => {
     const user = useContext(GoogleContext);
     const [posts, setPosts] = useState([]);
 
-    const clientId="58800646258-eq8uhldgmpvhvenfd73cuu12o95b9brc.apps.googleusercontent.com";
-
-    
 
     useEffect(() => {
 
@@ -45,15 +42,16 @@ const Topbar = () => {
 
 
     const handleLogout = () => {
-        axios.post(`${process.env.REACT_APP_DOMAIN}/auth/logout`, {
-            user: user,
+        axios.get(`${process.env.REACT_APP_DOMAIN}/auth/logout`, {
+            withCredentials: true 
         })
         .then(function (response) {
             console.log(response);
         })
         .catch(function (error) {
             console.log(error);
-          });
+        });
+        window.location.replace('/');
     }
 
 

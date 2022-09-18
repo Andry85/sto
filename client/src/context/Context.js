@@ -17,8 +17,10 @@ export const GoogleContextProvider = ({children}) => {
         
         }
         getUser();
-        
+
+    
     }, []);
+
 
     return (
         <GoogleContext.Provider value={user}>

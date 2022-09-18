@@ -54,15 +54,12 @@ router.get("/login/success", (req, res)=>{
 
 
 
-router.post("/logout", (req, res)=>{
-    console.log(req.user,'req.user');
-  
-    
-    res.redirect(CLIENT_URL);
+router.get("/logout", (req, res)=>{
+    if (req) {
+        googleUser = null;
+        res.redirect(CLIENT_URL);
+    }
 });
-
-
-
 
 
 module.exports = router;
