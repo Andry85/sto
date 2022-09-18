@@ -71,7 +71,7 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.delete(`/posts/${post._id}` , {
-                data: {username: user.id}
+                data: {username: user.sub}
             });
             window.location.replace('/');
         } catch (err) {

@@ -13,7 +13,8 @@ export const GoogleContextProvider = ({children}) => {
             const res = await axios.get(`${process.env.REACT_APP_DOMAIN}/auth/login/success`, { 
                 withCredentials: true 
             });
-            setUser(res.data.user);       
+            setUser(res.data.user);   
+        
         }
         getUser();
         

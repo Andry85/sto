@@ -63,7 +63,7 @@ const Write = () => {
         }
 
         const newPost = {
-            username: user.id,
+            username: user.sub,
             title,
             description: desc,
             price,

@@ -3,6 +3,7 @@ import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
 import {GoogleContext} from '../../context/Context';
 import {axiosInstance} from '../../config';
+import { GoogleLogout } from 'react-google-login';
 
 
 /**
@@ -11,6 +12,8 @@ import {axiosInstance} from '../../config';
 const Topbar = () => {
     const user = useContext(GoogleContext);
     const [posts, setPosts] = useState([]);
+
+    const clientId="58800646258-eq8uhldgmpvhvenfd73cuu12o95b9brc.apps.googleusercontent.com";
 
     
 
@@ -31,7 +34,7 @@ const Topbar = () => {
 
     if (user) {
         for (const post of posts) {
-            if (user.id === post.username) {
+            if (user.sub === post.username) {
                 numberOfPosts++
             }
         }
@@ -41,7 +44,7 @@ const Topbar = () => {
 
 
 
-    const handleLogout = () => {
+    const logout = (response) => {
         window.open(`${process.env.REACT_APP_DOMAIN}/auth/logout`, '_self');
     }
 
@@ -62,17 +65,24 @@ const Topbar = () => {
                     </li>
                     <li>
                         {user && (
-                            <Link to={`/?user=${user.id}`}>Мої оголошення</Link>
+                            <Link to={`/?user=${user.sub}`}>Мої оголошення</Link>
                         )}
                     </li>
-                    <li className={styles.topbar__logout} onClick={handleLogout}>
-                        {user && "Вийти"}
+                    <li className={styles.topbar__logout}>
+                        {user && 
+                            <GoogleLogout
+                                clientId={clientId}
+                                buttonText="Logout"
+                                onLogoutSuccess={logout}
+                            >
+                            </GoogleLogout>
+                        }
                     </li>
                 </ul>
             </div>
             <div className={styles.topbar__colRight}>
                 {user ? (
-                    <img src={user.photos[0].value} />
+                    <img src={user.picture} />
                     
                 ): (
                     <ul>
