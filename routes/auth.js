@@ -55,12 +55,8 @@ router.get("/login/success", (req, res)=>{
 
 
 router.post("/logout", (req, res)=>{
-    res.status(200).json({
-        error: false,
-        success: true,
-        message: "success",
-        user: null, 
-    });
+    console.log(req.user,'req.user');
+  
     
     res.redirect(CLIENT_URL);
 });
