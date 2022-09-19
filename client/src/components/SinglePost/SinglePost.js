@@ -114,7 +114,7 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.put(`/posts/${post._id}` , { 
-                username: user.id,
+                username: user.sub,
                 title,
                 description,
                 files: filesNames,
