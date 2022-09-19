@@ -239,7 +239,6 @@ const Write = () => {
                         className={styles.write__text} 
                         type="text" 
                         placeholder="Ваш телефон" 
-                        autoFocus={true}
                         onChange={e => setPhone(e.target.value)}
                     />
                 </div>
