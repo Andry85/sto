@@ -34,16 +34,17 @@
                 color: #fff;
 
                 @include breakpoint(sm) {
-                    margin: 0 10px;
+                    font-size: 13px;
+                }
+
+                @include breakpoint(sm) {
+                    margin: 0 5px;
                 }
 
                 a {
                     color: inherit;
                     font-weight: bold;
 
-                    @include breakpoint(sm) {
-                        font-size: 14px;
-                    }
 
                     &:hover {
                         text-decoration: none;
