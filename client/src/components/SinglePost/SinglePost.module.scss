@@ -52,6 +52,8 @@
         border-bottom: 1px solid lightgray;
         font-size: 15px;
         color: gray;
+        white-space: pre-wrap;
+        min-height: 300px;
 
         &:focus {
             outline: none;
