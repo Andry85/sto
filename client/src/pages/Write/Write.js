@@ -69,8 +69,8 @@ const Write = () => {
             regionsName,
             locationName,
             race,
-            marka: optionMarka.selectedOption.label,
-            model: optionModel.optionModel.label,
+            marka: optionMarka.selectedOption?.label,
+            model: optionModel.optionModel?.label,
             year: yearProduction,
             files: filesNames,
             phone,
@@ -100,6 +100,9 @@ const Write = () => {
         }
 
         try {
+
+            console.log(typeof title, 'title');
+
             const res = await axiosInstance.post('/posts', newPost);
             window.location.replace('/post/' + res.data._id);
         } catch(err) {

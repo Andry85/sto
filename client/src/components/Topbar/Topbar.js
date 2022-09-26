@@ -62,7 +62,9 @@ const Topbar = () => {
             <div className={styles.topbar__colCenter}>
                 <ul>
                     <li>
-                        <Link to="/">Головна</Link>
+                        <Link to="/">
+                            <span className={styles.logo}></span>
+                        </Link>
                     </li>
                     <li>
 
