@@ -74,9 +74,16 @@
         label {
             display: block;
             font-weight: bold;
-        }
 
-        
+            i {
+                color: red;
+            }
+        }
+    }
+
+    &__formGroupRowError {
+        color: red;
+        font-size: 12px;
     }
 
     &__formGroupRowSelect {

@@ -33,6 +33,8 @@ const Write = () => {
     const [location, setLocation] = useState([]);
     const [regionsName, setRegionsName] = useState('');
     const [locationName, setLocationName] = useState('');
+    const [errorTitle, setErrorTitle] = useState(false);
+    const [errorMarka, setErrormarka] = useState(false);
 
 
     useEffect(() => {
@@ -101,10 +103,34 @@ const Write = () => {
 
         try {
 
-            console.log(typeof title, 'title');
+            console.log(typeof optionMarka.selectedOption?.label, 'optionMarka.selectedOption?.label');
 
-            const res = await axiosInstance.post('/posts', newPost);
-            window.location.replace('/post/' + res.data._id);
+            if (title !== '' && optionMarka.selectedOption?.label !== undefined) {
+                setErrorTitle(false);
+                setErrormarka(false);
+
+                const res = await axiosInstance.post('/posts', newPost);
+                window.location.replace('/post/' + res.data._id);
+            } 
+
+            if (title === '') {
+                setErrorTitle(true);
+            }
+
+            if (title !== '') {
+                setErrorTitle(false);
+            } 
+
+            if (optionMarka.selectedOption?.label === undefined) {
+                setErrormarka(true);
+            } 
+
+            if (optionMarka.selectedOption?.label !== undefined) {
+                setErrormarka(false);
+            }
+
+
+            
         } catch(err) {
 
         } 
@@ -163,7 +189,7 @@ const Write = () => {
                     </div>
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Навзва авто:</label>
+                    <label>Навзва авто: <i>*</i></label>
                     <input 
                         className={styles.write__text} 
                         type="text" 
@@ -171,14 +197,20 @@ const Write = () => {
                         autoFocus={true}
                         onChange={e => setTitle(e.target.value)}
                     />
+                    {errorTitle && (
+                                <span className={styles.write__formGroupRowError}>Заповніть назву авто</span>
+                    )} 
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Марка авто:</label>
+                    <label>Марка авто: <i>*</i></label>
                     <Select
                         value={optionMarka.value}
                         onChange={handleChange1}
                         options={marksOfCars}
                     />
+                    {errorMarka && (
+                                <span className={styles.write__formGroupRowError}>Заповніть марку авто</span>
+                    )} 
                 </div>
                 <div className={styles.write__formGroupRow}>
                     <label>Модель авто:</label>
