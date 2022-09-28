@@ -360,7 +360,7 @@ const SinglePost = () => {
                     <button className={styles.singlePost__btn} onClick={handleUpdate}>Оновити</button>
                 )}
 
-                {/* <div className={styles.singlePost__info}>
+                <div className={styles.singlePost__info}>
                     <span className={styles.singlePost__authot}>
                         <i>Автор: </i>
                         <Link to={`/?user=${post.username}`}>
@@ -374,7 +374,7 @@ const SinglePost = () => {
                     .
                     {new Date(post.createdAt).getFullYear()}
                     </span>
-                </div> */}
+                </div>
                 
                 
             </div>
