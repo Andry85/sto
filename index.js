@@ -61,9 +61,16 @@ const storage = multer.diskStorage({
         cb(null, path.join(__dirname, 'images'));
     },
     filename: function (req, file, cb) {
+
+        const d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth();
+        let hour = d.getHours();
+        let minutes = d.getMinutes();
+
         cb(
         null,
-        file.originalname
+        `${year}-${month}-${hour}-${minutes}-${file.originalname}`
         );
     },
     });

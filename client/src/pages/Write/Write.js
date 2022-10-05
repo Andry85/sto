@@ -50,7 +50,10 @@ const Write = () => {
 
     
 
-    const onChange = e => {
+    const onChangeFiles = e => {
+
+        console.log(e.target.files);
+
         setFiles(e.target.files)
     };
 
@@ -66,8 +69,15 @@ const Write = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth();
+        let hour = d.getHours();
+        let minutes = d.getMinutes();
+
+
         for (const element of files) {
-            filesNames.push(element.name);
+            filesNames.push(`${year}-${month}-${hour}-${minutes}-${element.name}`);
         }
 
         const newPost = {
@@ -242,7 +252,7 @@ const Write = () => {
                             id='file'
                             name="uploadImages"
                             multiple
-                            onChange={onChange}
+                            onChange={onChangeFiles}
                         />
                         <ul>
                             {Object.values(files) && Object.values(files).map((item, index) =>(

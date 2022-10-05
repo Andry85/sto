@@ -81,12 +81,19 @@ const SinglePost = () => {
 
     const handleUpdate = async () => {
 
+        const d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth();
+        let hour = d.getHours();
+        let minutes = d.getMinutes();
+
+
         for (const element of files) {
             filesNames.push(element);
         }
 
         for (const element of filesNew) {
-            filesNames.push(element.name);
+            filesNames.push(`${year}-${month}-${hour}-${minutes}-${element.name}`);
         }
 
         
