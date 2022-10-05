@@ -69,7 +69,7 @@ const Topbar = () => {
                     <li>
 
                         {user && numberOfPosts < maximumLimit ? (<Link to="/write">Додати авто</Link>) : (
-                            <Link to="/rules">Правила</Link>
+                            ''
                         )}
 
                     </li>
