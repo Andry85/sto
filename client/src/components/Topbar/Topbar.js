@@ -85,8 +85,7 @@ const Topbar = () => {
             </div>
             <div className={styles.topbar__colRight}>
                 {user ? (
-                    <img src={user.picture} />
-                    
+                    <img src={user.picture} alt="" />
                 ): (
                     <ul>
                          <li>

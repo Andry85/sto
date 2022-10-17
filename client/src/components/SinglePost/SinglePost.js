@@ -2,6 +2,7 @@ import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState, useContext  } from 'react';
 import {axiosInstance} from '../../config';
 import styles from  './SinglePost.module.scss';
+import {mapOfUkraine} from '../../util/regions';
 import {GoogleContext} from '../../context/Context';
 import Slider from "react-slick";
 
@@ -24,7 +25,6 @@ const SinglePost = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [updateMod, setUpdateMod] = useState(false);
-    const [locationAuto, setLocationAuto] = useState('');
     const [price, setPtice] = useState('');
     const [race, setRace] = useState('');
     const [files, setFiles] = useState([]);
@@ -38,6 +38,8 @@ const SinglePost = () => {
     const [filesNew, setFilesnew] = useState([]);
     const [yearProduction, setYearProduction] = useState('');
     const [pseudonime, setPseudonime] = useState('');
+    const [regions, setRegions] = useState([]);
+    const [locationdata, setLocationdata] = useState([]);
 
 
     useEffect(() => {
@@ -46,7 +48,6 @@ const SinglePost = () => {
            setPost(res.data);
            setTitle(res.data.title);
            setDescription(res.data.description);
-           setLocationAuto(res.data.location);
            setPtice(res.data.price);
            setRace(res.data.race);
            setFiles(res.data.files);
@@ -56,11 +57,20 @@ const SinglePost = () => {
            setRegionsName(res.data.regionsName);
            setLocationName(res.data.locationName);
            setYearProduction(res.data.year);
-           setPseudonime(res.data.pseudonime);         
+           setPseudonime(res.data.pseudonime);  
+           
+           console.log(res.data);
        };
        getPost();
        
-    }, [path])
+    }, [path]);
+
+    useEffect(() => {
+        setRegions(mapOfUkraine);
+    }, []);
+
+
+
 
     
 
@@ -104,7 +114,7 @@ const SinglePost = () => {
             });
 
             try {
-                const res = await axiosInstance.post('/upload', formData, {
+                await axiosInstance.post('/upload', formData, {
                     headers: {
                     'Content-Type': 'multipart/form-data'
                     },
@@ -125,6 +135,8 @@ const SinglePost = () => {
                 title,
                 description,
                 files: filesNames,
+                regionsName,
+                locationName
             });
             setUpdateMod(false);
             window.location.replace('/post/' + post._id);
@@ -136,7 +148,7 @@ const SinglePost = () => {
 
     const handleDeleteModel = async (e) => {
         const filesFiltered = Object.values(files).filter((item, index) => {
-            return index != e.target.dataset.index;
+            return index !== parseInt(e.target.dataset.index);
         });
         setFiles(filesFiltered);
 
@@ -150,7 +162,7 @@ const SinglePost = () => {
 
     const handleDeleteModelNewFiles = e => {
         const filesFiltered = Object.values(filesNew).filter((item, index) => {
-            return index != e.target.dataset.index;
+            return index !== parseInt(e.target.dataset.index, 10);
         });
         setFilesnew(filesFiltered);
     };
@@ -160,6 +172,16 @@ const SinglePost = () => {
     const onChangeFiles = e => {
         setFilesnew(e.target.files)
     };
+
+    const handleChangeRegions = (e) => {
+        setLocationdata(regions[e.target.value].data);
+        setRegionsName(regions[e.target.value].name);
+    }
+
+    const handleChangeLocation = (e) => {
+        setLocationName(e.target.value);
+    }
+
 
     
 
@@ -178,7 +200,6 @@ const SinglePost = () => {
             <div className={styles.singlePost__inner}>
 
                
-
                 {updateMod ? (
                     <>  
                         {Object.values(files) && Object.values(files).map((item, index) =>(
@@ -314,12 +335,16 @@ const SinglePost = () => {
 
                 <div className={styles.singlePost__row}>
                     <label>Регіон:</label>
-                    {updateMod ? <input type="text" 
-                        value={regionsName} 
-                        className={styles.singlePost__input}
-                        autoFocus
-                        onChange={(e) => setRegionsName(e.target.value)} 
-                         /> : (
+                    {updateMod ? 
+                         (<div className={styles.write__formGroupRowSelect}>
+                            <select onChange={handleChangeRegions}>
+                            <option value={regionsName} selected disabled hidden>{regionsName}</option>
+                                {regions && regions.map((item, index) =>(
+                                    <option value={index} key={index}>{item.name}</option>
+                                ))} 
+                            </select>
+                        </div>)
+                          : (
                         <>
                             <div className={styles.singlePost__col}>
                                 {regionsName}
@@ -331,12 +356,18 @@ const SinglePost = () => {
 
                 <div className={styles.singlePost__row}>
                     <label>Населений пункт:</label>
-                    {updateMod ? <input type="text" 
-                        value={locationName} 
-                        className={styles.singlePost__input}
-                        autoFocus
-                        onChange={(e) => setLocationName(e.target.value)} 
-                         /> : (
+                    {updateMod ? 
+                         (
+                            <div className={styles.write__formGroupRowSelect}>            
+                                <select value={locationName} onChange={handleChangeLocation}>
+                                    <option value={locationName} selected disabled hidden>{locationName}</option>
+                                    {locationdata && locationdata.map((item, index) =>(
+                                        <option value={item.name} key={index}>{item.name}</option>
+                                    ))} 
+                                </select>
+                            </div>
+                         )
+                         : (
                         <>
                             <div className={styles.singlePost__col}>
                                 {locationName}

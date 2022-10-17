@@ -11,7 +11,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { Context, GoogleContext } from './context/Context';
+import {GoogleContext } from './context/Context';
 
 
 function App() {

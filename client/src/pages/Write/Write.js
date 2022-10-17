@@ -46,7 +46,7 @@ const Write = () => {
 
     useEffect(() => {
         setRegions(mapOfUkraine);
-    });
+    }, []);
 
     
 
@@ -59,7 +59,7 @@ const Write = () => {
 
     const handleCloseIcon = e => {
         const filesFiltered = Object.values(files).filter((item, index) => {
-            return index != e.target.dataset.index;
+            return index !== parseInt(e.target.dataset.index, 10);
         });
         setFiles(filesFiltered);
 
@@ -103,7 +103,7 @@ const Write = () => {
             });
 
             try {
-                const res = await axiosInstance.post('/upload', formData, {
+                await axiosInstance.post('/upload', formData, {
                     headers: {
                     'Content-Type': 'multipart/form-data'
                     },

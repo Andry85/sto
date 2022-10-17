@@ -1,15 +1,5 @@
-import PropTypes from 'prop-types';
 import styles from  './Rules.module.scss';
 
-
-
-const propTypes = {};
-
-const defaultProps = {};
-
-/**
- * 
- */
 const Rules = () => {
     return (
         <div className={styles.rules}>
@@ -19,9 +9,4 @@ const Rules = () => {
         </div>
     );
 }
-
-Rules.propTypes = propTypes;
-Rules.defaultProps = defaultProps;
-// #endregion
-
 export default Rules;
