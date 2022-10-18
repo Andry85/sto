@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext} from 'react';
-import Select from 'react-select'
+import Select from 'react-select';
 import styles from  './Write.module.scss';
 import {axiosInstance} from '../../config';
 import {GoogleContext} from '../../context/Context';
@@ -8,14 +8,6 @@ import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
 
 
 
-
-
-
-
-
-/**
- * 
- */
 const Write = () => {
 
     const [title, setTitle] = useState('');
@@ -46,7 +38,7 @@ const Write = () => {
 
     useEffect(() => {
         setRegions(mapOfUkraine);
-    });
+    }, []);
 
     
 
@@ -59,7 +51,7 @@ const Write = () => {
 
     const handleCloseIcon = e => {
         const filesFiltered = Object.values(files).filter((item, index) => {
-            return index != e.target.dataset.index;
+            return index !== parseInt(e.target.dataset.index, 10);
         });
         setFiles(filesFiltered);
 
@@ -103,7 +95,7 @@ const Write = () => {
             });
 
             try {
-                const res = await axiosInstance.post('/upload', formData, {
+                await axiosInstance.post('/upload', formData, {
                     headers: {
                     'Content-Type': 'multipart/form-data'
                     },
@@ -282,6 +274,13 @@ const Write = () => {
                 <div className={styles.write__formGroupRow}>
                     <label>Марка авто: <i>*</i></label>
                     <Select
+                       theme={(theme) => ({
+                            ...theme,
+                            spacing: {
+                                controlHeight: 55,
+                                baseUnit: 8,
+                            }
+                        })}
                         value={optionMarka.value}
                         onChange={handleChange1}
                         options={marksOfCars}
@@ -293,6 +292,13 @@ const Write = () => {
                 <div className={styles.write__formGroupRow}>
                     <label>Модель авто: <i>*</i></label>
                     <Select
+                        theme={(theme) => ({
+                            ...theme,
+                            spacing: {
+                                controlHeight: 55,
+                                baseUnit: 8,
+                            }
+                        })}
                         value={optionModel.value}
                         onChange={handleChange2}
                         options={filteredOptions}
@@ -304,6 +310,13 @@ const Write = () => {
                 <div className={styles.write__formGroupRow}>
                     <label>Рік випуску: <i>*</i></label>
                     <Select
+                        theme={(theme) => ({
+                            ...theme,
+                            spacing: {
+                                controlHeight: 55,
+                                baseUnit: 8,
+                            }
+                        })}
                         value={yearProduction.label}
                         onChange={handleYearProduction}
                         options={yearsCar}

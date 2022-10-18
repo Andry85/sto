@@ -24,7 +24,7 @@ const Post = ({post}) => {
                     )}
                 </header>
                 {post.files && (
-                    <img className={styles.post__pic} src={PF + post.files[0]} />
+                    <img className={styles.post__pic} src={PF + post.files[0]} alt="" />
                 )}
                 <footer className={styles.post__entry}>
                     {post.price && (

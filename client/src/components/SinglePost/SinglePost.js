@@ -2,21 +2,13 @@ import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState, useContext  } from 'react';
 import {axiosInstance} from '../../config';
 import styles from  './SinglePost.module.scss';
+import {mapOfUkraine} from '../../util/regions';
 import {GoogleContext} from '../../context/Context';
 import Slider from "react-slick";
+import Select from 'react-select';
+import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
 
 
-
-
-
-
-const propTypes = {};
-
-const defaultProps = {};
-
-/**
- * 
- */
 const SinglePost = () => {
     const location = useLocation();
     const path = location.pathname.split('/')[2];
@@ -24,7 +16,6 @@ const SinglePost = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [updateMod, setUpdateMod] = useState(false);
-    const [locationAuto, setLocationAuto] = useState('');
     const [price, setPtice] = useState('');
     const [race, setRace] = useState('');
     const [files, setFiles] = useState([]);
@@ -36,8 +27,15 @@ const SinglePost = () => {
     const user = useContext(GoogleContext);
     const filesNames = [];
     const [filesNew, setFilesnew] = useState([]);
-    const [yearProduction, setYearProduction] = useState('');
+    const [yearProduction, setYearProduction] = useState({});
     const [pseudonime, setPseudonime] = useState('');
+    const [regions, setRegions] = useState([]);
+    const [locationdata, setLocationdata] = useState([]);
+    const [optionMarka, setOptionMarka] = useState({});
+    const [optionModel, setOptionModel] = useState({});
+    const [yearOfCar, setYearOfCar] = useState('');
+
+    
 
 
     useEffect(() => {
@@ -46,7 +44,6 @@ const SinglePost = () => {
            setPost(res.data);
            setTitle(res.data.title);
            setDescription(res.data.description);
-           setLocationAuto(res.data.location);
            setPtice(res.data.price);
            setRace(res.data.race);
            setFiles(res.data.files);
@@ -55,17 +52,19 @@ const SinglePost = () => {
            setPhone(res.data.phone);
            setRegionsName(res.data.regionsName);
            setLocationName(res.data.locationName);
-           setYearProduction(res.data.year);
-           setPseudonime(res.data.pseudonime);         
+           setYearOfCar(res.data.year);
+           setPseudonime(res.data.pseudonime); 
        };
        getPost();
        
-    }, [path])
+    }, [path]);
 
-    
+    useEffect(() => {
+        setRegions(mapOfUkraine);
+    }, []);
+
 
     const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
-
 
     const handleDelete = async () => {
 
@@ -87,7 +86,6 @@ const SinglePost = () => {
         let hour = d.getHours();
         let minutes = d.getMinutes();
 
-
         for (const element of files) {
             filesNames.push(element);
         }
@@ -104,7 +102,7 @@ const SinglePost = () => {
             });
 
             try {
-                const res = await axiosInstance.post('/upload', formData, {
+                await axiosInstance.post('/upload', formData, {
                     headers: {
                     'Content-Type': 'multipart/form-data'
                     },
@@ -125,6 +123,11 @@ const SinglePost = () => {
                 title,
                 description,
                 files: filesNames,
+                regionsName,
+                locationName,
+                marka: optionMarka.selectedOption?.label,
+                model: optionModel.optionModel?.label,
+                year: yearProduction.selectedOption?.label,
             });
             setUpdateMod(false);
             window.location.replace('/post/' + post._id);
@@ -136,7 +139,7 @@ const SinglePost = () => {
 
     const handleDeleteModel = async (e) => {
         const filesFiltered = Object.values(files).filter((item, index) => {
-            return index != e.target.dataset.index;
+            return index !== parseInt(e.target.dataset.index);
         });
         setFiles(filesFiltered);
 
@@ -150,7 +153,7 @@ const SinglePost = () => {
 
     const handleDeleteModelNewFiles = e => {
         const filesFiltered = Object.values(filesNew).filter((item, index) => {
-            return index != e.target.dataset.index;
+            return index !== parseInt(e.target.dataset.index, 10);
         });
         setFilesnew(filesFiltered);
     };
@@ -161,7 +164,29 @@ const SinglePost = () => {
         setFilesnew(e.target.files)
     };
 
+    const handleChangeRegions = (e) => {
+        setLocationdata(regions[e.target.value].data);
+        setRegionsName(regions[e.target.value].name);
+    }
+
+    const handleChangeLocation = (e) => {
+        setLocationName(e.target.value);
+    }
+
+    const handleChangeMarka = (selectedOption) => {
+        setOptionMarka({selectedOption});
+    };
     
+    const handleChangeModel = (selectedOption) => {
+        setOptionModel({optionModel: selectedOption})
+    }
+
+    const filteredOptions = modelsOfCars.filter((o) => o.link === optionMarka.selectedOption?.value);
+
+    const handleYearProduction = (selectedOption) => {
+        setYearProduction({selectedOption})
+    }
+
 
     const settings = {
         dots: true,
@@ -178,7 +203,6 @@ const SinglePost = () => {
             <div className={styles.singlePost__inner}>
 
                
-
                 {updateMod ? (
                     <>  
                         {Object.values(files) && Object.values(files).map((item, index) =>(
@@ -197,7 +221,7 @@ const SinglePost = () => {
 
                         <div className={styles.singlePost__formGroupFile}>
                             <label htmlFor="file" className={styles.singlePost__formGroupFileLabel}>
-                                <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото одразу
+                                <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото
                             </label>
                             <input
                                 type='file'
@@ -256,26 +280,70 @@ const SinglePost = () => {
                     </div>
                 )}
 
+ 
                 <div className={styles.singlePost__row}>
                     <label>Марка:</label>
-                    <div className={styles.singlePost__col}>
-                        {marka}
-                    </div>
+                    {updateMod ? 
+                         (<div className={styles.write__formGroupRowSelect}>
+                            <Select
+                                value={optionMarka.value}
+                                onChange={handleChangeMarka}
+                                options={marksOfCars}
+                                defaultValue={{ label: marka, value: marka }}
+                            />
+                        </div>)
+                          : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {marka}
+                            </div>
+                        </>
+
+                     )}  
                 </div>
 
                 <div className={styles.singlePost__row}>
-                    <label>Модель:</label>
-                    <div className={styles.singlePost__col}>
-                        {model}
-                    </div>
+                    <label>Модель авто:</label>
+                    {updateMod ? 
+                         (<div className={styles.write__formGroupRowSelect}>
+                             <Select
+                                value={optionModel.value}
+                                onChange={handleChangeModel}
+                                options={filteredOptions}
+                                defaultValue={{ label: model, value: model }}
+                            />
+                        </div>)
+                          : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {model}
+                            </div>
+                        </>
+
+                     )}  
                 </div>
 
                 <div className={styles.singlePost__row}>
                     <label>Рік випуску:</label>
-                    <div className={styles.singlePost__col}>
-                        {yearProduction}
-                    </div>
+                    {updateMod ? 
+                         (<div className={styles.write__formGroupRowSelect}>
+                                <Select
+                                    value={yearProduction.label}
+                                    onChange={handleYearProduction}
+                                    options={yearsCar}
+                                    defaultValue={{ label: yearOfCar, value: yearOfCar }}
+                                />
+                          </div>)
+                          : (
+                        <>
+                            <div className={styles.singlePost__col}>
+                                {yearOfCar}
+                            </div>
+                        </>
+
+                     )}  
                 </div>
+
 
 
                 <div className={styles.singlePost__row}>
@@ -314,12 +382,16 @@ const SinglePost = () => {
 
                 <div className={styles.singlePost__row}>
                     <label>Регіон:</label>
-                    {updateMod ? <input type="text" 
-                        value={regionsName} 
-                        className={styles.singlePost__input}
-                        autoFocus
-                        onChange={(e) => setRegionsName(e.target.value)} 
-                         /> : (
+                    {updateMod ? 
+                         (<div className={styles.write__formGroupRowSelect}>
+                            <select onChange={handleChangeRegions} defaultValue={regionsName}>
+                            <option disabled hidden>{regionsName}</option>
+                                {regions && regions.map((item, index) =>(
+                                    <option value={index} key={index}>{item.name}</option>
+                                ))} 
+                            </select>
+                        </div>)
+                          : (
                         <>
                             <div className={styles.singlePost__col}>
                                 {regionsName}
@@ -331,12 +403,18 @@ const SinglePost = () => {
 
                 <div className={styles.singlePost__row}>
                     <label>Населений пункт:</label>
-                    {updateMod ? <input type="text" 
-                        value={locationName} 
-                        className={styles.singlePost__input}
-                        autoFocus
-                        onChange={(e) => setLocationName(e.target.value)} 
-                         /> : (
+                    {updateMod ? 
+                         (
+                            <div className={styles.write__formGroupRowSelect}>            
+                                <select onChange={handleChangeLocation} defaultValue={locationName}>
+                                    <option disabled hidden>{locationName}</option>
+                                    {locationdata && locationdata.map((item, index) =>(
+                                        <option value={item.name} key={index}>{item.name}</option>
+                                    ))} 
+                                </select>
+                            </div>
+                         )
+                         : (
                         <>
                             <div className={styles.singlePost__col}>
                                 {locationName}
@@ -388,9 +466,5 @@ const SinglePost = () => {
         </div>
     );
 }
-
-SinglePost.propTypes = propTypes;
-SinglePost.defaultProps = defaultProps;
-// #endregion
 
 export default SinglePost;

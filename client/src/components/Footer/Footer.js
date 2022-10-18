@@ -1,14 +1,5 @@
-import PropTypes from 'prop-types';
 import styles from  './Footer.module.scss';
 
-
-const propTypes = {};
-
-const defaultProps = {};
-
-/**
- * 
- */
 const Footer = () => {
     return (
         <footer className={styles.footer}>
@@ -18,9 +9,4 @@ const Footer = () => {
         </footer>
     );
 }
-
-Footer.propTypes = propTypes;
-Footer.defaultProps = defaultProps;
-// #endregion
-
 export default Footer;
