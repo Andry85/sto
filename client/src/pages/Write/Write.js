@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext} from 'react';
-import Select from 'react-select'
+import Select from 'react-select';
 import styles from  './Write.module.scss';
 import {axiosInstance} from '../../config';
 import {GoogleContext} from '../../context/Context';
