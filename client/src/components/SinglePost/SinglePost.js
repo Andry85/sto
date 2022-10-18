@@ -9,17 +9,6 @@ import Select from 'react-select';
 import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
 
 
-
-
-
-
-const propTypes = {};
-
-const defaultProps = {};
-
-/**
- * 
- */
 const SinglePost = () => {
     const location = useLocation();
     const path = location.pathname.split('/')[2];
@@ -477,9 +466,5 @@ const SinglePost = () => {
         </div>
     );
 }
-
-SinglePost.propTypes = propTypes;
-SinglePost.defaultProps = defaultProps;
-// #endregion
 
 export default SinglePost;
