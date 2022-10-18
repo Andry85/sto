@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Topbar />
         <Routes>
-          <Route path="/" exact element={<Home />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={
             user ? <Home /> : <Login />
           }></Route>
