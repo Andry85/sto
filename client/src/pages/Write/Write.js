@@ -8,14 +8,6 @@ import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
 
 
 
-
-
-
-
-
-/**
- * 
- */
 const Write = () => {
 
     const [title, setTitle] = useState('');
@@ -282,6 +274,13 @@ const Write = () => {
                 <div className={styles.write__formGroupRow}>
                     <label>Марка авто: <i>*</i></label>
                     <Select
+                       theme={(theme) => ({
+                            ...theme,
+                            spacing: {
+                                controlHeight: 55,
+                                baseUnit: 8,
+                            }
+                        })}
                         value={optionMarka.value}
                         onChange={handleChange1}
                         options={marksOfCars}
@@ -293,6 +292,13 @@ const Write = () => {
                 <div className={styles.write__formGroupRow}>
                     <label>Модель авто: <i>*</i></label>
                     <Select
+                        theme={(theme) => ({
+                            ...theme,
+                            spacing: {
+                                controlHeight: 55,
+                                baseUnit: 8,
+                            }
+                        })}
                         value={optionModel.value}
                         onChange={handleChange2}
                         options={filteredOptions}
@@ -304,6 +310,13 @@ const Write = () => {
                 <div className={styles.write__formGroupRow}>
                     <label>Рік випуску: <i>*</i></label>
                     <Select
+                        theme={(theme) => ({
+                            ...theme,
+                            spacing: {
+                                controlHeight: 55,
+                                baseUnit: 8,
+                            }
+                        })}
                         value={yearProduction.label}
                         onChange={handleYearProduction}
                         options={yearsCar}
