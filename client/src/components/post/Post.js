@@ -2,11 +2,6 @@ import styles from  './Post.module.scss';
 import {Link} from 'react-router-dom';
 
 
-
-const propTypes = {};
-
-const defaultProps = {};
-
 /**
  * 
  */
@@ -41,9 +36,5 @@ const Post = ({post}) => {
         </div>
     );
 }
-
-Post.propTypes = propTypes;
-Post.defaultProps = defaultProps;
-// #endregion
 
 export default Post;
