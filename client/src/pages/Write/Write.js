@@ -69,7 +69,7 @@ const Write = () => {
 
 
         for (const element of files) {
-            filesNames.push(`${year}-${month}-${hour}-${minutes}-${element.name}`);
+            filesNames.push(`${year}-${month}-${minutes}-${element.name}`);
         }
 
         const newPost = {

@@ -91,7 +91,7 @@ const SinglePost = () => {
         }
 
         for (const element of filesNew) {
-            filesNames.push(`${year}-${month}-${hour}-${minutes}-${element.name}`);
+            filesNames.push(`${year}-${month}-${minutes}-${element.name}`);
         }
 
         

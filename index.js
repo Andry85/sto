@@ -70,7 +70,7 @@ const storage = multer.diskStorage({
 
         cb(
         null,
-        `${year}-${month}-${hour}-${minutes}-${file.originalname}`
+        `${year}-${month}-${minutes}-${file.originalname}`
         );
     },
     });
