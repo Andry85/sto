@@ -54,6 +54,7 @@ const SinglePost = () => {
            setLocationName(res.data.locationName);
            setYearOfCar(res.data.year);
            setPseudonime(res.data.pseudonime); 
+
        };
        getPost();
        
@@ -274,8 +275,7 @@ const SinglePost = () => {
                 {updateMod ? <textarea value={description} className={styles.singlePost__textArea} onChange={(e) => setDescription(e.target.value)} /> : (
                     <div className={styles.singlePost__rowFirst}>
                     <label>Опис:</label>
-                        <div className={styles.singlePost__text}>
-                            {description}
+                        <div className={styles.singlePost__text} dangerouslySetInnerHTML={{__html: description}}>
                         </div>
                     </div>
                 )}

@@ -64,7 +64,6 @@ const Write = () => {
         const d = new Date();
         let year = d.getFullYear();
         let month = d.getMonth();
-        let hour = d.getHours();
         let minutes = d.getMinutes();
 
 
@@ -228,6 +227,14 @@ const Write = () => {
 
     const handleChangeLocation = (e) => {
         setLocationName(e.target.value);
+    }
+
+    const decodeTextareaText = (text) => {
+        const arrtext = [];
+        text.split('\n').map((item, key) => {
+            arrtext.push(`${item}<br>`);
+        });
+        setDesc(arrtext.join(''));
     }
 
        
@@ -394,7 +401,7 @@ const Write = () => {
                         className={styles.write__textArea} 
                         rows="5" 
                         placeholder="Опишіть ваше авто"
-                        onChange={e => setDesc(e.target.value)}
+                        onChange={e => decodeTextareaText(e.target.value)}
                     ></textarea>
                 </div>
                 <button className={styles.write__submit} type="submit">Додати</button>
