@@ -34,10 +34,10 @@ const SinglePost = () => {
     const [optionMarka, setOptionMarka] = useState({});
     const [optionModel, setOptionModel] = useState({});
     const [yearOfCar, setYearOfCar] = useState('');
+    const [decodedDescription, setDecodedDescription] = useState('');
+    const [editedDescription, setEditedDescription] = useState('');
 
     
-
-
     useEffect(() => {
        const getPost = async () => {
            const res = await axiosInstance.get("/posts/" + path);
@@ -54,14 +54,27 @@ const SinglePost = () => {
            setLocationName(res.data.locationName);
            setYearOfCar(res.data.year);
            setPseudonime(res.data.pseudonime); 
+
        };
        getPost();
        
     }, [path]);
 
     useEffect(() => {
-        setRegions(mapOfUkraine);
+        setRegions(mapOfUkraine);   
     }, []);
+
+    useEffect(() => {
+        const decodeDescription = () => {
+            const arrtextDesc = [];
+            description.split('<br>').map((item, key) => {
+                arrtextDesc.push(`${item}\n`);
+            });
+            setDecodedDescription(arrtextDesc.join(''));
+        }
+        decodeDescription();
+        
+    }, [description]);
 
 
     const PF = `${process.env.REACT_APP_DOMAIN}/images/`;
@@ -121,7 +134,7 @@ const SinglePost = () => {
             await axiosInstance.put(`/posts/${post._id}` , { 
                 username: user.sub,
                 title,
-                description,
+                description: editedDescription,
                 files: filesNames,
                 regionsName,
                 locationName,
@@ -185,6 +198,14 @@ const SinglePost = () => {
 
     const handleYearProduction = (selectedOption) => {
         setYearProduction({selectedOption})
+    }
+
+    const decodeDescriptionAferEdit = (text) => {
+        const arrtext = [];
+        text.split('\n').map((item, key) => {
+            arrtext.push(`${item}<br>`);
+        });
+        setEditedDescription(arrtext.join(''));
     }
 
 
@@ -271,11 +292,13 @@ const SinglePost = () => {
                      )}  
                 </div>
 
-                {updateMod ? <textarea value={description} className={styles.singlePost__textArea} onChange={(e) => setDescription(e.target.value)} /> : (
+                {updateMod ? <textarea 
+                    defaultValue={decodedDescription}
+                    className={styles.singlePost__textArea} 
+                    onChange={(e) => decodeDescriptionAferEdit(e.target.value)}/> : (
                     <div className={styles.singlePost__rowFirst}>
                     <label>Опис:</label>
-                        <div className={styles.singlePost__text}>
-                            {description}
+                        <div className={styles.singlePost__text} dangerouslySetInnerHTML={{__html: description}}>
                         </div>
                     </div>
                 )}
