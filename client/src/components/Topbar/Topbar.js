@@ -78,14 +78,14 @@ const Topbar = () => {
                             <Link to={`/?user=${user.sub}`}>Мої оголошення</Link>
                         )}
                     </li>
-                    <li className={styles.topbar__logout} onClick={handleLogout}>
-                        {user && "Вийти"}
-                    </li>
                 </ul>
             </div>
             <div className={styles.topbar__colRight}>
                 {user ? (
-                    <img src={user.picture} alt="" />
+                    <>
+                        <img src={user.picture} alt="" />
+                        <span className={styles.topbar__logout} onClick={handleLogout}>{user && "Вийти"}</span>
+                    </>
                 ): (
                     <ul>
                          <li>
