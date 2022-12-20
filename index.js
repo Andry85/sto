@@ -2,6 +2,8 @@ const express =  require('express');
 const app = express();
 const dotenv = require('dotenv');
 const fs = require('fs');
+const passportSetup = require("./passport");
+const passport = require("passport");
 
 // підключення монгуса
 const mongoose = require("mongoose");
@@ -36,6 +38,10 @@ app.use(cookieSession(
     }
 
 ));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(cors({
     origin: CLIENT_URL,
     methods: "GET,POST,PUT,DELETE",

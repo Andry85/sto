@@ -83,7 +83,7 @@ const Topbar = () => {
             <div className={styles.topbar__colRight}>
                 {user ? (
                     <>
-                        <img src={user.picture} alt="" />
+                        <img src={user.photos[0].value} alt="" />
                         <span className={styles.topbar__logout} onClick={handleLogout}>{user && "Вийти"}</span>
                     </>
                 ): (
