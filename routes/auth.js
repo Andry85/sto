@@ -1,12 +1,9 @@
 const router = require("express").Router();
 require('dotenv').config();
+const passport = require("passport");
+
+
 let CLIENT_URL;
-const {OAuth2Client} = require('google-auth-library');
-
-const clientId="58800646258-eq8uhldgmpvhvenfd73cuu12o95b9brc.apps.googleusercontent.com";
-
-const authClient = new OAuth2Client(clientId);
-let googleUser = null;
 
 
 if (process.env.NODE_ENV === "production") {
@@ -16,50 +13,44 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
+router.get('/login/success', (req, res) => {
 
-
-router.post("/login/success", (req, res)=>{
-    const {idToken} = req.body;
-
-    if (idToken) {
-        authClient.verifyIdToken({idToken, audience: clientId})
-        .then(response => {
-            googleUser = response;
+    if (req.user) {
+        res.status(200).json({
+            success: true,
+            message: "success",
+            user: req.user
         })
-        .catch(error => {
-            console.log(error);
-        }) 
     }
 });
 
-router.get("/login/success", (req, res)=>{
-    
-    if (googleUser) {
-        if(googleUser.payload) {
-            res.status(200).json({
-                error: false,
-                success: true,
-                message: "success",
-                user: googleUser.payload, 
-            });
-        } else {
-            res.status(403).json({
-                error: true,
-                message: "Not autorized",
-            });
-        }
-    }
 
+router.get('/login/failed', (req, res) => {
+    res.status(401).json({
+        success: false,
+        message: "failure",
+    })
+});
+
+router.get('/logout', (req, res) => {
+
+    req.logout();
+    req.redirect(CLIENT_URL);
 });
 
 
+router.get('/google', passport.authenticate('google', { scope: ["profile"] }));
+router.get('/google/callback', passport.authenticate('google', {
+    successRedirect: CLIENT_URL,
+    failureRedirect: "/login/failed"
+ }));
 
-router.get("/logout", (req, res)=>{
-    if (req) {
-        googleUser = null;
-        res.redirect(CLIENT_URL);
-    }
-});
+
+router.get('/facebook', passport.authenticate('facebook', { scope: ["profile"] }));
+router.get('/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: CLIENT_URL,
+    failureRedirect: "/login/failed"
+ }));
 
 
 module.exports = router;
