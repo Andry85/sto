@@ -15,14 +15,12 @@ const Login = () => {
 
 
    const google = () => {
-        //window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, "_self");
-        window.location.replace(`${process.env.REACT_APP_DOMAIN}/auth/google`);
+        window.open(`${process.env.REACT_APP_DOMAIN}/auth/google`, "_self");
    }
 
    const facebook = () => {
-    //window.open(`${process.env.REACT_APP_DOMAIN}/auth/facebook`, "_self");
-    window.location.replace(`${process.env.REACT_APP_DOMAIN}/auth/facebook`);
-}
+        window.open(`${process.env.REACT_APP_DOMAIN}/auth/facebook`, "_self");
+    }
 
 
     return (
