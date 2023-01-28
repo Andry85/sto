@@ -1,43 +1,25 @@
 import axios from "axios"
 import { useState } from "react"
-import {useDispatch } from 'react-redux'
-import styles from  './Login.module.scss';
-import allActions from '../../actions';
+import styles from  './Register.module.scss';
 
 
 /**
  * 
  */
-const Login = () => {
+const Register = () => {
 
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [handleError, setHandleError] = useState(false);
-
-    
-    const dispatch = useDispatch();
-
 
     const handleSubmit= (e) => {
         e.preventDefault();
 
         // Handle validations
-        axios.post(`${process.env.REACT_APP_DOMAIN}/user/login`, {email, password })
+        axios.post(`${process.env.REACT_APP_DOMAIN}/user/register`, {username, email, password })
         .then(response => {
-            if (response) {
-
-                    console.log(response);
-
-                    dispatch(allActions.userActions.setUser({
-                        name: response.data.username 
-                    }));
-                    localStorage.setItem("userEmail", response.data.email)
-                    window.location.replace('/');
-                }
-            }
-        )
-        .catch(error => {
-            setHandleError(true);
+            console.log(response)
+        // Handle response
         })
   
     }
@@ -45,7 +27,17 @@ const Login = () => {
 
     return (
         <div className={styles.page}>
+
             <form className={styles.pageForm} onSubmit={e => {handleSubmit(e)}}>
+                <div className={styles.pageForm__row}>
+                    <label>Введіть ваше ім'я</label>
+                    <input 
+                        type="text" 
+                        placeholder="ваше ім'я" 
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                        />
+                </div>
                 <div className={styles.pageForm__row}>
                     <label>Введіть ваш emal</label>
                     <input 
@@ -65,12 +57,11 @@ const Login = () => {
                     />
                 </div>
                 <div className={styles.pageForm__row}>
-                    <button className={styles.pageForm__register}>Вхід</button>
+                    <button className={styles.pageForm__register}>Зареєструватись</button>
                 </div>
-                {handleError && <p className={styles.pageForm__error}>Не корректні дані</p>}
             </form>
         </div>
     );
 }
 
-export default Login;
+export default Register;

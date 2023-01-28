@@ -2,17 +2,17 @@ import React, { useState, useEffect, useContext} from 'react';
 import Select from 'react-select';
 import styles from  './Write.module.scss';
 import {axiosInstance} from '../../config';
-import {GoogleContext} from '../../context/Context';
 import {mapOfUkraine} from '../../util/regions';
 import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
+import { useSelector} from 'react-redux';
 
 
 
 const Write = () => {
 
+    const user = localStorage.getItem("userEmail");
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
-    const user = useContext(GoogleContext);
     const [price, setPrice] = useState('');
     const [race, setRace] = useState('');
     const [optionMarka, setOptionMarka] = useState({});
@@ -72,7 +72,7 @@ const Write = () => {
         }
 
         const newPost = {
-            username: user.sub,
+            username: user,
             title,
             description: desc,
             price,
@@ -84,7 +84,7 @@ const Write = () => {
             year: yearProduction,
             files: filesNames,
             phone,
-            pseudonime: user.given_name,
+            pseudonime: user,
         }
 
         if (files) {

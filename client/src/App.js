@@ -1,7 +1,9 @@
-import React, {useContext } from 'react';
 import Topbar from './components/Topbar/Topbar';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import {useSelector} from 'react-redux'
+
 import Single from './pages/Single/Single';
 import Rules from './pages/Rules/Rules';
 import Write from './pages/Write/Write';
@@ -11,11 +13,11 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import {GoogleContext } from './context/Context';
+
 
 
 function App() {
-  const user = useContext(GoogleContext);
+  const user = localStorage.getItem("userEmail");
   return (
     <>
       <BrowserRouter>
@@ -25,6 +27,12 @@ function App() {
           <Route path="/login" element={
             user ? <Home /> : <Login />
           }></Route>
+          <Route path="/register" element={
+            user ? '' : <Register />
+          }></Route>
+
+
+
           <Route path="/write" element={
             user ? <Write /> : <Login />
           }></Route>

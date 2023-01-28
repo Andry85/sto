@@ -1,17 +1,20 @@
 import React, {useContext, useState, useEffect} from 'react';
 import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
-import {GoogleContext} from '../../context/Context';
+import { useSelector} from 'react-redux'
 import {axiosInstance} from '../../config';
 import axios from "axios";
-
+import {useDispatch } from 'react-redux';
+import allActions from '../../actions';
 
 /**
  * 
  */
 const Topbar = () => {
-    const user = useContext(GoogleContext);
+
+    const user = localStorage.getItem("userEmail");
     const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -42,15 +45,7 @@ const Topbar = () => {
 
 
     const handleLogout = () => {
-        axios.get(`${process.env.REACT_APP_DOMAIN}/auth/logout`, {
-            withCredentials: true 
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        dispatch(allActions.userActions.logOut());
         window.location.replace('/');
     }
 
@@ -83,13 +78,16 @@ const Topbar = () => {
             <div className={styles.topbar__colRight}>
                 {user ? (
                     <>
-                        <img src={user.photos[0].value} alt="" />
+                        <i>{user}</i>
                         <span className={styles.topbar__logout} onClick={handleLogout}>{user && "Вийти"}</span>
                     </>
                 ): (
                     <ul>
                          <li>
                             <Link to="/login">Логін</Link>
+                         </li>
+                         <li>
+                            <Link to="/register">Реєстрація</Link>
                          </li>
                     </ul>    
                 )}

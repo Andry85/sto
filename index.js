@@ -5,11 +5,13 @@ const fs = require('fs');
 const passportSetup = require("./passport");
 const passport = require("passport");
 
+
 // підключення монгуса
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
+const userRoute = require("./routes/user");
 const multer = require("multer");
 const path = require('path/posix');
 const PORT = process.env.PORT || 5000;
@@ -22,7 +24,7 @@ let CLIENT_URL;
 if (process.env.NODE_ENV === "production") {
     CLIENT_URL = 'http://parkovka.in.ua';
 } else {
-    CLIENT_URL = 'http://parkovka.in.ua'; 
+    CLIENT_URL = 'http://localhost:3000'; 
 }
 
 
@@ -122,6 +124,7 @@ app.post('/api/upload', (req, res) => {
 
 
 app.use('/auth', authRoute);
+app.use('/user', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/marks', categoryRoute);
 

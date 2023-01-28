@@ -3,10 +3,10 @@ import React, {useEffect, useState, useContext  } from 'react';
 import {axiosInstance} from '../../config';
 import styles from  './SinglePost.module.scss';
 import {mapOfUkraine} from '../../util/regions';
-import {GoogleContext} from '../../context/Context';
 import Slider from "react-slick";
 import Select from 'react-select';
 import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
+import { useSelector} from 'react-redux';
 
 
 const SinglePost = () => {
@@ -24,7 +24,6 @@ const SinglePost = () => {
     const [phone, setPhone] = useState('');
     const [regionsName, setRegionsName] = useState('');
     const [locationName, setLocationName] = useState('');
-    const user = useContext(GoogleContext);
     const filesNames = [];
     const [filesNew, setFilesnew] = useState([]);
     const [yearProduction, setYearProduction] = useState({});
@@ -36,6 +35,9 @@ const SinglePost = () => {
     const [yearOfCar, setYearOfCar] = useState('');
     const [decodedDescription, setDecodedDescription] = useState('');
     const [editedDescription, setEditedDescription] = useState('');
+    const user = localStorage.getItem("userEmail");
+
+    console.log(user, 'user');
 
     
     useEffect(() => {
@@ -83,7 +85,7 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.delete(`/posts/${post._id}` , {
-                data: {username: user.sub}
+                data: {username: user}
             });
             window.location.replace('/');
         } catch (err) {
@@ -132,7 +134,7 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.put(`/posts/${post._id}` , { 
-                username: user.sub,
+                username: user,
                 title,
                 description: editedDescription,
                 files: filesNames,
