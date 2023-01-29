@@ -36,8 +36,10 @@ const SinglePost = () => {
     const [decodedDescription, setDecodedDescription] = useState('');
     const [editedDescription, setEditedDescription] = useState('');
     const user = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
 
-    console.log(user, 'user');
+    console.log(post, 'post');
+
 
     
     useEffect(() => {
@@ -85,7 +87,7 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.delete(`/posts/${post._id}` , {
-                data: {username: user}
+                data: {username: userName}
             });
             window.location.replace('/');
         } catch (err) {
@@ -98,7 +100,6 @@ const SinglePost = () => {
         const d = new Date();
         let year = d.getFullYear();
         let month = d.getMonth();
-        let hour = d.getHours();
         let minutes = d.getMinutes();
 
         for (const element of files) {
@@ -134,10 +135,12 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.put(`/posts/${post._id}` , { 
-                username: user,
+                username: userName,
                 title,
                 description: editedDescription,
                 files: filesNames,
+                price: price,
+                race: race,
                 regionsName,
                 locationName,
                 marka: optionMarka.selectedOption?.label,
@@ -278,7 +281,7 @@ const SinglePost = () => {
                          /> : (
                         <>
                             <h1>{title}</h1>
-                            {post.username === user?.sub && (
+                            {post.username === userName && (
                                 <div className={styles.singlePost__action}>
                                     <span className={styles.singlePost__edit} onClick={() => setUpdateMod(true)}>
                                         <i className="far fa-edit"></i>

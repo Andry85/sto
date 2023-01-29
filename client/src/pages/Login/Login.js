@@ -31,7 +31,8 @@ const Login = () => {
                     dispatch(allActions.userActions.setUser({
                         name: response.data.username 
                     }));
-                    localStorage.setItem("userEmail", response.data.email)
+                    localStorage.setItem("userEmail", response.data.email);
+                    localStorage.setItem("userName", response.data.username);
                     window.location.replace('/');
                 }
             }

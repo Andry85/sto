@@ -109,6 +109,8 @@ router.get('/:id', async(req, res) => {
     try {
         const post = await Post.findById(req.params.id);
 
+        console.log(post, 'post');
+
         res.status(200).json(post);
 
     } catch(err) {

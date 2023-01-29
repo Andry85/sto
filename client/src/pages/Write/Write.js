@@ -4,13 +4,14 @@ import styles from  './Write.module.scss';
 import {axiosInstance} from '../../config';
 import {mapOfUkraine} from '../../util/regions';
 import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
-import { useSelector} from 'react-redux';
+
 
 
 
 const Write = () => {
 
     const user = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const [price, setPrice] = useState('');
@@ -72,7 +73,7 @@ const Write = () => {
         }
 
         const newPost = {
-            username: user,
+            username: userName,
             title,
             description: desc,
             price,
@@ -84,7 +85,7 @@ const Write = () => {
             year: yearProduction,
             files: filesNames,
             phone,
-            pseudonime: user,
+            pseudonime: userName,
         }
 
         if (files) {

@@ -1,9 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
-import { useSelector} from 'react-redux'
 import {axiosInstance} from '../../config';
-import axios from "axios";
 import {useDispatch } from 'react-redux';
 import allActions from '../../actions';
 
@@ -13,6 +11,7 @@ import allActions from '../../actions';
 const Topbar = () => {
 
     const user = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
     const [posts, setPosts] = useState([]);
     const dispatch = useDispatch();
 
@@ -46,6 +45,8 @@ const Topbar = () => {
 
     const handleLogout = () => {
         dispatch(allActions.userActions.logOut());
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
         window.location.replace('/');
     }
 
@@ -78,7 +79,7 @@ const Topbar = () => {
             <div className={styles.topbar__colRight}>
                 {user ? (
                     <>
-                        <i>{user}</i>
+                        <i className={styles.topbar__userName}>{userName}</i>
                         <span className={styles.topbar__logout} onClick={handleLogout}>{user && "Вийти"}</span>
                     </>
                 ): (
