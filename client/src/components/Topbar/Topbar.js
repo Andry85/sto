@@ -31,13 +31,15 @@ const Topbar = () => {
     let numberOfPosts = 0;
     const maximumLimit = 11;
 
-    if (user) {
+    if (userName) {
         for (const post of posts) {
-            if (user.sub === post.username) {
+            if (userName === post.username) {
                 numberOfPosts++
             }
         }
     }
+
+    console.log(numberOfPosts, 'numberOfPosts');
 
     
 
@@ -71,7 +73,7 @@ const Topbar = () => {
                     </li>
                     <li>
                         {user && (
-                            <Link to={`/?user=${user.sub}`}>Мої оголошення</Link>
+                            <Link to={`/?user=${userName}`}>Мої оголошення</Link>
                         )}
                     </li>
                 </ul>
