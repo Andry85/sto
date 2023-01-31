@@ -109,6 +109,7 @@ router.get('/:id', async(req, res) => {
     try {
         const post = await Post.findById(req.params.id);
 
+
         res.status(200).json(post);
 
     } catch(err) {
@@ -119,11 +120,18 @@ router.get('/:id', async(req, res) => {
 // Get all post
 router.get('/', async(req, res) => {
 
+    console.log(req.query.id)
+
     const username = req.query.user;
     const catName = req.query.cat;
 
+    console.log(username, 'username');
+    console.log(catName, 'catName');
+    console.log(req.query, 'req.query');
+
 
     try {
+       
 
         let posts;
 
@@ -135,6 +143,7 @@ router.get('/', async(req, res) => {
             }});
         } else {
             posts = await Post.find();
+
         }
 
         res.status(200).json(posts);

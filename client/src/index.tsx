@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import rootReducer from './reducers';
+import {Provider} from 'react-redux';
 import './index.scss';
 import App from './App'
-import {GoogleContextProvider} from './context/Context';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+
+
+
+const store = createStore(
+  rootReducer
+)
 
 ReactDOM.render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="58800646258-eq8uhldgmpvhvenfd73cuu12o95b9brc.apps.googleusercontent.com">
-      <GoogleContextProvider>
-        <App />
-      </GoogleContextProvider>
-    </GoogleOAuthProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

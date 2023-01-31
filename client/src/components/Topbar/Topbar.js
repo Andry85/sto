@@ -1,17 +1,19 @@
 import React, {useContext, useState, useEffect} from 'react';
 import styles from  './Topbar.module.scss';
 import {Link} from 'react-router-dom';
-import {GoogleContext} from '../../context/Context';
 import {axiosInstance} from '../../config';
-import axios from "axios";
-
+import {useDispatch } from 'react-redux';
+import allActions from '../../actions';
 
 /**
  * 
  */
 const Topbar = () => {
-    const user = useContext(GoogleContext);
+
+    const user = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
     const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -29,28 +31,24 @@ const Topbar = () => {
     let numberOfPosts = 0;
     const maximumLimit = 11;
 
-    if (user) {
+    if (userName) {
         for (const post of posts) {
-            if (user.sub === post.username) {
+            if (userName === post.username) {
                 numberOfPosts++
             }
         }
     }
+
+    console.log(numberOfPosts, 'numberOfPosts');
 
     
 
 
 
     const handleLogout = () => {
-        axios.get(`${process.env.REACT_APP_DOMAIN}/auth/logout`, {
-            withCredentials: true 
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        dispatch(allActions.userActions.logOut());
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
         window.location.replace('/');
     }
 
@@ -75,7 +73,7 @@ const Topbar = () => {
                     </li>
                     <li>
                         {user && (
-                            <Link to={`/?user=${user.sub}`}>Мої оголошення</Link>
+                            <Link to={`/?user=${userName}`}>Мої оголошення</Link>
                         )}
                     </li>
                 </ul>
@@ -83,13 +81,16 @@ const Topbar = () => {
             <div className={styles.topbar__colRight}>
                 {user ? (
                     <>
-                        <img src={user.photos[0].value} alt="" />
+                        <i className={styles.topbar__userName}>{userName}</i>
                         <span className={styles.topbar__logout} onClick={handleLogout}>{user && "Вийти"}</span>
                     </>
                 ): (
                     <ul>
                          <li>
                             <Link to="/login">Логін</Link>
+                         </li>
+                         <li>
+                            <Link to="/register">Реєстрація</Link>
                          </li>
                     </ul>    
                 )}

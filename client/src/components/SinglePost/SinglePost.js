@@ -3,10 +3,10 @@ import React, {useEffect, useState, useContext  } from 'react';
 import {axiosInstance} from '../../config';
 import styles from  './SinglePost.module.scss';
 import {mapOfUkraine} from '../../util/regions';
-import {GoogleContext} from '../../context/Context';
 import Slider from "react-slick";
 import Select from 'react-select';
 import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
+import { useSelector} from 'react-redux';
 
 
 const SinglePost = () => {
@@ -24,7 +24,6 @@ const SinglePost = () => {
     const [phone, setPhone] = useState('');
     const [regionsName, setRegionsName] = useState('');
     const [locationName, setLocationName] = useState('');
-    const user = useContext(GoogleContext);
     const filesNames = [];
     const [filesNew, setFilesnew] = useState([]);
     const [yearProduction, setYearProduction] = useState({});
@@ -36,6 +35,11 @@ const SinglePost = () => {
     const [yearOfCar, setYearOfCar] = useState('');
     const [decodedDescription, setDecodedDescription] = useState('');
     const [editedDescription, setEditedDescription] = useState('');
+    const user = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
+
+    console.log(post, 'post');
+
 
     
     useEffect(() => {
@@ -83,7 +87,7 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.delete(`/posts/${post._id}` , {
-                data: {username: user.sub}
+                data: {username: userName}
             });
             window.location.replace('/');
         } catch (err) {
@@ -96,7 +100,6 @@ const SinglePost = () => {
         const d = new Date();
         let year = d.getFullYear();
         let month = d.getMonth();
-        let hour = d.getHours();
         let minutes = d.getMinutes();
 
         for (const element of files) {
@@ -132,10 +135,12 @@ const SinglePost = () => {
 
         try {
             await axiosInstance.put(`/posts/${post._id}` , { 
-                username: user.sub,
+                username: userName,
                 title,
                 description: editedDescription,
                 files: filesNames,
+                price: price,
+                race: race,
                 regionsName,
                 locationName,
                 marka: optionMarka.selectedOption?.label,
@@ -276,7 +281,7 @@ const SinglePost = () => {
                          /> : (
                         <>
                             <h1>{title}</h1>
-                            {post.username === user?.sub && (
+                            {post.username === userName && (
                                 <div className={styles.singlePost__action}>
                                     <span className={styles.singlePost__edit} onClick={() => setUpdateMod(true)}>
                                         <i className="far fa-edit"></i>

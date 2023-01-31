@@ -40,6 +40,8 @@ const Home = () => {
         window.location.reload(false);
     };
 
+    console.log(posts, 'posts');
+
 
     useEffect(() => {
 
