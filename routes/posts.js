@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
 const fs = require('fs');
-const { json } = require('express');
 
 
 
