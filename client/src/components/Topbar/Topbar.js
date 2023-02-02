@@ -39,9 +39,6 @@ const Topbar = () => {
         }
     }
 
-    console.log(numberOfPosts, 'numberOfPosts');
-
-    
 
 
 
