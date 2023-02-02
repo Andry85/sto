@@ -16,9 +16,10 @@ const Register = () => {
         e.preventDefault();
 
         // Handle validations
-        axios.post(`${process.env.REACT_APP_DOMAIN}/user/register`, {username, email, password })
+        axios.post(`${process.env.REACT_APP_DOMAIN}/user/register`, {username, email, password, withCredentials: true })
         .then(response => {
-            console.log(response)
+            console.log(response);
+            window.location.replace('/login');
         // Handle response
         })
   
