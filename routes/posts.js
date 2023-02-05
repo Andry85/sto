@@ -119,15 +119,8 @@ router.get('/:id', async(req, res) => {
 
 // Get all post
 router.get('/', async(req, res) => {
-
-    console.log(req.query.id)
-
     const username = req.query.user;
     const catName = req.query.cat;
-
-    console.log(username, 'username');
-    console.log(catName, 'catName');
-    console.log(req.query, 'req.query');
 
 
     try {

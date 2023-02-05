@@ -40,13 +40,21 @@ const Home = () => {
         window.location.reload(false);
     };
 
-    console.log(posts, 'posts');
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const user = urlParams.get('user')
 
 
     useEffect(() => {
 
         const fetchPosts = async () => {
-            const res = await axiosInstance.get('/posts');
+
+        
+            const res = await axiosInstance.get('/posts', {
+                params: {
+                  user
+                }
+              });
 
 
             if (
@@ -289,7 +297,7 @@ const Home = () => {
         };
         fetchPosts();
 
-    }, [marka, model, regionsName, locationName, yearFrom, yearTo])
+    }, [marka, model, regionsName, locationName, yearFrom, yearTo, queryString])
 
 
 
