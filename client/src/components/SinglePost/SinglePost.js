@@ -35,10 +35,7 @@ const SinglePost = () => {
     const [yearOfCar, setYearOfCar] = useState('');
     const [decodedDescription, setDecodedDescription] = useState('');
     const [editedDescription, setEditedDescription] = useState('');
-    const user = localStorage.getItem("userEmail");
     const userName = localStorage.getItem("userName");
-
-    console.log(post, 'post');
 
 
     
@@ -215,7 +212,7 @@ const SinglePost = () => {
 
     const handleMuPosts = (e) => {
         e.preventDefault();
-        window.location.replace(`/?user=${userName}`);
+        window.location.replace(`/?user=${pseudonime}`);
     }
 
 
