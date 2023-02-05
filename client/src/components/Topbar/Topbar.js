@@ -49,6 +49,15 @@ const Topbar = () => {
         window.location.replace('/');
     }
 
+    const handleMuPosts = (e) => {
+        e.preventDefault();
+        window.location.replace(`/?user=${userName}`);
+    }
+
+    const handleMainPage = () => {
+        window.location.replace('/');
+    }
+
 
     
 
@@ -57,9 +66,9 @@ const Topbar = () => {
             <div className={styles.topbar__colCenter}>
                 <ul>
                     <li>
-                        <Link to="/">
+                        <div onClick={handleMainPage}>
                             <span className={styles.logo}></span>
-                        </Link>
+                        </div>
                     </li>
                     <li>
 
@@ -70,7 +79,7 @@ const Topbar = () => {
                     </li>
                     <li>
                         {user && (
-                            <Link to={`/?user=${userName}`}>Мої оголошення</Link>
+                            <button  className={styles.myPosts}  onClick={handleMuPosts}>Мої оголошення</button>
                         )}
                     </li>
                 </ul>

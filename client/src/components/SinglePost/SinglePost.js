@@ -213,6 +213,11 @@ const SinglePost = () => {
         setEditedDescription(arrtext.join(''));
     }
 
+    const handleMuPosts = (e) => {
+        e.preventDefault();
+        window.location.replace(`/?user=${userName}`);
+    }
+
 
     const settings = {
         dots: true,
@@ -476,9 +481,9 @@ const SinglePost = () => {
                 <div className={styles.singlePost__info}>
                     <span className={styles.singlePost__authot}>
                         <i>Автор: </i>
-                        <Link to={`/?user=${post.username}`}>
-                            <i>{pseudonime}</i>                    
-                        </Link>
+                        <button  className={styles.myPosts}  onClick={handleMuPosts}>
+                            {pseudonime}
+                        </button>
                     </span>
                     <span className={styles.singlePost__date}>
                     {new Date(post.createdAt).getDate()}
