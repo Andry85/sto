@@ -2,6 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+var randomstring = require("randomstring");
+var nodemailer = require('nodemailer');
 
 
 // register endpoint
@@ -100,7 +102,62 @@ router.post("/login", (request, response) => {
           e,
         });
       });
-  });
+});
+
+// forgot endpoint
+router.post("/forgot", (request, response) => {
+  // check if email exists
+  User.findOne({ email: request.body.email })
+
+    // if email exists
+    .then((user) => {
+      // compare the password entered and the hashed password found
+
+      const email = user.email;
+      const newPassword = randomstring.generate(7);
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: 'shappovala@gmail.com',
+          pass: 'hydknjoclcxvcopj'
+        }
+      });
+
+      var mailOptions = {
+        from: 'shappovala@gmail.com',
+        to: email,
+        subject: 'Your new password for parkovka.ua',
+        html:`<p>Це ваш новий пароль: ${newPassword}</p><a href="https://parkovka.in.ua/login" target="_blank">https://parkovka.in.ua/login</a>`,
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+
+          response.status(200).send({
+            message: "New password generated",
+          });
+
+        }
+      });
+      
+      //hydknjoclcxvcopj
+      
+    })
+    // catch error if email does not exist
+    .catch((e) => {
+      response.status(404).send({
+        message: "Email not found",
+        e,
+      });
+    });
+});
   
 
   module.exports = router;
