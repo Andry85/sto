@@ -55,6 +55,7 @@ router.post("/login", (request, response) => {
       // if email exists
       .then((user) => {
         // compare the password entered and the hashed password found
+
         bcrypt
           .compare(request.body.password, user.password)
   
@@ -112,7 +113,6 @@ router.post("/forgot", (request, response) => {
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
-
       const email = user.email;
       const newPassword = randomstring.generate(7);
 
@@ -130,7 +130,7 @@ router.post("/forgot", (request, response) => {
       var mailOptions = {
         from: 'shappovala@gmail.com',
         to: email,
-        subject: 'Your new password for parkovka.ua',
+        subject: 'Ваш новий пароль для parkovka.ua',
         html:`<p>Це ваш новий пароль: ${newPassword}</p><a href="https://parkovka.in.ua/login" target="_blank">https://parkovka.in.ua/login</a>`,
       };
       
@@ -138,16 +138,32 @@ router.post("/forgot", (request, response) => {
         if (error) {
           console.log(error);
         } else {
-          console.log('Email sent: ' + info.response);
 
+          async function updatePassword() {
+            try {
+              bcrypt.hash(newPassword, 10, async function(err, hashedUpdatedPassword) {
+                const filter = { email: email };
+                const update = { password: hashedUpdatedPassword };
+
+                await User.findOneAndUpdate(filter, update, {
+                  new: true
+                });
+
+              });
+                 
+            }catch(err) {
+                console.log(err);
+            } 
+          }
+
+          updatePassword();
+          
           response.status(200).send({
             message: "New password generated",
           });
 
         }
       });
-      
-      //hydknjoclcxvcopj
       
     })
     // catch error if email does not exist
@@ -159,5 +175,4 @@ router.post("/forgot", (request, response) => {
     });
 });
   
-
-  module.exports = router;
+module.exports = router;
