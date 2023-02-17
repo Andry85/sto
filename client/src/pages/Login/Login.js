@@ -3,6 +3,7 @@ import { useState } from "react"
 import {useDispatch } from 'react-redux'
 import styles from  './Login.module.scss';
 import allActions from '../../actions';
+import {Link} from 'react-router-dom';
 
 
 /**
@@ -64,6 +65,9 @@ const Login = () => {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
+                </div>
+                <div className={styles.pageForm__row}>
+                    <Link className={styles.pageForm__forgot} to="/forgot">забули пароль</Link>
                 </div>
                 <div className={styles.pageForm__row}>
                     <button className={styles.pageForm__register}>Вхід</button>

@@ -13,6 +13,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import Forgot from './pages/Forgot/Forgot';
 
 
 
@@ -30,6 +31,10 @@ function App() {
           <Route path="/register" element={
             user ? '' : <Register />
           }></Route>
+          <Route path="/forgot" element={
+            user ? '' : <Forgot />
+          }></Route>
+
 
 
 
