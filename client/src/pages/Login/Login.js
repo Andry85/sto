@@ -4,6 +4,7 @@ import {useDispatch } from 'react-redux'
 import styles from  './Login.module.scss';
 import allActions from '../../actions';
 import {Link} from 'react-router-dom';
+import { AiOutlineEyeInvisible,  AiOutlineEye} from "react-icons/ai";
 
 
 /**
@@ -14,6 +15,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [handleError, setHandleError] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     
     const dispatch = useDispatch();
@@ -44,6 +46,10 @@ const Login = () => {
   
     }
 
+    const changePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+    }
+
 
     return (
         <div className={styles.page}>
@@ -60,11 +66,14 @@ const Login = () => {
                 <div className={styles.pageForm__row}>
                     <label>Введіть ваш пароль</label>
                     <input 
-                        type="password" 
+                        type={isPasswordVisible ? 'text': 'password'}
                         placeholder="ваш пароль" 
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
+                    <div className={styles.pageForm__eye} onClick={changePasswordVisibility}>
+                        {isPasswordVisible ? <AiOutlineEye/> : <AiOutlineEyeInvisible/> }
+                    </div>
                 </div>
                 <div className={styles.pageForm__row}>
                     <Link className={styles.pageForm__forgot} to="/forgot">забули пароль</Link>

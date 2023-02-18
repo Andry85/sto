@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import styles from  './Register.module.scss';
+import { AiOutlineEyeInvisible,  AiOutlineEye} from "react-icons/ai";
 
 
 /**
@@ -11,6 +12,7 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const handleSubmit= (e) => {
         e.preventDefault();
@@ -23,6 +25,10 @@ const Register = () => {
         // Handle response
         })
   
+    }
+
+    const changePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
     }
 
 
@@ -51,11 +57,15 @@ const Register = () => {
                 <div className={styles.pageForm__row}>
                     <label>Введіть ваш пароль</label>
                     <input 
-                        type="password" 
+                        type={isPasswordVisible ? 'text': 'password'}
                         placeholder="ваш пароль" 
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
+                    <div className={styles.pageForm__eye} onClick={changePasswordVisibility}>
+                        {isPasswordVisible ? <AiOutlineEye/> : <AiOutlineEyeInvisible/> }
+                    </div>
+                    
                 </div>
                 <div className={styles.pageForm__row}>
                     <button className={styles.pageForm__register}>Зареєструватись</button>
