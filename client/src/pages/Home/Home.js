@@ -30,6 +30,7 @@ const Home = () => {
         setLocationName(locationName);
         setYearFrom(yearFrom);
         setYearTo(yearTo);
+
     };
 
     const cleaerFilters = () => {
@@ -58,19 +59,21 @@ const Home = () => {
 
 
             if (
-                marka !== null 
-                && model === null 
+                marka !== undefined 
+                && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
                 && yearTo === '') {
+                    
+
                 const filterAutoByMarka = res.data.filter((item) => {
                     return item.marka === marka;
                 });
                 setPosts(filterAutoByMarka);
             } else if (
-                marka !== null 
-                && model !== null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -81,8 +84,8 @@ const Home = () => {
                 });
                 setPosts(filterAutoByMarkaModel);
             } else if (
-                marka !== null 
-                && model !== null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName !== '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -94,8 +97,8 @@ const Home = () => {
                 });
                 setPosts(filterAutoByMarkaModelRegionName);
             } else if (
-                marka !== null 
-                && model !==null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName !== '' 
                 && locationName !== '' 
                 && yearFrom === '' 
@@ -109,8 +112,8 @@ const Home = () => {
                 setPosts(filterAutoByMarkaModelRegionNameLocationName);
                
             } else if (
-                marka !== null 
-                && model !== null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName !== '' 
                 && locationName !== '' 
                 && yearFrom !== '' 
@@ -125,8 +128,8 @@ const Home = () => {
                 setPosts(filterAutoByMarkaModelRegionNameLocationNameYearFrom);
                
             } else if (
-                marka !== null 
-                && model !== null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName !== '' 
                 && locationName !== '' 
                 && yearFrom !== '' 
@@ -142,8 +145,8 @@ const Home = () => {
                 setPosts(filterAutoByMarkaModelRegionNameLocationNameYearFromyearTo);
                
             } else if (
-                marka === null 
-                && model === null 
+                marka === undefined 
+                && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -154,8 +157,8 @@ const Home = () => {
                 setPosts(filterYearFrom);
                
             } else if (
-                marka === null 
-                && model === null 
+                marka === undefined 
+                && model === undefined 
                 && regionsName ==='' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -166,8 +169,8 @@ const Home = () => {
                 setPosts(filterYearTo);
                
             } else if (
-                marka === null 
-                && model === null 
+                marka === undefined 
+                && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -179,8 +182,8 @@ const Home = () => {
                 setPosts(filterYearFromTo);
                
             } else if (
-                marka !== null 
-                && model === null 
+                marka !== undefined 
+                && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -192,8 +195,8 @@ const Home = () => {
                 setPosts(filterMarkaYearFrom);
                
             } else if (
-                marka !== null 
-                && model !== null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -206,8 +209,8 @@ const Home = () => {
                 setPosts(filterMarkaModelYearFrom);
                
             } else if (
-                marka !== null 
-                && model === null 
+                marka !== undefined 
+                && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -220,8 +223,8 @@ const Home = () => {
                 setPosts(filterMarkaYearFromTo);
                
             } else if (
-                marka !== null 
-                && model !== null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -235,8 +238,8 @@ const Home = () => {
                 setPosts(filterMarkaModelYearFromTo);
                
             } else if (
-                marka !== null 
-                && model !== null 
+                marka !== undefined 
+                && model !== undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -249,8 +252,8 @@ const Home = () => {
                 setPosts(filterMarkaModelYearTo);
                
             } else if (
-                marka !== null 
-                && model === null 
+                marka !== undefined 
+                && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -261,8 +264,8 @@ const Home = () => {
                 setPosts(filterMarkaYearTo);
                
             } else if (
-                marka === null 
-                && model === null 
+                marka === undefined 
+                && model === undefined 
                 && regionsName !== '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -273,8 +276,8 @@ const Home = () => {
                 setPosts(filterRegionsName);
                
             } else if (
-                marka === null 
-                && model === null 
+                marka === undefined 
+                && model === undefined 
                 && regionsName !=='' 
                 && locationName !=='' 
                 && yearFrom === '' 
@@ -286,13 +289,13 @@ const Home = () => {
                 setPosts(filterRegionsNameLocationName);
                
             }  else if (
-                marka === null 
-                && model === null 
+                marka === (undefined || null)
+                && model === (undefined || null)
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
                 && yearTo === '') {
-                    setPosts(res.data);
+                    setPosts(res.data);                 
             }
         };
         fetchPosts();
