@@ -122,13 +122,13 @@ router.post("/forgot", (request, response) => {
         port: 465,
         secure: true,
         auth: {
-          user: 'parkovkainua@gmail.com',
-          pass: 'mzoqmasqekafoofb'
+          user: 'parkovkaavto@gmail.com',
+          pass: 'wdxglbdcgaqekxqa'
         }
       });
 
       var mailOptions = {
-        from: 'parkovkainua@gmail.com',
+        from: 'parkovkaavto@gmail.com',
         to: email,
         subject: 'Ваш новий пароль для parkovka.ua',
         html:`<p>Це ваш новий пароль: ${newPassword}</p><a href="https://parkovka.in.ua/login" target="_blank">https://parkovka.in.ua/login</a>`,
