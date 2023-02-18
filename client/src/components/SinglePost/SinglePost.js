@@ -249,7 +249,7 @@ const SinglePost = () => {
 
                         <div className={styles.singlePost__formGroupFile}>
                             <label htmlFor="file" className={styles.singlePost__formGroupFileLabel}>
-                                <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото
+                                <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото в форматі <strong>(.jpg та латинськими літерами)</strong>
                             </label>
                             <input
                                 type='file'

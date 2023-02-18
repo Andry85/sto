@@ -245,7 +245,7 @@ const Write = () => {
                 <div className={styles.write__formGroup}>
                     <div className={styles.write__formGroupFile}>
                         <label htmlFor="file" className={styles.write__formGroupFileLabel}>
-                            <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото одразу
+                            <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото одразу в форматі <strong>(.jpg та латинськими літерами)</strong>
                         </label>
                         <input
                             type='file'
