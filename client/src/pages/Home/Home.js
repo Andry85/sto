@@ -49,31 +49,28 @@ const Home = () => {
     useEffect(() => {
 
         const fetchPosts = async () => {
-
         
             const res = await axiosInstance.get('/posts', {
                 params: {
                   user
                 }
-              });
+            });
 
 
             if (
-                marka !== undefined 
+                marka
                 && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
                 && yearTo === '') {
-                    
-
                 const filterAutoByMarka = res.data.filter((item) => {
                     return item.marka === marka;
                 });
                 setPosts(filterAutoByMarka);
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka
+                && model
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -84,8 +81,8 @@ const Home = () => {
                 });
                 setPosts(filterAutoByMarkaModel);
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka
+                && model
                 && regionsName !== '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -97,8 +94,8 @@ const Home = () => {
                 });
                 setPosts(filterAutoByMarkaModelRegionName);
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka
+                && model
                 && regionsName !== '' 
                 && locationName !== '' 
                 && yearFrom === '' 
@@ -112,8 +109,8 @@ const Home = () => {
                 setPosts(filterAutoByMarkaModelRegionNameLocationName);
                
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka
+                && model 
                 && regionsName !== '' 
                 && locationName !== '' 
                 && yearFrom !== '' 
@@ -128,8 +125,8 @@ const Home = () => {
                 setPosts(filterAutoByMarkaModelRegionNameLocationNameYearFrom);
                
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka
+                && model
                 && regionsName !== '' 
                 && locationName !== '' 
                 && yearFrom !== '' 
@@ -182,7 +179,7 @@ const Home = () => {
                 setPosts(filterYearFromTo);
                
             } else if (
-                marka !== undefined 
+                marka
                 && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
@@ -195,8 +192,8 @@ const Home = () => {
                 setPosts(filterMarkaYearFrom);
                
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka 
+                && model 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -209,7 +206,7 @@ const Home = () => {
                 setPosts(filterMarkaModelYearFrom);
                
             } else if (
-                marka !== undefined 
+                marka
                 && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
@@ -223,8 +220,8 @@ const Home = () => {
                 setPosts(filterMarkaYearFromTo);
                
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka
+                && model 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom !== '' 
@@ -238,8 +235,8 @@ const Home = () => {
                 setPosts(filterMarkaModelYearFromTo);
                
             } else if (
-                marka !== undefined 
-                && model !== undefined 
+                marka
+                && model 
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
@@ -252,7 +249,7 @@ const Home = () => {
                 setPosts(filterMarkaModelYearTo);
                
             } else if (
-                marka !== undefined 
+                marka
                 && model === undefined 
                 && regionsName === '' 
                 && locationName === '' 
@@ -289,14 +286,15 @@ const Home = () => {
                 setPosts(filterRegionsNameLocationName);
                
             }  else if (
-                marka === (undefined || null)
-                && model === (undefined || null)
+                marka === null
+                && model === null
                 && regionsName === '' 
                 && locationName === '' 
                 && yearFrom === '' 
                 && yearTo === '') {
                     setPosts(res.data);                 
             }
+            
         };
         fetchPosts();
 

@@ -2,7 +2,6 @@ import Topbar from './components/Topbar/Topbar';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import {useSelector} from 'react-redux'
 
 import Single from './pages/Single/Single';
 import Rules from './pages/Rules/Rules';
