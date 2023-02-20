@@ -21,6 +21,7 @@ const Home = () => {
     const [locationName, setLocationName] = useState('');
     const [yearFrom, setYearFrom] = useState('');
     const [yearTo, setYearTo] = useState('');
+    const [postCount, setPostCount] = useState(0);
 
 
     const filterAuto = (marka, model, regionName, locationName, yearFrom, yearTo) => {
@@ -68,6 +69,7 @@ const Home = () => {
                     return item.marka === marka;
                 });
                 setPosts(filterAutoByMarka);
+                setPostCount(filterAutoByMarka.length); 
             } else if (
                 marka
                 && model
@@ -80,6 +82,7 @@ const Home = () => {
                         && item.model === model;
                 });
                 setPosts(filterAutoByMarkaModel);
+                setPostCount(filterAutoByMarkaModel.length); 
             } else if (
                 marka
                 && model
@@ -93,6 +96,7 @@ const Home = () => {
                         && item.regionsName === regionsName;
                 });
                 setPosts(filterAutoByMarkaModelRegionName);
+                setPostCount(filterAutoByMarkaModelRegionName.length); 
             } else if (
                 marka
                 && model
@@ -107,7 +111,7 @@ const Home = () => {
                         && item.locationName === locationName;
                 });
                 setPosts(filterAutoByMarkaModelRegionNameLocationName);
-               
+                setPostCount(filterAutoByMarkaModelRegionNameLocationName.length); 
             } else if (
                 marka
                 && model 
@@ -123,7 +127,7 @@ const Home = () => {
                         && item.year >= yearFrom;
                 });
                 setPosts(filterAutoByMarkaModelRegionNameLocationNameYearFrom);
-               
+                setPostCount(filterAutoByMarkaModelRegionNameLocationNameYearFrom.length); 
             } else if (
                 marka
                 && model
@@ -140,7 +144,7 @@ const Home = () => {
                         && item.year <= yearTo;
                 });
                 setPosts(filterAutoByMarkaModelRegionNameLocationNameYearFromyearTo);
-               
+                setPostCount(filterAutoByMarkaModelRegionNameLocationNameYearFromyearTo.length); 
             } else if (
                 marka === undefined 
                 && model === undefined 
@@ -152,7 +156,7 @@ const Home = () => {
                     return item.year >= yearFrom;
                 });
                 setPosts(filterYearFrom);
-               
+                setPostCount(filterYearFrom.length); 
             } else if (
                 marka === undefined 
                 && model === undefined 
@@ -164,7 +168,7 @@ const Home = () => {
                     return item.year <= yearTo;
                 });
                 setPosts(filterYearTo);
-               
+                setPostCount(filterYearTo.length); 
             } else if (
                 marka === undefined 
                 && model === undefined 
@@ -177,7 +181,7 @@ const Home = () => {
                     && item.year <= yearTo;
                 });
                 setPosts(filterYearFromTo);
-               
+                setPostCount(filterYearFromTo.length); 
             } else if (
                 marka
                 && model === undefined 
@@ -190,7 +194,7 @@ const Home = () => {
                     && item.year >= yearFrom;
                 });
                 setPosts(filterMarkaYearFrom);
-               
+                setPostCount(filterMarkaYearFrom.length); 
             } else if (
                 marka 
                 && model 
@@ -204,7 +208,7 @@ const Home = () => {
                         && item.year >= yearFrom;
                 });
                 setPosts(filterMarkaModelYearFrom);
-               
+                setPostCount(filterMarkaModelYearFrom.length); 
             } else if (
                 marka
                 && model === undefined 
@@ -218,7 +222,7 @@ const Home = () => {
                     && item.year <= yearTo;
                 });
                 setPosts(filterMarkaYearFromTo);
-               
+                setPostCount(filterMarkaYearFromTo.length); 
             } else if (
                 marka
                 && model 
@@ -233,7 +237,7 @@ const Home = () => {
                         && item.year <= yearTo;
                 });
                 setPosts(filterMarkaModelYearFromTo);
-               
+                setPostCount(filterMarkaModelYearFromTo.length); 
             } else if (
                 marka
                 && model 
@@ -247,7 +251,7 @@ const Home = () => {
                         && item.year <= yearTo;
                 });
                 setPosts(filterMarkaModelYearTo);
-               
+                setPostCount(filterMarkaModelYearTo.length); 
             } else if (
                 marka
                 && model === undefined 
@@ -259,7 +263,7 @@ const Home = () => {
                     return item.marka === marka && item.year <= yearTo;
                 });
                 setPosts(filterMarkaYearTo);
-               
+                setPostCount(filterMarkaYearTo.length); 
             } else if (
                 marka === undefined 
                 && model === undefined 
@@ -271,7 +275,7 @@ const Home = () => {
                     return item.regionsName === regionsName;
                 });
                 setPosts(filterRegionsName);
-               
+                setPostCount(filterRegionsName.length); 
             } else if (
                 marka === undefined 
                 && model === undefined 
@@ -284,7 +288,7 @@ const Home = () => {
                         && item.locationName === locationName;
                 });
                 setPosts(filterRegionsNameLocationName);
-               
+                setPostCount(filterRegionsNameLocationName.length); 
             }  else if (
                 marka === null
                 && model === null
@@ -292,7 +296,8 @@ const Home = () => {
                 && locationName === '' 
                 && yearFrom === '' 
                 && yearTo === '') {
-                    setPosts(res.data);                 
+                    setPosts(res.data);  
+                    setPostCount(res.data.length);              
             }
             
         };
@@ -306,7 +311,7 @@ const Home = () => {
         <div className={styles.home}>
             <div className={styles.home__container}>
                 <Posts posts={posts} />
-                <Sidebar filterAuto={filterAuto} cleaerFilters={cleaerFilters}/>
+                <Sidebar filterAuto={filterAuto} cleaerFilters={cleaerFilters} postCount={postCount}/>
             </div>
         </div>
     );
