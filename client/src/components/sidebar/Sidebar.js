@@ -72,6 +72,7 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
                         value={optionMarka.value}
                         onChange={handleChange1}
                         options={marksOfCars}
+                        placeholder={'Вибрати'}
                     />
                 </div>
                 <div className={styles.sidebar__Row}>
@@ -80,6 +81,7 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
                         value={optionModel.value}
                         onChange={handleChange2}
                         options={filteredOptions}
+                        placeholder={'Вибрати'}
                     />
                 </div>
 
@@ -92,6 +94,7 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
                                 value={yearProductionFrom.label}
                                 onChange={handleYearProductionFrom}
                                 options={yearsCar}
+                                placeholder={'Вибрати'}
                             />
                         </div>
                     </div>
@@ -102,6 +105,7 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
                                 value={yearProductionTo.label}
                                 onChange={handleYearProductionTo}
                                 options={yearsCar}
+                                placeholder={'Вибрати'}
                             />
                         </div>
                     </div>
