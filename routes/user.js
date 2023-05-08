@@ -131,7 +131,7 @@ router.post("/forgot", (request, response) => {
         from: 'parkovkaavto@gmail.com',
         to: email,
         subject: 'Ваш новий пароль для parkovka.ua',
-        html:`<p>Це ваш новий пароль: ${newPassword}</p><a href="https://parkovka.in.ua/login" target="_blank">https://parkovka.in.ua/login</a>`,
+        html:`<p>Це ваш новий пароль: ${newPassword}</p><a href="http://parkovka.in.ua/login" target="_blank">http://parkovka.in.ua/login</a>`,
       };
       
       transporter.sendMail(mailOptions, function(error, info){
