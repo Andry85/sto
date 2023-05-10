@@ -67,45 +67,45 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
         <div className={styles.sidebar}>
             <form className={styles.write__form} onSubmit={handleSubmit}>
                 <div className={styles.sidebar__Row}>
-                    <label>Марка авто</label>
+                    <label>Car brand</label>
                     <Select
                         value={optionMarka.value}
                         onChange={handleChange1}
                         options={marksOfCars}
-                        placeholder={'Вибрати'}
+                        placeholder={'Select'}
                     />
                 </div>
                 <div className={styles.sidebar__Row}>
-                    <label>Модель авто</label>
+                    <label>Car model</label>
                     <Select
                         value={optionModel.value}
                         onChange={handleChange2}
                         options={filteredOptions}
-                        placeholder={'Вибрати'}
+                        placeholder={'Select'}
                     />
                 </div>
 
                 <div className={styles.sidebar__Row}>
-                    <label>Рік виготовлення</label>
+                    <label>Year of manufacture</label>
                     <div className={styles.sidebar__RowBox}>
                         <div className={styles.sidebar__RowBoxContainer}>
-                            <div className={styles.sidebar__RowBoxTitle}>Від</div>
+                            <div className={styles.sidebar__RowBoxTitle}>From</div>
                             <Select
                                 value={yearProductionFrom.label}
                                 onChange={handleYearProductionFrom}
                                 options={yearsCar}
-                                placeholder={'Вибрати'}
+                                placeholder={'Select'}
                             />
                         </div>
                     </div>
                     <div className={styles.sidebar__RowBox}>
                         <div className={styles.sidebar__RowBoxContainer}>
-                            <div className={styles.sidebar__RowBoxTitle}>До</div>
+                            <div className={styles.sidebar__RowBoxTitle}>To</div>
                             <Select
                                 value={yearProductionTo.label}
                                 onChange={handleYearProductionTo}
                                 options={yearsCar}
-                                placeholder={'Вибрати'}
+                                placeholder={'Select'}
                             />
                         </div>
                     </div>
@@ -113,7 +113,7 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
                 </div>
 
                 <div className={styles.sidebar__Row}>
-                    <label>Регіон:</label>
+                    <label>Region:</label>
                     <div className={styles.sidebar__RowSelect}>
                         <select onChange={handleChangeRegions}>
                             {regions && regions.map((item, index) =>(
@@ -123,7 +123,7 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
                     </div>
                 </div>
                 <div className={styles.sidebar__Row}>
-                    <label>Населений пункт:</label>
+                    <label>Location:</label>
                     <div className={styles.sidebar__RowSelect}>            
                         <select value={locationName} onChange={handleChangeLocation}>
                             {location && location.map((item, index) =>(
@@ -134,9 +134,9 @@ const Sidebar = ({filterAuto, cleaerFilters, postCount}) => {
                 </div>
 
                 <div className={styles.sidebar__RowBottom}>
-                    <button className={styles.sidebar__submit} type="submit">Пошук ({postCount && postCount})</button>
+                    <button className={styles.sidebar__submit} type="submit">Search ({postCount && postCount})</button>
                     <button className={styles.sidebar__clear} type="button" onClick={cleaerFilters}>
-                        <span>Очистити фільтр</span>
+                        <span>Clean the filter</span>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </div>

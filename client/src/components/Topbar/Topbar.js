@@ -72,14 +72,14 @@ const Topbar = () => {
                     </li>
                     <li>
 
-                        {user && numberOfPosts < maximumLimit ? (<Link to="/write">Додати авто</Link>) : (
+                        {user && numberOfPosts < maximumLimit ? (<Link to="/write">Add car</Link>) : (
                             ''
                         )}
 
                     </li>
                     <li>
                         {user && (
-                            <button  className={styles.myPosts}  onClick={handleMuPosts}>Мої оголошення</button>
+                            <button  className={styles.myPosts}  onClick={handleMuPosts}>My offers</button>
                         )}
                     </li>
                 </ul>
@@ -88,15 +88,15 @@ const Topbar = () => {
                 {user ? (
                     <>
                         <i className={styles.topbar__userName}>{userName}</i>
-                        <span className={styles.topbar__logout} onClick={handleLogout}>{user && "Вийти"}</span>
+                        <span className={styles.topbar__logout} onClick={handleLogout}>{user && "Log out"}</span>
                     </>
                 ): (
                     <ul>
                          <li>
-                            <Link to="/login">Логін</Link>
+                            <Link to="/login">Log in</Link>
                          </li>
                          <li>
-                            <Link to="/register">Реєстрація</Link>
+                            <Link to="/register">Sing in</Link>
                          </li>
                     </ul>    
                 )}

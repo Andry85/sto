@@ -63,8 +63,8 @@ const Forgot = () => {
             <form className={styles.pageForm} onSubmit={e => {handleSubmit(e)}}>
 
                 <div className={styles.pageForm__row}>
-                    <h2>Відновленя паролю</h2>
-                    <p>Ввведіть електронну почту на яку вам буде відісланий ваш пароль</p>
+                    <h2>Password recovery</h2>
+                    <p>Enter the e-mail address to which your password will be sent</p>
                 </div>
 
                 <div className={styles.pageForm__row}>
@@ -77,9 +77,9 @@ const Forgot = () => {
                     />
                 </div>
                 <div className={styles.pageForm__row}>
-                    <button className={styles.pageForm__register}>Відновити пароль</button>
-                    {handleError && <p className={styles.pageForm__error}>Не корректні дані</p>}
-                    {sucessMessage && <p className={styles.pageForm__sucess}>Новий пароль відправлений вам на почту</p>}
+                    <button className={styles.pageForm__register}>Recover password</button>
+                    {handleError && <p className={styles.pageForm__error}>Incorrect data</p>}
+                    {sucessMessage && <p className={styles.pageForm__sucess}>A new password has been sent to your email</p>}
                 </div>
 
             </form>

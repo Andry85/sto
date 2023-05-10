@@ -249,7 +249,7 @@ const SinglePost = () => {
 
                         <div className={styles.singlePost__formGroupFile}>
                             <label htmlFor="file" className={styles.singlePost__formGroupFileLabel}>
-                                <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото в форматі <strong>(.jpg та латинськими літерами)</strong>
+                                <i className="fa fa-cloud-upload"></i>Upload one or more photos in <strong>(.jpg)</strong>
                             </label>
                             <input
                                 type='file'
@@ -304,7 +304,7 @@ const SinglePost = () => {
                     className={styles.singlePost__textArea} 
                     onChange={(e) => decodeDescriptionAferEdit(e.target.value)}/> : (
                     <div className={styles.singlePost__rowFirst}>
-                    <label>Опис:</label>
+                    <label>Description:</label>
                         <div className={styles.singlePost__text} dangerouslySetInnerHTML={{__html: description}}>
                         </div>
                     </div>
@@ -333,7 +333,7 @@ const SinglePost = () => {
                 </div>
 
                 <div className={styles.singlePost__row}>
-                    <label>Модель авто:</label>
+                    <label>Car model:</label>
                     {updateMod ? 
                          (<div className={styles.write__formGroupRowSelect}>
                              <Select
@@ -354,7 +354,7 @@ const SinglePost = () => {
                 </div>
 
                 <div className={styles.singlePost__row}>
-                    <label>Рік випуску:</label>
+                    <label>Year of manufacture:</label>
                     {updateMod ? 
                          (<div className={styles.write__formGroupRowSelect}>
                                 <Select
@@ -377,7 +377,7 @@ const SinglePost = () => {
 
 
                 <div className={styles.singlePost__row}>
-                    <label>Ціна:</label>
+                    <label>Price:</label>
                     {updateMod ? <input type="text" 
                         value={price} 
                         className={styles.singlePost__input}
@@ -394,7 +394,7 @@ const SinglePost = () => {
                 </div>
 
                 <div className={styles.singlePost__row}>
-                    <label>Пробіг:</label>
+                    <label>Race:</label>
                     {updateMod ? <input type="text" 
                         value={race} 
                         className={styles.singlePost__input}
@@ -403,7 +403,7 @@ const SinglePost = () => {
                          /> : (
                         <>
                             <div className={styles.singlePost__col}>
-                                {race} <i>тисяч км.</i>
+                                {race} <i>tkm.</i>
                             </div>
                         </>
 
@@ -411,7 +411,7 @@ const SinglePost = () => {
                 </div>
 
                 <div className={styles.singlePost__row}>
-                    <label>Регіон:</label>
+                    <label>Region:</label>
                     {updateMod ? 
                          (<div className={styles.write__formGroupRowSelect}>
                             <select onChange={handleChangeRegions} defaultValue={regionsName}>
@@ -432,7 +432,7 @@ const SinglePost = () => {
                 </div>
 
                 <div className={styles.singlePost__row}>
-                    <label>Населений пункт:</label>
+                    <label>Location:</label>
                     {updateMod ? 
                          (
                             <div className={styles.write__formGroupRowSelect}>            
@@ -455,7 +455,7 @@ const SinglePost = () => {
                 </div>
 
                 <div className={styles.singlePost__row}>
-                    <label>Телефон:</label>
+                    <label>Phone:</label>
                     {updateMod ? <input type="text" 
                         value={phone} 
                         className={styles.singlePost__input}
@@ -472,12 +472,12 @@ const SinglePost = () => {
                 </div>
 
                 {updateMod && (
-                    <button className={styles.singlePost__btn} onClick={handleUpdate}>Оновити</button>
+                    <button className={styles.singlePost__btn} onClick={handleUpdate}>Update</button>
                 )}
 
                 <div className={styles.singlePost__info}>
                     <span className={styles.singlePost__authot}>
-                        <i>Автор: </i>
+                        <i>Author: </i>
                         <button  className={styles.myPosts}  onClick={handleMuPosts}>
                             {pseudonime}
                         </button>
