@@ -23,10 +23,10 @@ const Post = ({post}) => {
                 )}
                 <footer className={styles.post__entry}>
                     {post.price && (
-                        <div className={styles.post__price}>ціна: <span>{post.price} $</span></div>
+                        <div className={styles.post__price}>price: <span>{post.price} $</span></div>
                     )}
                     {post.race && (
-                        <div className={styles.post__race}>пробіг: <b>{post.race}</b> тис. км</div>
+                        <div className={styles.post__race}>race: <b>{post.race}</b> tkm.</div>
                     )}
                 </footer>
             </div>

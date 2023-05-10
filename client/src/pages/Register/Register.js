@@ -37,28 +37,28 @@ const Register = () => {
 
             <form className={styles.pageForm} onSubmit={e => {handleSubmit(e)}}>
                 <div className={styles.pageForm__row}>
-                    <label>Введіть ваше ім'я</label>
+                    <label>Enter your name</label>
                     <input 
                         type="text" 
-                        placeholder="ваше ім'я" 
+                        placeholder="Your name" 
                         value={username}
                         onChange={e => setUsername(e.target.value)}
                         />
                 </div>
                 <div className={styles.pageForm__row}>
-                    <label>Введіть ваш emal</label>
+                    <label>Enter your emal</label>
                     <input 
                         type="email" 
-                        placeholder="ваш email" 
+                        placeholder="Your email" 
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <div className={styles.pageForm__row}>
-                    <label>Введіть ваш пароль</label>
+                    <label>Enter your password</label>
                     <input 
                         type={isPasswordVisible ? 'text': 'password'}
-                        placeholder="ваш пароль" 
+                        placeholder="your password" 
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
@@ -68,7 +68,7 @@ const Register = () => {
                     
                 </div>
                 <div className={styles.pageForm__row}>
-                    <button className={styles.pageForm__register}>Зареєструватись</button>
+                    <button className={styles.pageForm__register}>Register</button>
                 </div>
             </form>
         </div>

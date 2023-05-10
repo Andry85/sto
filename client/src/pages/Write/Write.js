@@ -9,8 +9,6 @@ import {marksOfCars, modelsOfCars, yearsCar} from '../../util/carsUtil';
 
 
 const Write = () => {
-
-    const user = localStorage.getItem("userEmail");
     const userName = localStorage.getItem("userName");
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
@@ -245,7 +243,7 @@ const Write = () => {
                 <div className={styles.write__formGroup}>
                     <div className={styles.write__formGroupFile}>
                         <label htmlFor="file" className={styles.write__formGroupFileLabel}>
-                            <i className="fa fa-cloud-upload"></i>Загрузіть одне або кілька фото одразу в форматі <strong>(.jpg та латинськими літерами)</strong>
+                            <i className="fa fa-cloud-upload"></i>Upload one or more photos at once in the format <strong>(.jpg)</strong>
                         </label>
                         <input
                             type='file'
@@ -267,20 +265,20 @@ const Write = () => {
                     </div>
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Навзва авто: <i>*</i></label>
+                    <label>Name of the car: <i>*</i></label>
                     <input 
                         className={styles.write__text} 
                         type="text" 
-                        placeholder="Назва авто" 
+                        placeholder="Name of the car" 
                         autoFocus={true}
                         onChange={e => setTitle(e.target.value)}
                     />
                     {errorTitle && (
-                                <span className={styles.write__formGroupRowError}>Заповніть назву авто</span>
+                                <span className={styles.write__formGroupRowError}>Fill in the name of the car</span>
                     )} 
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Марка авто: <i>*</i></label>
+                    <label>Car brand: <i>*</i></label>
                     <Select
                        theme={(theme) => ({
                             ...theme,
@@ -294,11 +292,11 @@ const Write = () => {
                         options={marksOfCars}
                     />
                     {errorMarka && (
-                                <span className={styles.write__formGroupRowError}>Заповніть марку авто</span>
+                                <span className={styles.write__formGroupRowError}>Fill in the car brand</span>
                     )} 
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Модель авто: <i>*</i></label>
+                    <label>Car model: <i>*</i></label>
                     <Select
                         theme={(theme) => ({
                             ...theme,
@@ -312,11 +310,11 @@ const Write = () => {
                         options={filteredOptions}
                     />
                     {errorModel && (
-                                <span className={styles.write__formGroupRowError}>Заповніть модель авто</span>
+                                <span className={styles.write__formGroupRowError}>Fill in the car model</span>
                     )}
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Рік випуску: <i>*</i></label>
+                    <label>Year of manufacture: <i>*</i></label>
                     <Select
                         theme={(theme) => ({
                             ...theme,
@@ -330,38 +328,38 @@ const Write = () => {
                         options={yearsCar}
                     />
                     {errorYear && (
-                                <span className={styles.write__formGroupRowError}>Заповніть рік випуску авто</span>
+                                <span className={styles.write__formGroupRowError}>Fill in year of manufacture</span>
                     )}
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Ціна: <i>*</i></label>
+                    <label>Price: <i>*</i></label>
                     <div className={styles.write__formGroupRowPrice}>
                         <input 
                             className={styles.write__text} 
                             type="number" 
-                            placeholder="Ціна авто" 
+                            placeholder="Price of the car" 
                             onChange={e => setPrice(e.target.value)}
                         />
                         <span>&#36;</span>
                     </div>
                     {errorPrice && (
-                                <span className={styles.write__formGroupRowError}>Заповніть ціну авто</span>
+                                <span className={styles.write__formGroupRowError}>Fill in the price of the car</span>
                     )}
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Пробіг авто: <i>*</i></label>
+                    <label>Race: <i>*</i></label>
                     <input 
                         className={styles.write__text} 
                         type="number" 
-                        placeholder="Тис. км" 
+                        placeholder="tkm." 
                         onChange={e => setRace(e.target.value)}
                     />
                     {errorRace && (
-                                <span className={styles.write__formGroupRowError}>Заповніть пробіг авто</span>
+                                <span className={styles.write__formGroupRowError}>Fill in the race of the car</span>
                     )}
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Регіон: <i>*</i></label>
+                    <label>Region: <i>*</i></label>
                     <div className={styles.write__formGroupRowSelect}>
                         <select onChange={handleChangeRegions}>
                             {regions && regions.map((item, index) =>(
@@ -370,13 +368,13 @@ const Write = () => {
                         </select>
                     </div>
                     {errorRegionsName && (
-                                <span className={styles.write__formGroupRowError}>Заповніть регіон авто</span>
+                                <span className={styles.write__formGroupRowError}>Fill in the auto region</span>
                     )}
 
                     
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Населений пункт:</label>
+                    <label>Location:</label>
                     <div className={styles.write__formGroupRowSelect}>            
                         <select value={locationName} onChange={handleChangeLocation}>
                             {location && location.map((item, index) =>(
@@ -386,26 +384,26 @@ const Write = () => {
                     </div>
                 </div>
                 <div className={styles.write__formGroupRow}>
-                    <label>Телефон: <i>*</i></label>
+                    <label>Phone: <i>*</i></label>
                     <input 
                         className={styles.write__text} 
                         type="tel" 
-                        placeholder="Ваш телефон" 
+                        placeholder="Your phone number" 
                         onChange={e => setPhone(e.target.value)}
                     />
                     {errorPhone && (
-                                <span className={styles.write__formGroupRowError}>Заповніть телефон</span>
+                                <span className={styles.write__formGroupRowError}>Fill the phone</span>
                     )}
                 </div>
                 <div className={styles.write__formGroup}>
                     <textarea 
                         className={styles.write__textArea} 
                         rows="5" 
-                        placeholder="Опишіть ваше авто"
+                        placeholder="Describe your car"
                         onChange={e => decodeTextareaText(e.target.value)}
                     ></textarea>
                 </div>
-                <button className={styles.write__submit} type="submit">Додати</button>
+                <button className={styles.write__submit} type="submit">Add</button>
             </form>
         </div>
     );

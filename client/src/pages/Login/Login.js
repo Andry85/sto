@@ -55,19 +55,19 @@ const Login = () => {
         <div className={styles.page}>
             <form className={styles.pageForm} onSubmit={e => {handleSubmit(e)}}>
                 <div className={styles.pageForm__row}>
-                    <label>Введіть ваш emal</label>
+                    <label>Enter your email</label>
                     <input 
                         type="email" 
-                        placeholder="ваш email" 
+                        placeholder="your email" 
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <div className={styles.pageForm__row}>
-                    <label>Введіть ваш пароль</label>
+                    <label>Enter your password</label>
                     <input 
                         type={isPasswordVisible ? 'text': 'password'}
-                        placeholder="ваш пароль" 
+                        placeholder="your password" 
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
@@ -76,12 +76,12 @@ const Login = () => {
                     </div>
                 </div>
                 <div className={styles.pageForm__row}>
-                    <Link className={styles.pageForm__forgot} to="/forgot">забули пароль</Link>
+                    <Link className={styles.pageForm__forgot} to="/forgot">forgot password</Link>
                 </div>
                 <div className={styles.pageForm__row}>
-                    <button className={styles.pageForm__register}>Вхід</button>
+                    <button className={styles.pageForm__register}>Log in</button>
                 </div>
-                {handleError && <p className={styles.pageForm__error}>Не корректні дані</p>}
+                {handleError && <p className={styles.pageForm__error}>Incorrect data</p>}
             </form>
         </div>
     );
